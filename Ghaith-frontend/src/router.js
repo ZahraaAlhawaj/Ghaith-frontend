@@ -3,7 +3,7 @@ import { createWebHistory, createRouter } from "vue-router"
 import HomePage from './pages/HomePage.vue'
 import Login from './pages/Login.vue'
 import Register from './pages/Register.vue'
-import AboutPage from './pages/AboutPage.vue'
+import About from './pages/About.vue'
 
 const routes = [
   { path: '/', component: HomePage, name: 'HomePage' },
@@ -12,7 +12,7 @@ const routes = [
 
   { path: '/register', component: Register, name:'Register' },
 
-  { path: '/about', component: AboutPage, name: 'AboutPage' },
+  { path: '/about', component: About, name: 'About' },
 
 ]
 

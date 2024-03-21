@@ -1,11 +1,10 @@
 <script>
   export default {
-    name: 'Register'
+    name: 'Footer'
   }
 </script>
 
 <template>
-  <div>
-
-  </div>
+  
 </template>
+

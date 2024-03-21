@@ -1,6 +1,6 @@
 <script>
   export default {
-    name: 'Register'
+    name: 'AboutPage'
   }
 </script>
 
