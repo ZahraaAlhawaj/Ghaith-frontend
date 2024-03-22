@@ -3,7 +3,26 @@ export default {
   name: 'Cases',
   data: function () {
     return {
-      slider3: 100
+      slider3: 100,
+      search: '',
+      cases: [
+        {
+          title: 'Treatment'
+        },
+        {
+          title: 'Orphan'
+        },
+        {
+          title: 'Home'
+        }
+      ]
+    }
+  },
+  computed: {
+    filteredCases() {
+      return this.cases.filter((c) =>
+        c.title.toLowerCase().includes(this.search.toLowerCase())
+      )
     }
   },
   methods: {
@@ -15,26 +34,44 @@ export default {
 </script>
 
 <template>
-  <h1>Cases</h1>
-  <v-card class="mx-auto" max-width="344" @click="showCase">
-    <v-img
-      height="200px"
-      src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg"
-      cover
-    ></v-img>
+  <v-container>
+    <h1>Cases</h1>
 
-    <v-card-title> Top western road trips </v-card-title>
+    <v-text-field
+      v-model="search"
+      label="Search"
+      prepend-inner-icon="mdi-magnify"
+      variant="outlined"
+      hide-details
+      single-line
+    ></v-text-field>
 
-    <v-card-subtitle> 1,000 miles of wonder </v-card-subtitle>
+    <v-row>
+      <v-col
+        v-for="(c, index) in filteredCases"
+        :key="index"
+        cols="12"
+        sm="6"
+        md="4"
+      >
+        <v-card class="mx-auto" max-width="344" @click="showCase(c.id)">
+          <v-img height="200px" :src="c.image" cover></v-img>
 
-    <v-slider
-      label=""
-      color="green"
-      v-model="slider3"
-      model-value="30"
-      readonly
-    ></v-slider>
-  </v-card>
+          <v-card-title>{{ c.title }}</v-card-title>
+
+          <v-card-subtitle>{{ c.subtitle }}</v-card-subtitle>
+
+          <v-slider
+            label=""
+            color="green"
+            v-model="slider3"
+            model-value="30"
+            readonly
+          ></v-slider>
+        </v-card>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
 <style></style>
