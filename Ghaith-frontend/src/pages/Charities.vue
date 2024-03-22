@@ -4,7 +4,8 @@ const API_KEY = import.meta.env.VITE_GHAITH_API
 export default {
   name: 'Charities',
   data: () => ({
-    charities: null
+    charities: null,
+    transparent: 'rgba(255, 255, 255, 0)'
   }),
   mounted() {
     this.showAllCharity()
@@ -15,8 +16,8 @@ export default {
       this.charities = response.data
       console.log(this.charities)
     },
-    showCharity() {
-      this.$router.push(`/charity/1`)
+    showCharity(id) {
+      this.$router.push(`/charity/${id}`)
     }
   }
 }
@@ -24,7 +25,7 @@ export default {
 
 <template>
   <h1>All Charities</h1>
-  <v-card
+  <!-- <v-card
     v-for="charity in charities"
     :key="charity._id"
     class="mx-auto"
@@ -33,45 +34,51 @@ export default {
     max-width="300"
     max-height="350"
     theme="dark"
-    @click="showCharity"
-  >
-    <v-hover>
-      <template v-slot:default="{ hover }">
-        <div
-          class="card-image"
-          :style="{ 'background-image': `url(${charity.logo})` }"
-        >
-          <div v-if="hover" class="title-overlay">
-            {{ charity.title }}
-          </div>
-        </div>
+    @click="showCharity(charity._id)">
+  </v-card> -->
+
+  <v-container class="pa-4 text-center">
+    <v-row align="center" class="fill-height" justify="center">
+      <template v-for="(charity, i) in charities" :key="i">
+        <v-col cols="12" md="4">
+          <v-hover v-slot="{ isHovering, props }">
+            <v-card
+              :class="{ 'on-hover': isHovering }"
+              :elevation="isHovering ? 12 : 2"
+              v-bind="props"
+              @click="showCharity(charity._id)"
+            >
+              <v-img :src="charity.logo" height="225px" cover>
+                <div class="align-self-center">
+                  <v-card-title class="text-h6 text-white d-flex flex-column">
+                    <p class="mt-4" v-if="isHovering">
+                      {{ charity.name }}
+                    </p>
+                  </v-card-title>
+                </div>
+              </v-img>
+            </v-card>
+          </v-hover>
+        </v-col>
       </template>
-    </v-hover>
-  </v-card>
+    </v-row>
+  </v-container>
 </template>
 
-<style>
+<style scoped>
 .v-card-title {
   color: red !important;
 }
 
-.card-image {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  background-size: cover;
-  background-position: center;
+.v-card {
+  transition: opacity 0.4s ease-in-out;
 }
 
-.title-overlay {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  padding: 10px;
-  background-color: rgba(0, 0, 0, 0.5);
-  color: white;
-  text-align: center;
-  font-size: 18px;
+.v-card:not(.on-hover) {
+  opacity: 0.6;
+}
+
+.on-hover {
+  cursor: pointer;
 }
 </style>

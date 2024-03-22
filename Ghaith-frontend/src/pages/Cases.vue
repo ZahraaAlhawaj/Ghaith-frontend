@@ -58,6 +58,7 @@ export default {
           <v-img height="200px" :src="c.image" cover></v-img>
 
           <v-card-title>{{ c.name }}</v-card-title>
+          <p>{{ c.code }}</p>
 
           <v-card-subtitle
             >Desired amount: {{ c.total_amount }} BD</v-card-subtitle
