@@ -1,6 +1,32 @@
 <script>
+import { LoginUser } from '../services/auth'
+
 export default {
-  name: 'Login'
+  name: 'Login',
+  data: function () {
+    return {
+      formValues: {
+        email: null,
+        password: null
+      }
+    }
+  },
+  methods: {
+    handleFormChange(event) {
+      this.formValues = {
+        ...this.formValues,
+        [event.target.name]: event.target.value
+      }
+    },
+    async handleSubmit(event) {
+      event.preventDefault()
+      const res = await LoginUser(this.formValues)
+      if (res.status && res.status !== 200) {
+      } else {
+        this.$router.push(`/`)
+      }
+    }
+  }
 }
 </script>
 
@@ -10,17 +36,18 @@ export default {
       <h1 className="account-title">Login</h1>
       <p className="account-description">Enter your email and password</p>
 
-      <v-form fast-fail @submit.prevent>
+      <v-form fast-fail @submit.prevent @submit="handleSubmit">
         <v-text-field
-          v-model="email"
-          :rules="emailRules"
+          v-model="formValues['email']"
           label="email"
+          @input="handleFormChange"
         ></v-text-field>
 
         <v-text-field
-          v-model="password"
-          :rules="passwordRules"
+          v-model="formValues['password']"
           label="password"
+          type="password"
+          @input="handleFormChange"
         ></v-text-field>
 
         <v-btn rounded="xl" class="mt-2" type="submit" block>Submit</v-btn>
