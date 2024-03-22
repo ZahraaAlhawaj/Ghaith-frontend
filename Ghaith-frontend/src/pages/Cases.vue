@@ -1,33 +1,33 @@
 <script>
+import axios from 'axios'
+const API_KEY = import.meta.env.VITE_GHAITH_API
 export default {
   name: 'Cases',
   data: function () {
     return {
       slider3: 100,
       search: '',
-      cases: [
-        {
-          title: 'Treatment'
-        },
-        {
-          title: 'Orphan'
-        },
-        {
-          title: 'Home'
-        }
-      ]
+      cases: []
     }
+  },
+  mounted() {
+    this.getCases()
   },
   computed: {
     filteredCases() {
       return this.cases.filter((c) =>
-        c.title.toLowerCase().includes(this.search.toLowerCase())
+        c.name.toLowerCase().includes(this.search.toLowerCase())
       )
     }
   },
   methods: {
-    showCase() {
-      this.$router.push(`/cases/1`)
+    showCase(id) {
+      this.$router.push(`/cases/${id}`)
+    },
+    async getCases() {
+      const response = await axios.get(`${API_KEY}/cases`)
+      this.cases = response.data
+      console.log(response.data)
     }
   }
 }
@@ -54,12 +54,16 @@ export default {
         sm="6"
         md="4"
       >
-        <v-card class="mx-auto" max-width="344" @click="showCase(c.id)">
+        <v-card class="mx-auto" max-width="344" @click="showCase(c._id)">
           <v-img height="200px" :src="c.image" cover></v-img>
 
-          <v-card-title>{{ c.title }}</v-card-title>
+          <v-card-title>{{ c.name }}</v-card-title>
 
-          <v-card-subtitle>{{ c.subtitle }}</v-card-subtitle>
+          <v-card-subtitle
+            >Desired amount: {{ c.total_amount }} BD</v-card-subtitle
+          >
+          <v-card-subtitle>Start Date: {{ c.start_date }}</v-card-subtitle>
+          <v-card-subtitle>End Date: {{ c.end_date }}</v-card-subtitle>
 
           <v-slider
             label=""
@@ -68,10 +72,15 @@ export default {
             model-value="30"
             readonly
           ></v-slider>
+          <p>Details</p>
         </v-card>
       </v-col>
     </v-row>
   </v-container>
 </template>
 
-<style></style>
+<style>
+.v-row {
+  margin-top: 12px !important;
+}
+</style>
