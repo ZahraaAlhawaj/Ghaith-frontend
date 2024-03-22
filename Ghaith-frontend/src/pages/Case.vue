@@ -23,5 +23,17 @@ export default {
 </script>
 <template>
   <h1>Case Page</h1>
+  <img height="200" :src="cases.image" alt="" />
+  <p>code: {{ cases.code }}</p>
+  <p v-if="cases.category">{{ cases.category.name }}</p>
+  <h2>{{ cases.name }}</h2>
+  <p>Description: {{ cases.description }}</p>
+  <p v-if="cases.charity">Charity: {{ cases.charity.name }}</p>
+  <p>Desired Amount: {{ cases.total_amount }}</p>
+  <p v-if="cases.collected_amount">
+    Collected Amount: {{ cases.collected_amount }}
+  </p>
+  <p>Start Date: {{ cases.start_date }}</p>
+  <p>End Date: {{ cases.end_date }}</p>
 </template>
 <style></style>
