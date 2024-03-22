@@ -1,37 +1,43 @@
 <script>
+import { addRequest } from '../services/request'
 export default {
-  name: 'CreateRequest',
-  data() {
+  name: 'Request',
+  data: function () {
     return {
-      title: '',
-      description: '',
-      family_member: null,
-      salary: null,
-      expected_amount: null,
-      expected_date: null,
-      type: '',
-      user: '',
-      charity: '',
-      document: '',
-      status: 'Not Selected',
-      statusOptions: ['Not Selected', 'Selected', 'Approved', 'Rejected']
+      formValues: {
+        title: '',
+        description: '',
+        family_member: null,
+        salary: null,
+        expected_amount: null,
+        expected_date: null,
+        document: ''
+      }
     }
   },
   methods: {
-    submitForm() {
-      // Handle form submission logic here
-      console.log('Form submitted')
-      console.log(this.title)
-      console.log(this.description)
-      console.log(this.family_member)
-      console.log(this.salary)
-      console.log(this.expected_amount)
-      console.log(this.expected_date)
-      console.log(this.type)
-      console.log(this.user)
-      console.log(this.charity)
-      console.log(this.document)
-      console.log(this.status)
+    handleFormChange(event) {
+      this.formValues = {
+        ...this.formValues,
+        [event.target.name]: event.target.value
+      }
+    },
+    async submitForm() {
+      event.preventDefault()
+      const res = await addRequest(this.formValues)
+      this.resetForm()
+      this.$router.push(`/`)
+    },
+    resetForm() {
+      this.formValues = {
+        title: '',
+        description: '',
+        family_member: null,
+        salary: null,
+        expected_amount: null,
+        expected_date: null,
+        document: ''
+      }
     }
   }
 }
@@ -43,38 +49,52 @@ export default {
       <h1 class="account-title">Create Request</h1>
 
       <v-form @submit.prevent="submitForm">
-        <v-text-field v-model="title" label="Title"></v-text-field>
+        <v-text-field
+          v-model="formValues['title']"
+          label="Title"
+          @input="handleFormChange"
+        ></v-text-field>
 
-        <v-textarea v-model="description" label="Description"></v-textarea>
+        <v-textarea
+          v-model="formValues['description']"
+          label="Description"
+          @input="handleFormChange"
+        ></v-textarea>
 
         <v-text-field
-          v-model="family_member"
+          v-model="formValues['family_member']"
           label="Family Members"
           type="number"
+          @input="handleFormChange"
         ></v-text-field>
 
         <v-text-field
-          v-model="salary"
+          v-model="formValues['salary']"
           label="Salary"
           type="number"
+          @input="handleFormChange"
         ></v-text-field>
 
         <v-text-field
-          v-model="expected_amount"
+          v-model="formValues['expected_amount']"
           label="Expected Amount"
           type="number"
+          @input="handleFormChange"
         ></v-text-field>
 
-        <v-date-picker
-          v-model="expected_date"
+        <v-text-field
+          v-model="formValues['expected_date']"
           label="Expected Date"
-        ></v-date-picker>
+          type="date"
+          @input="handleFormChange"
+        ></v-text-field>
 
-        <v-file-input
-          v-model="document"
+        <!-- <v-file-input
+          v-model="formValues['document']"
           label="Document"
+          @input="handleFormChange"
           accept="image/*, application/pdf"
-        ></v-file-input>
+        ></v-file-input> -->
 
         <v-btn rounded class="mt-2" type="submit" block color="primary"
           >Submit</v-btn

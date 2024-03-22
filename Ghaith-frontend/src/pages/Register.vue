@@ -26,7 +26,8 @@ export default {
     },
     async handleSubmit(event) {
       event.preventDefault()
-      const res = await RegisterUser(formValues)
+      const res = await RegisterUser(this.formValues)
+      console.log('res', res)
       if (res.status !== 200) {
       } else {
         this.$router.push(`/login`)
