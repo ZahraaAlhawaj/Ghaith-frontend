@@ -1,40 +1,95 @@
 <script>
-  export default {
-    name: 'Register'
+import { RegisterUser } from '../services/auth'
+
+export default {
+  name: 'Register',
+  data: function () {
+    return {
+      formValues: {
+        name: null,
+        email: null,
+        password: null,
+        confirmPassword: null,
+        phone_number: null,
+        birth_date: null,
+        role: 'User'
+      },
+      nameRules: [(v) => !!v || 'Name is required']
+    }
+  },
+  methods: {
+    handleFormChange(event) {
+      this.formValues = {
+        ...this.formValues,
+        [event.target.name]: event.target.value
+      }
+    },
+    async handleSubmit(event) {
+      event.preventDefault()
+      const res = await RegisterUser(formValues)
+      if (res.status !== 200) {
+      } else {
+        this.$router.push(`/login`)
+        // formValues = {
+        //   name: null,
+        //   email: null,
+        //   password: null,
+        //   phone_number: null,
+        //   birth_date: null
+        // }
+      }
+    }
   }
+}
 </script>
 
 <template>
   <div class="form-container">
     <v-sheet class="mx-auto" width="300">
       <h1 class="account-title">Create Your Account</h1>
-        <p class="account-description">
-          Enter your name, email, and password 
-          to create your account
-        </p>
-      <v-form fast-fail @submit.prevent>
+      <p class="account-description">
+        Enter your name, email, and password to create your account
+      </p>
+      <v-form fast-fail @submit.prevent @submit="handleSubmit">
         <v-text-field
-          v-model="Name"
-          :rules="firstNameRules"
-          label="name"
+          v-model="formValues['name']"
+          :rules="nameRules"
+          label="Name"
+          @input="handleFormChange"
         ></v-text-field>
 
         <v-text-field
-          v-model="email"
-          :rules="emailRules"
-          label="email"
+          v-model="formValues['email']"
+          label="Email"
+          type="email"
+          @input="handleFormChange"
         ></v-text-field>
 
         <v-text-field
-          v-model="phoneNumber"
-          :rules="phoneRules"
-          label="phone number"
+          v-model="formValues['phone_number']"
+          label="Phone Number"
+          @input="handleFormChange"
         ></v-text-field>
 
         <v-text-field
-          v-model="birthDate"
-          :rules="birthRules"
-          label="birth date"
+          v-model="formValues['password']"
+          label="Password"
+          type="password"
+          @input="handleFormChange"
+        ></v-text-field>
+
+        <v-text-field
+          v-model="formValues['confirmPassword']"
+          label="Confirm Password"
+          type="password"
+          @input="handleFormChange"
+        ></v-text-field>
+
+        <v-text-field
+          v-model="formValues['birth_date']"
+          label="Birth Date"
+          @input="handleFormChange"
+          type="date"
         ></v-text-field>
 
         <v-btn rounded="xl" class="mt-2" type="submit" block>Submit</v-btn>
@@ -70,4 +125,3 @@
   margin-top: -0.3%;
 }
 </style>
-
