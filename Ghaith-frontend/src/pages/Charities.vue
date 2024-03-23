@@ -1,5 +1,5 @@
 <script>
-import { showAllCharity } from '../services/charities'
+import { showAllCharity } from '../services/charity'
 export default {
   name: 'Charities',
   data: () => ({
