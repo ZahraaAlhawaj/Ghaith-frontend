@@ -56,6 +56,7 @@ export default {
 
 <template>
   <v-stepper alt-labels :items="['Step 1', 'Step 2']">
+    <!-- to show nearby charity -->
     <v-stepper-content step="1">
       <v-container class="pa-4 text-center">
         <v-row align="center" class="fill-height" justify="center">
@@ -87,6 +88,7 @@ export default {
       </v-container>
     </v-stepper-content>
 
+    <!-- pickup form  -->
     <v-stepper-content step="2">
       <v-card title="Create Pickup" flat>
         <div class="form-container">

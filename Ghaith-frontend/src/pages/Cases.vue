@@ -28,6 +28,13 @@ export default {
       const response = await axios.get(`${API_KEY}/cases`)
       this.cases = response.data
       console.log(response.data)
+    },
+    formatDate(dateString) {
+      const date = new Date(dateString)
+      const day = date.getDate().toString().padStart(2, '0')
+      const month = (date.getMonth() + 1).toString().padStart(2, '0')
+      const year = date.getFullYear()
+      return `${day}/${month}/${year}`
     }
   }
 }
@@ -63,8 +70,12 @@ export default {
           <v-card-subtitle
             >Desired amount: {{ c.total_amount }} BD</v-card-subtitle
           >
-          <v-card-subtitle>Start Date: {{ c.start_date }}</v-card-subtitle>
-          <v-card-subtitle>End Date: {{ c.end_date }}</v-card-subtitle>
+          <v-card-subtitle
+            >Start Date: {{ formatDate(c.start_date) }}</v-card-subtitle
+          >
+          <v-card-subtitle
+            >End Date: {{ formatDate(c.end_date) }}</v-card-subtitle
+          >
 
           <v-slider
             label=""
