@@ -28,6 +28,13 @@ export default {
       } else {
         console.log('something wrong')
       }
+    },
+    formatDate(dateString) {
+      const date = new Date(dateString)
+      const day = date.getDate().toString().padStart(2, '0')
+      const month = (date.getMonth() + 1).toString().padStart(2, '0')
+      const year = date.getFullYear()
+      return `${day}/${month}/${year}`
     }
   }
 }
@@ -44,8 +51,8 @@ export default {
   <p v-if="cases.collected_amount">
     Collected Amount: {{ cases.collected_amount }}
   </p>
-  <p>Start Date: {{ cases.start_date }}</p>
-  <p>End Date: {{ cases.end_date }}</p>
+  <p>Start Date: {{ formatDate(cases.start_date) }}</p>
+  <p>End Date: {{ formatDate(cases.end_date) }}</p>
 
   <v-row>
     <v-col cols="8">
