@@ -1,13 +1,15 @@
 <script>
 import { getCases } from '../services/case'
-
+import { ref } from 'vue'
 export default {
   name: 'Cases',
   data: function () {
     return {
       slider3: 100,
       search: '',
-      cases: []
+      cases: [],
+      collectedAmount: 0,
+      percentage: []
     }
   },
   mounted() {
@@ -18,6 +20,20 @@ export default {
       return this.cases.filter((c) =>
         c.name.toLowerCase().includes(this.search.toLowerCase())
       )
+    }
+  },
+  watch: {
+    filteredCases: {
+      deep: true,
+      handler(newVal) {
+        newVal.forEach((c, index) => {
+          if (c.total_amount == 0) {
+            this.percentage[index] = 0
+          } else {
+            this.percentage[index] = (c.collected_amount / c.total_amount) * 100
+          }
+        })
+      }
     }
   },
   methods: {
@@ -65,13 +81,20 @@ export default {
           <v-card-subtitle>Start Date: {{ c.start_date }}</v-card-subtitle>
           <v-card-subtitle>End Date: {{ c.end_date }}</v-card-subtitle>
 
-          <v-slider
-            label=""
-            color="green"
-            v-model="slider3"
-            model-value="30"
-            readonly
-          ></v-slider>
+          <div>
+            <v-progress-linear
+              v-model="percentage[index]"
+              height="25"
+              color="green"
+            >
+              <strong
+                >{{
+                  ((c.collected_amount / c.total_amount) * 100).toFixed(2)
+                }}%</strong
+              >
+            </v-progress-linear>
+          </div>
+
           <p>Details</p>
         </v-card>
       </v-col>
