@@ -1,5 +1,6 @@
 <script>
 import { LoginUser } from '../services/auth'
+import { useStore } from 'vuex'
 
 export default {
   name: 'Login',
@@ -8,7 +9,8 @@ export default {
       formValues: {
         email: null,
         password: null
-      }
+      },
+      store: useStore()
     }
   },
   methods: {
@@ -20,9 +22,14 @@ export default {
     },
     async handleSubmit(event) {
       event.preventDefault()
-      const res = await LoginUser(this.formValues)
+      const res = await LoginUser({
+        email: this.formValues.email,
+        password: this.formValues.password
+      })
       if (res.status && res.status !== 200) {
       } else {
+        localStorage.setItem('token', res.data.token)
+        this.store.dispatch('login', res.data.user)
         this.$router.push(`/`)
       }
     }
