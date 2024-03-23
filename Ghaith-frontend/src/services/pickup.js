@@ -8,3 +8,12 @@ export const showChairties = async (data) => {
     console.log(error)
   }
 }
+
+export const addPickup = async (data) => {
+  try {
+    const res = await Client.post(`/pickup`, data)
+    return res.data
+  } catch (error) {
+    console.log(error)
+  }
+}
