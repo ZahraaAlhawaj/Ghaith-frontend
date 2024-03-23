@@ -1,4 +1,5 @@
 <script>
+import { getCharity, showCharityCases } from '../services/charity'
 import axios from 'axios'
 const API_KEY = import.meta.env.VITE_GHAITH_API
 export default {
@@ -17,14 +18,12 @@ export default {
   },
   methods: {
     async showCharity(charityId) {
-      const response = await axios.get(`${API_KEY}/charities/${charityId}`)
-      this.charity = response.data
+      const response = await getCharity(charityId)
+      this.charity = response
     },
     async showCharityCases() {
-      const response = await axios.get(
-        `${API_KEY}/cases/charity/${this.charityId}`
-      )
-      this.charityCases = response.data
+      const response = await showCharityCases(this.charityId)
+      this.charityCases = response
       console.log(this.charityCases)
     },
     showCase(id) {
