@@ -7,7 +7,10 @@ export default {
       coords: null,
       step: 1,
       charities: null,
+      //isSelected: false,
+      selectedCharities: null,
       formValues: {
+        charityId: null,
         date: '',
         type: '',
         quantity: '',
@@ -15,19 +18,42 @@ export default {
       }
     }
   },
-  mounted: function () {
-    navigator.geolocation.getCurrentPosition(async (position) => {
-      this.coords = {
-        latitude: position.coords.latitude,
-        longitude: position.coords.longitude
-      }
-      this.getNearCharity(this.coords)
-    })
+  // mounted: function () {
+  //   navigator.geolocation.getCurrentPosition(async (position) => {
+  //     this.coords = {
+  //       latitude: position.coords.latitude,
+  //       longitude: position.coords.longitude
+  //     }
+  //     this.getNearCharity(this.coords)
+  //   })
+  // },
+  mounted() {
+    this.getNearCharity()
+  },
+  computed: {
+    isCardSelected() {
+      return this.selectedCharities !== null
+    }
   },
   methods: {
-    async getNearCharity(coords) {
-      res = await showChairties(coords)
-      this.charities = await showChairties(coords)
+    async getNearCharity() {
+      const res = await showChairties()
+      this.charities = res
+      console.log('this', this.charities)
+    },
+    selectCharity(charityID) {
+      if (this.selectedCharities == charityID) {
+        this.selectedCharities = null
+        this.formValues.charityId = null
+      } else {
+        this.selectedCharities = charityID
+        this.formValues.charityId = charityID
+      }
+      this.$emit('select', this.formValues.charityId)
+      console.log('form', this.formValues)
+    },
+    isSelected(charityID) {
+      return this.selectedCharities == charityID
     },
     handleFormChange(event) {
       this.formValues = {
@@ -38,6 +64,11 @@ export default {
     async handleSubmit() {
       event.preventDefault()
       const res = await addPickup(this.formValues)
+      if (res) {
+        console.log('done')
+      } else {
+        console.log('something wrong')
+      }
       this.resetForm()
     },
     handleUrgentChange() {
@@ -55,42 +86,35 @@ export default {
 }
 </script>
 <template>
-  <div v-if="coords">
+  <div>
     <v-stepper alt-labels :items="['Step 1', 'Step 2']">
       <!-- to show nearby charity -->
-      <v-stepper-content step="1">
+      <template v-slot:item.1>
         <v-container class="pa-4 text-center">
           <v-row align="center" class="fill-height" justify="center">
             <template v-for="(charity, i) in charities" :key="i">
               <v-col cols="12" md="4">
-                <v-hover v-slot="{ isHovering, props }">
-                  <v-card
-                    :class="{ 'on-hover': isHovering }"
-                    :elevation="isHovering ? 12 : 2"
-                    v-bind="props"
-                    @click="showCharity(charity._id)"
-                  >
-                    <v-img :src="charity.logo" height="225px" cover>
-                      <div class="align-self-center">
-                        <v-card-title
-                          class="text-h6 text-white d-flex flex-column"
-                        >
-                          <p class="mt-4" v-if="isHovering">
-                            {{ charity.name }}
-                          </p>
-                        </v-card-title>
-                      </div>
-                    </v-img>
-                  </v-card>
-                </v-hover>
+                <v-card
+                  :class="{ 'selected-card': isSelected(charity._id) }"
+                  @click="selectCharity(charity._id)"
+                >
+                  <v-img :src="charity.logo" height="225px" cover> </v-img>
+                  <div class="align-self-center">
+                    <v-card-title class="d-flex flex-column">
+                      <h3 class="text-h5 font-weight-light text-black mb-2">
+                        {{ charity.name }}
+                      </h3>
+                    </v-card-title>
+                  </div>
+                </v-card>
               </v-col>
             </template>
           </v-row>
         </v-container>
-      </v-stepper-content>
+      </template>
 
       <!-- pickup form  -->
-      <v-stepper-content step="2">
+      <template v-slot:item.2>
         <v-card title="Create Pickup" flat>
           <div class="form-container">
             <v-sheet class="mx-auto" width="300">
@@ -131,14 +155,20 @@ export default {
             </v-sheet>
           </div>
         </v-card>
-      </v-stepper-content>
+      </template>
     </v-stepper>
   </div>
 
-  <div v-else>
+  <!-- <div v-else>
     <div>Your location is not supported</div>
     <div>
       No charity available at this location, please select your location.
     </div>
-  </div>
+  </div> -->
 </template>
+
+<style>
+.selected-card {
+  border: 2px solid green !important;
+}
+</style>
