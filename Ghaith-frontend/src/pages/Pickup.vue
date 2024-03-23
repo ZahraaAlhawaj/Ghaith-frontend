@@ -30,6 +30,11 @@ export default {
   mounted() {
     this.getNearCharity()
   },
+  computed: {
+    isCardSelected() {
+      return this.selectedCharities !== null
+    }
+  },
   methods: {
     async getNearCharity() {
       const res = await showChairties()
