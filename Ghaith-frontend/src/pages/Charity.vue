@@ -7,7 +7,8 @@ export default {
     slider3: 100,
     charity: [],
     charityId: 0,
-    charityCases: []
+    charityCases: [],
+    inputValue: 0.1
   }),
   mounted() {
     this.charityId = this.$route.params.id
@@ -28,6 +29,21 @@ export default {
     },
     showCase(id) {
       this.$router.push(`/cases/${id}`)
+    },
+    async donate() {
+      const amount = this.inputValue
+      const response = await axios.post(
+        `${API_KEY}/donations/charity/${this.$route.params.id}`,
+        {
+          amount: amount,
+          user: '65fc0cac8c385f367f5fbe64'
+        }
+      )
+      if (response) {
+        console.log('done')
+      } else {
+        console.log('something wrong')
+      }
     }
   }
 }
@@ -42,6 +58,29 @@ export default {
     alt=""
   />
   <p v-if="charity.user">{{ charity.user.email }}</p>
+
+  <v-row>
+    <v-col cols="8">
+      <v-text-field
+        :type="'number'"
+        label="Amount"
+        v-model="inputValue"
+        variant="solo"
+        prefix="BD"
+        :min="0.1"
+        :step="0.1"
+      ></v-text-field>
+    </v-col>
+    <v-col cols="4">
+      <v-btn
+        prepend-icon="$vuetify"
+        variant="outlined"
+        size="x-large"
+        @click="donate"
+        >Donate</v-btn
+      >
+    </v-col>
+  </v-row>
 
   <v-row>
     <v-col
