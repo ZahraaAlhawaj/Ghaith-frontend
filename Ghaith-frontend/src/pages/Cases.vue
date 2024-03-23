@@ -1,6 +1,6 @@
 <script>
-import axios from 'axios'
-const API_KEY = import.meta.env.VITE_GHAITH_API
+import { getCases } from '../services/case'
+
 export default {
   name: 'Cases',
   data: function () {
@@ -25,9 +25,8 @@ export default {
       this.$router.push(`/cases/${id}`)
     },
     async getCases() {
-      const response = await axios.get(`${API_KEY}/cases`)
-      this.cases = response.data
-      console.log(response.data)
+      const response = await getCases()
+      this.cases = response
     },
     formatDate(dateString) {
       const date = new Date(dateString)
