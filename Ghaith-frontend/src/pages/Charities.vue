@@ -1,20 +1,17 @@
 <script>
-import axios from 'axios'
-const API_KEY = import.meta.env.VITE_GHAITH_API
+import { showAllCharity } from '../services/charities'
 export default {
   name: 'Charities',
   data: () => ({
-    charities: null,
-    transparent: 'rgba(255, 255, 255, 0)'
+    charities: null
   }),
   mounted() {
     this.showAllCharity()
   },
   methods: {
     async showAllCharity() {
-      const response = await axios.get(`${API_KEY}/charities`)
-      this.charities = response.data
-      console.log(this.charities)
+      const response = await showAllCharity()
+      this.charities = response
     },
     showCharity(id) {
       this.$router.push(`/charity/${id}`)
