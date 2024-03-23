@@ -1,7 +1,17 @@
 <script>
 import { getCharity, showCharityCases, donate } from '../services/charity'
+import { computed } from 'vue'
+import { useStore } from 'vuex'
+
 export default {
   name: 'Charity',
+  setup() {
+    const store = useStore()
+    const isLoggedIn = computed(() => store.getters.isLoggedIn)
+    const user = computed(() => store.getters.currentUser)
+
+    return { isLoggedIn, user }
+  },
   data: () => ({
     slider3: 100,
     charity: [],
@@ -28,10 +38,11 @@ export default {
     },
     async donate() {
       const amount = this.inputValue
+      console.log(this.user)
       const response = await donate({
         charity: this.charityId,
         amount: amount,
-        user: '65fc0cac8c385f367f5fbe64'
+        user: this.user ? this.user.id : null
       })
       if (response) {
         console.log('done')
