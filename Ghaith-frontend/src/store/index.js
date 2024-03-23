@@ -13,7 +13,6 @@ const store = createStore({
   },
   actions: {
     login({ commit }, user) {
-      console.log('userrr', user)
       commit('setUser', user)
     },
     logout({ commit }) {

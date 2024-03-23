@@ -8,7 +8,6 @@ export default {
     const store = useStore()
     const isLoggedIn = computed(() => store.getters.isLoggedIn)
     const user = computed(() => store.getters.currentUser)
-    console.log('user', user)
 
     return { isLoggedIn, user }
   },
