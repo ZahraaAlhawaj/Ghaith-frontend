@@ -62,11 +62,11 @@ export default {
 }
 /* ===== Colours ===== */
 :root{
-    --body-color: #E4E9F7;
-    --nav-color: #4070F4;
+    --body-color: #E6E5D0;
+    --nav-color: #4B5F23;
     --side-nav: #010718;
-    --text-color: #FFF;
-    --search-bar: #F2F2F2;
+    --text-color: #E6E5D0;
+    --search-bar: #E6E5D0;
     --search-text: #010718;
 }
 body{
@@ -77,7 +77,7 @@ body.dark{
     --body-color: #18191A;
     --nav-color: #242526;
     --side-nav: #242526;
-    --text-color: #CCC;
+    --text-color: #E6E5D0;
     --search-bar: #242526;
 }
 nav{
