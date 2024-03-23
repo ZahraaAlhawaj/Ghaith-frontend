@@ -1,7 +1,5 @@
 <script>
 import { getCharity, showCharityCases, donate } from '../services/charity'
-import axios from 'axios'
-const API_KEY = import.meta.env.VITE_GHAITH_API
 export default {
   name: 'Charity',
   data: () => ({

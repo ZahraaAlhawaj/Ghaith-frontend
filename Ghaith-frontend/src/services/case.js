@@ -17,3 +17,12 @@ export const showCase = async (casesId) => {
     console.log(error)
   }
 }
+
+export const donate = async (data) => {
+  try {
+    const res = await Client.post('/donations', data)
+    return res
+  } catch (error) {
+    console.log(error)
+  }
+}

@@ -1,7 +1,5 @@
 <script>
-import { showCase } from '../services/case'
-import axios from 'axios'
-const API_KEY = import.meta.env.VITE_GHAITH_API
+import { showCase, donate } from '../services/case'
 export default {
   name: 'Case',
   data: () => ({
@@ -20,17 +18,15 @@ export default {
       this.cases = response
     },
     async donate() {
-      const response = await axios.post(
-        `${API_KEY}/donations/case/${this.casesId}`,
-        {
-          amount: this.inputValue,
-          user: '65fc0cac8c385f367f5fbe64'
-        }
-      )
+      const response = await donate({
+        case: this.casesId,
+        amount: this.inputValue,
+        user: '65fc0cac8c385f367f5fbe64'
+      })
       if (response) {
         console.log('done')
       } else {
-        console.log('no')
+        console.log('something wrong')
       }
     }
   }
