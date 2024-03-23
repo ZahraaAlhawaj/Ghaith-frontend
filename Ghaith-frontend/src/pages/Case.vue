@@ -1,12 +1,12 @@
 <script>
-import axios from 'axios'
-const API_KEY = import.meta.env.VITE_GHAITH_API
+import { showCase, donate } from '../services/case'
 export default {
   name: 'Case',
   data: () => ({
     slider3: 100,
     casesId: 0,
-    cases: []
+    cases: [],
+    inputValue: 0.1
   }),
   mounted() {
     this.casesId = this.$route.params.id
@@ -14,9 +14,20 @@ export default {
   },
   methods: {
     async showCase(casesId) {
-      const response = await axios.get(`${API_KEY}/cases/${casesId}`)
-      this.cases = response.data
-      console.log(this.cases)
+      const response = await showCase(casesId)
+      this.cases = response
+    },
+    async donate() {
+      const response = await donate({
+        case: this.casesId,
+        amount: this.inputValue,
+        user: '65fc0cac8c385f367f5fbe64'
+      })
+      if (response) {
+        console.log('done')
+      } else {
+        console.log('something wrong')
+      }
     }
   }
 }
@@ -35,5 +46,28 @@ export default {
   </p>
   <p>Start Date: {{ cases.start_date }}</p>
   <p>End Date: {{ cases.end_date }}</p>
+
+  <v-row>
+    <v-col cols="8">
+      <v-text-field
+        :type="'number'"
+        label="Amount"
+        v-model="inputValue"
+        variant="solo"
+        prefix="BD"
+        :min="0.1"
+        :step="0.1"
+      ></v-text-field>
+    </v-col>
+    <v-col cols="4">
+      <v-btn
+        prepend-icon="$vuetify"
+        variant="outlined"
+        size="x-large"
+        @click="donate"
+        >Donate</v-btn
+      >
+    </v-col>
+  </v-row>
 </template>
 <style></style>
