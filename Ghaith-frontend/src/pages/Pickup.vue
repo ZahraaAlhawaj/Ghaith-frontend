@@ -7,6 +7,8 @@ export default {
       coords: null,
       step: 1,
       charities: null,
+      //isSelected: false,
+      selectedCharities: null,
       formValues: {
         charityId: null,
         date: '',
@@ -35,12 +37,18 @@ export default {
       console.log('this', this.charities)
     },
     selectCharity(charityID) {
-      console.log(charityID)
-      this.formValues = {
-        ...this.formValues,
-        charityId: charityID
+      if (this.selectedCharities == charityID) {
+        this.selectedCharities = null
+        this.formValues.charityId = null
+      } else {
+        this.selectedCharities = charityID
+        this.formValues.charityId = charityID
       }
+      this.$emit('select', this.formValues.charityId)
       console.log('form', this.formValues)
+    },
+    isSelected(charityID) {
+      return this.selectedCharities == charityID
     },
     handleFormChange(event) {
       this.formValues = {
@@ -81,7 +89,10 @@ export default {
           <v-row align="center" class="fill-height" justify="center">
             <template v-for="(charity, i) in charities" :key="i">
               <v-col cols="12" md="4">
-                <v-card @click="() => selectCharity(charity._id)">
+                <v-card
+                  :class="{ 'selected-card': isSelected(charity._id) }"
+                  @click="selectCharity(charity._id)"
+                >
                   <v-img :src="charity.logo" height="225px" cover> </v-img>
                   <div class="align-self-center">
                     <v-card-title class="d-flex flex-column">
@@ -150,3 +161,9 @@ export default {
     </div>
   </div> -->
 </template>
+
+<style>
+.selected-card {
+  border: 2px solid green !important;
+}
+</style>
