@@ -8,6 +8,7 @@ export default {
       step: 1,
       charities: null,
       formValues: {
+        charityId: null,
         date: '',
         type: '',
         quantity: '',
@@ -15,19 +16,31 @@ export default {
       }
     }
   },
-  mounted: function () {
-    navigator.geolocation.getCurrentPosition(async (position) => {
-      this.coords = {
-        latitude: position.coords.latitude,
-        longitude: position.coords.longitude
-      }
-      this.getNearCharity(this.coords)
-    })
+  // mounted: function () {
+  //   navigator.geolocation.getCurrentPosition(async (position) => {
+  //     this.coords = {
+  //       latitude: position.coords.latitude,
+  //       longitude: position.coords.longitude
+  //     }
+  //     this.getNearCharity(this.coords)
+  //   })
+  // },
+  mounted() {
+    this.getNearCharity()
   },
   methods: {
-    async getNearCharity(coords) {
-      const res = await showChairties(coords)
+    async getNearCharity() {
+      const res = await showChairties()
       this.charities = res
+      console.log('this', this.charities)
+    },
+    selectCharity(charityID) {
+      console.log(charityID)
+      this.formValues = {
+        ...this.formValues,
+        charityId: charityID
+      }
+      console.log('form', this.formValues)
     },
     handleFormChange(event) {
       this.formValues = {
@@ -38,6 +51,11 @@ export default {
     async handleSubmit() {
       event.preventDefault()
       const res = await addPickup(this.formValues)
+      if (res) {
+        console.log('done')
+      } else {
+        console.log('something wrong')
+      }
       this.resetForm()
     },
     handleUrgentChange() {
@@ -55,7 +73,7 @@ export default {
 }
 </script>
 <template>
-  <div v-if="coords">
+  <div>
     <v-stepper alt-labels :items="['Step 1', 'Step 2']">
       <!-- to show nearby charity -->
       <template v-slot:item.1>
@@ -63,26 +81,16 @@ export default {
           <v-row align="center" class="fill-height" justify="center">
             <template v-for="(charity, i) in charities" :key="i">
               <v-col cols="12" md="4">
-                <v-hover v-slot="{ isHovering, props }">
-                  <v-card
-                    :class="{ 'on-hover': isHovering }"
-                    :elevation="isHovering ? 12 : 2"
-                    v-bind="props"
-                    @click="showCharity(charity._id)"
-                  >
-                    <v-img :src="charity.logo" height="225px" cover>
-                      <div class="align-self-center">
-                        <v-card-title
-                          class="text-h6 text-white d-flex flex-column"
-                        >
-                          <p class="mt-4" v-if="isHovering">
-                            {{ charity.name }}
-                          </p>
-                        </v-card-title>
-                      </div>
-                    </v-img>
-                  </v-card>
-                </v-hover>
+                <v-card @click="() => selectCharity(charity._id)">
+                  <v-img :src="charity.logo" height="225px" cover> </v-img>
+                  <div class="align-self-center">
+                    <v-card-title class="d-flex flex-column">
+                      <h3 class="text-h5 font-weight-light text-black mb-2">
+                        {{ charity.name }}
+                      </h3>
+                    </v-card-title>
+                  </div>
+                </v-card>
               </v-col>
             </template>
           </v-row>
@@ -135,10 +143,10 @@ export default {
     </v-stepper>
   </div>
 
-  <div v-else>
+  <!-- <div v-else>
     <div>Your location is not supported</div>
     <div>
       No charity available at this location, please select your location.
     </div>
-  </div>
+  </div> -->
 </template>
