@@ -1,5 +1,5 @@
 <script>
-import { getCharity, showCharityCases } from '../services/charity'
+import { getCharity, showCharityCases, donate } from '../services/charity'
 import axios from 'axios'
 const API_KEY = import.meta.env.VITE_GHAITH_API
 export default {
@@ -24,20 +24,17 @@ export default {
     async showCharityCases() {
       const response = await showCharityCases(this.charityId)
       this.charityCases = response
-      console.log(this.charityCases)
     },
     showCase(id) {
       this.$router.push(`/cases/${id}`)
     },
     async donate() {
       const amount = this.inputValue
-      const response = await axios.post(
-        `${API_KEY}/donations/charity/${this.$route.params.id}`,
-        {
-          amount: amount,
-          user: '65fc0cac8c385f367f5fbe64'
-        }
-      )
+      const response = await donate({
+        charity: this.charityId,
+        amount: amount,
+        user: '65fc0cac8c385f367f5fbe64'
+      })
       if (response) {
         console.log('done')
       } else {
