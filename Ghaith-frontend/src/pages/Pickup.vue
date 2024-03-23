@@ -26,8 +26,8 @@ export default {
   },
   methods: {
     async getNearCharity(coords) {
-      res = await showChairties(coords)
-      this.charities = await showChairties(coords)
+      const res = await showChairties(coords)
+      this.charities = res
     },
     handleFormChange(event) {
       this.formValues = {
@@ -58,7 +58,7 @@ export default {
   <div v-if="coords">
     <v-stepper alt-labels :items="['Step 1', 'Step 2']">
       <!-- to show nearby charity -->
-      <v-stepper-content step="1">
+      <template v-slot:item.1>
         <v-container class="pa-4 text-center">
           <v-row align="center" class="fill-height" justify="center">
             <template v-for="(charity, i) in charities" :key="i">
@@ -87,10 +87,10 @@ export default {
             </template>
           </v-row>
         </v-container>
-      </v-stepper-content>
+      </template>
 
       <!-- pickup form  -->
-      <v-stepper-content step="2">
+      <template v-slot:item.2>
         <v-card title="Create Pickup" flat>
           <div class="form-container">
             <v-sheet class="mx-auto" width="300">
@@ -131,7 +131,7 @@ export default {
             </v-sheet>
           </div>
         </v-card>
-      </v-stepper-content>
+      </template>
     </v-stepper>
   </div>
 
