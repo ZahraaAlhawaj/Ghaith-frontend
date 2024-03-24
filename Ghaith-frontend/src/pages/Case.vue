@@ -1,5 +1,5 @@
 <script>
-import { showCase, donate } from '../services/case'
+import { showCase, donate, getStatistics } from '../services/case'
 import { computed } from 'vue'
 import { useStore } from 'vuex'
 export default {
@@ -15,11 +15,13 @@ export default {
     casesId: 0,
     cases: [],
     amount: 0.1,
-    inputValue: 0.1
+    inputValue: 0.1,
+    stat: null
   }),
   mounted() {
     this.casesId = this.$route.params.id
     this.showCase(this.casesId)
+    this.getStatistics(this.casesId)
   },
   methods: {
     async showCase(casesId) {
@@ -37,6 +39,10 @@ export default {
       } else {
         console.log('something wrong')
       }
+    },
+    async getStatistics(casesId) {
+      const response = await getStatistics(casesId)
+      this.stat = response
     },
     formatDate(dateString) {
       const date = new Date(dateString)
