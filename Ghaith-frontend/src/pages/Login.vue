@@ -38,44 +38,46 @@ export default {
 </script>
 
 <template>
-  <div class="form-container">
-    <v-sheet class="mx-auto" width="300">
-      <h1 className="account-title">Login</h1>
-      <p className="account-description">Enter your email and password</p>
+  <div class="BG">
+    <div class="form-container">
+      <v-sheet class="mx-auto" width="300">
+        <h1 className="account-title">Login</h1>
+        <p className="account-description">Enter your email and password</p>
 
-      <v-form fast-fail @submit.prevent @submit="handleSubmit">
-        <v-text-field
-          v-model="formValues['email']"
-          label="email"
-          @input="handleFormChange"
-        ></v-text-field>
+        <v-form fast-fail @submit.prevent @submit="handleSubmit">
+          <v-text-field
+            v-model="formValues['email']"
+            label="email"
+            @input="handleFormChange"
+          ></v-text-field>
 
-        <v-text-field
-          v-model="formValues['password']"
-          label="password"
-          type="password"
-          @input="handleFormChange"
-        ></v-text-field>
+          <v-text-field
+            v-model="formValues['password']"
+            label="password"
+            type="password"
+            @input="handleFormChange"
+          ></v-text-field>
 
-        <v-btn rounded="xl" class="mt-2" type="submit" block>Submit</v-btn>
-      </v-form>
-      <div class="register-container">
-        <p class="register">No account?</p>
-        <router-link to="/register" class="register-link">
-          Create account
-        </router-link>
-      </div>
-    </v-sheet>
+          <v-btn rounded="xl" class="mt-2" type="submit" block>Submit</v-btn>
+        </v-form>
+        <div class="register-container">
+          <p class="register">No account?</p>
+          <router-link to="/register" class="register-link">
+            Create account
+          </router-link>
+        </div>
+      </v-sheet>
+    </div>
   </div>
 </template>
 
-<style>
+<style scoped>
 /* update-form2 */
 
 .account-title {
   font-size: 24px;
   text-align: left;
-  color: #10151d;
+  color: #4b5f23;
 }
 
 .account-description {
@@ -93,8 +95,8 @@ export default {
   padding: 2em;
   border-radius: 10px;
   background-color: #ffffff;
-  border: 2px solid #f2f2f2;
-  margin-top: -0.3%;
+  border: 0px solid #ffffff;
+  margin-top: 3%;
 }
 
 .register-link {
@@ -115,6 +117,13 @@ export default {
 }
 
 .register-link {
-  color: #4399f6;
+  color: #4b5f23;
+}
+
+.v-btn {
+  background-color: #4b5f23;
+  color: #e6e5ce;
+  box-shadow: none;
+  font-family: avenir, sans-serif;
 }
 </style>

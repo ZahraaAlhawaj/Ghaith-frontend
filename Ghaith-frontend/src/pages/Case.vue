@@ -1,12 +1,20 @@
 <script>
 import { showCase, donate } from '../services/case'
+import { computed } from 'vue'
+import { useStore } from 'vuex'
 export default {
   name: 'Case',
+  setup() {
+    const store = useStore()
+    const user = computed(() => store.getters.currentUser)
+
+    return { user }
+  },
   data: () => ({
     slider3: 100,
     casesId: 0,
     cases: [],
-    inputValue: 0.1
+    amount: 0.1
   }),
   mounted() {
     this.casesId = this.$route.params.id
@@ -20,8 +28,8 @@ export default {
     async donate() {
       const response = await donate({
         case: this.casesId,
-        amount: this.inputValue,
-        user: '65fc0cac8c385f367f5fbe64'
+        amount: this.amount,
+        user: this.user ? this.user.id : null
       })
       if (response) {
         console.log('done')
@@ -125,6 +133,7 @@ export default {
       </v-col>
     </v-row>
   </v-container>
+
 </template>
 <style>
 .container {
