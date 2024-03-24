@@ -9,7 +9,12 @@ export default {
     <nav>
     <div class="nav-bar">
       <i class='bx bx-menu sidebarOpen'></i>
-      <span class="logo navLogo"><router-link to="/">Gaith </router-link></span>
+      <!-- <span class="logo navLogo"><router-link to="/">Gaith </router-link></span> -->
+      <span class="logo navLogo">
+  <router-link to="/">
+    <img src="/images/lo.png" alt="Logo">
+  </router-link>
+</span>
       <div class="menu">
         <div class="logo-toggle">
           <span class="logo"><router-link to="/">CodingLab</router-link></span>
@@ -24,7 +29,7 @@ export default {
             <li><router-link to="/charities">Charities</router-link></li>
         </ul>
       </div>
-      <div class="darkLight-searchBox">
+      <!-- <div class="darkLight-searchBox">
         <div class="dark-light">
           <i class='bx bx-moon moon'></i>
           <i class='bx bx-sun sun'></i>
@@ -39,7 +44,7 @@ export default {
             <i class='bx bx-search'></i>
           </div>
         </div>
-      </div>
+      </div> -->
     </div>
   </nav>
     <!-- <router-link to="/">Home</router-link>
@@ -94,14 +99,14 @@ body.dark nav{
 }
 nav .nav-bar{
     position: relative;
-    height: 100%;
-    max-width: 1000px;
+    /* height: 100%;
+    max-width: 1000px; */
     width: 100%;
     background-color: var(--nav-color);
-    margin: 0 auto;
+    /* margin: 0 auto; */
     padding: 0 30px;
     display: flex;
-    align-items: center;
+    /* align-items: center; */
     justify-content: space-between;
 }
 nav .nav-bar .sidebarOpen{
@@ -122,7 +127,7 @@ nav .nav-bar .logo a{
 }
 .nav-bar .nav-links{
     display: flex;
-    align-items: center;
+    align-items: right;
 }
 .nav-bar .nav-links li{
     margin: 0 5px;
@@ -299,5 +304,20 @@ body.dark .search-field i{
         display: block;
         margin-top: 20px;
     }
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  padding-top: 0.8%;
+}
+
+.logo img {
+  width: 22%; /* Adjust the width to your desired size */
+  height: auto; /* Automatically adjust the height based on the aspect ratio */
+}
+
+.navLogo {
+  margin-right: 10%; /* Add some spacing between the logo and other elements in the header */
 }
 </style>

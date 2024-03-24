@@ -21,7 +21,26 @@ export default {
 </script>
 
 <template>
-  <h1>All Charities</h1>
+  <div class="container">
+    <h1>All Charities</h1>
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nec lectus
+      auctor, auctor mi id, aliquet neque. Suspendisse potenti. Nullam bibendum
+      tristique justo, ac viverra ex eleifend ac. Vestibulum ante ipsum primis
+      in faucibus orci luctus et ultrices posuere
+    </p>
+  </div>
+
+  <div class="cover-page">
+    <div class="image-container">
+      <img src="/images/Charity.jpeg" alt="Cover Image" class="image-cover" />
+      <div class="text-overlay">
+        <h1>Welcome to My Website</h1>
+        <p>Discover the power of Vue</p>
+      </div>
+    </div>
+  </div>
+
   <!-- <v-card
     v-for="charity in charities"
     :key="charity._id"
@@ -77,5 +96,32 @@ export default {
 
 .on-hover {
   cursor: pointer;
+}
+
+.image-cover {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.container {
+  display: flex;
+  text-align: center;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.container h1 {
+  font-size: 51px;
+  margin-bottom: 20px;
+  color: #4b5f23;
+}
+
+.container p {
+  font-size: 16px;
+  line-height: 1.3em;
+  color: #4b5f23;
+  width: 50%;
 }
 </style>
