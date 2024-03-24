@@ -14,7 +14,8 @@ export default {
     slider3: 100,
     casesId: 0,
     cases: [],
-    amount: 0.1
+    amount: 0.1,
+    inputValue: 0.1
   }),
   mounted() {
     this.casesId = this.$route.params.id
@@ -28,7 +29,7 @@ export default {
     async donate() {
       const response = await donate({
         case: this.casesId,
-        amount: this.amount,
+        amount: this.inputValue,
         user: this.user ? this.user.id : null
       })
       if (response) {
