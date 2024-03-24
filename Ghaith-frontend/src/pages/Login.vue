@@ -39,36 +39,36 @@ export default {
 
 <template>
   <div class="BG">
-  <div class="form-container">
-    <v-sheet class="mx-auto" width="300">
-      <h1 className="account-title">Login</h1>
-      <p className="account-description">Enter your email and password</p>
+    <div class="form-container">
+      <v-sheet class="mx-auto" width="300">
+        <h1 className="account-title">Login</h1>
+        <p className="account-description">Enter your email and password</p>
 
-      <v-form fast-fail @submit.prevent @submit="handleSubmit">
-        <v-text-field
-          v-model="formValues['email']"
-          label="email"
-          @input="handleFormChange"
-        ></v-text-field>
+        <v-form fast-fail @submit.prevent @submit="handleSubmit">
+          <v-text-field
+            v-model="formValues['email']"
+            label="email"
+            @input="handleFormChange"
+          ></v-text-field>
 
-        <v-text-field
-          v-model="formValues['password']"
-          label="password"
-          type="password"
-          @input="handleFormChange"
-        ></v-text-field>
+          <v-text-field
+            v-model="formValues['password']"
+            label="password"
+            type="password"
+            @input="handleFormChange"
+          ></v-text-field>
 
-        <v-btn rounded="xl" class="mt-2" type="submit" block>Submit</v-btn>
-      </v-form>
-      <div class="register-container">
-        <p class="register">No account?</p>
-        <router-link to="/register" class="register-link">
-          Create account
-        </router-link>
-      </div>
-    </v-sheet>
+          <v-btn rounded="xl" class="mt-2" type="submit" block>Submit</v-btn>
+        </v-form>
+        <div class="register-container">
+          <p class="register">No account?</p>
+          <router-link to="/register" class="register-link">
+            Create account
+          </router-link>
+        </div>
+      </v-sheet>
+    </div>
   </div>
-</div>
 </template>
 
 <style scoped>
@@ -77,7 +77,7 @@ export default {
 .account-title {
   font-size: 24px;
   text-align: left;
-  color: #4B5F23;
+  color: #4b5f23;
 }
 
 .account-description {
@@ -93,7 +93,7 @@ export default {
   width: 30vw;
   margin: 1em auto;
   padding: 2em;
- border-radius: 10px; 
+  border-radius: 10px;
   background-color: #ffffff;
   border: 0px solid #ffffff;
   margin-top: 3%;
@@ -117,15 +117,12 @@ export default {
 }
 
 .register-link {
-  color: #4B5F23
-}
-.BG {
-  min-height: 300vh;
+  color: #4b5f23;
 }
 
-.v-btn{
-  background-color: #4B5F23;
-  color:#E6E5CE;
+.v-btn {
+  background-color: #4b5f23;
+  color: #e6e5ce;
   box-shadow: none;
   font-family: avenir, sans-serif;
 }
