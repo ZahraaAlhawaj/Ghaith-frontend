@@ -216,7 +216,7 @@ export default {
   color: #4b5f23;
 }
 
-.account-description {
+.account-descrixption {
   font-size: 16px;
   text-align: left;
   color: #555;
