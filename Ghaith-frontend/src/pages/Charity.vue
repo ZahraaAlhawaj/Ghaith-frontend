@@ -17,7 +17,9 @@ export default {
     charity: [],
     charityId: 0,
     charityCases: [],
-    inputValue: 0.1
+    inputValue: 0.1,
+    collectedAmount: 0,
+    percentage: []
   }),
   mounted() {
     this.charityId = this.$route.params.id
@@ -48,6 +50,27 @@ export default {
         console.log('done')
       } else {
         console.log('something wrong')
+      }
+    },
+    formatDate(dateString) {
+      const date = new Date(dateString)
+      const day = date.getDate().toString().padStart(2, '0')
+      const month = (date.getMonth() + 1).toString().padStart(2, '0')
+      const year = date.getFullYear()
+      return `${day}/${month}/${year}`
+    }
+  },
+  watch: {
+    charityCases: {
+      deep: true,
+      handler(newVal) {
+        newVal.forEach((c, index) => {
+          if (c.total_amount == 0) {
+            this.percentage[index] = 0
+          } else {
+            this.percentage[index] = (c.collected_amount / c.total_amount) * 100
+          }
+        })
       }
     }
   }
@@ -103,16 +126,26 @@ export default {
         <v-card-subtitle
           >Desired amount: {{ c.total_amount }} BD</v-card-subtitle
         >
-        <v-card-subtitle>Start Date: {{ c.start_date }}</v-card-subtitle>
-        <v-card-subtitle>End Date: {{ c.end_date }}</v-card-subtitle>
+        <v-card-subtitle
+          >Start Date: {{ formatDate(c.start_date) }}</v-card-subtitle
+        >
+        <v-card-subtitle
+          >End Date: {{ formatDate(c.end_date) }}</v-card-subtitle
+        >
 
-        <v-slider
-          label=""
-          color="green"
-          v-model="slider3"
-          model-value="30"
-          readonly
-        ></v-slider>
+        <div>
+          <v-progress-linear
+            v-model="percentage[index]"
+            height="25"
+            color="green"
+          >
+            <strong
+              >{{
+                ((c.collected_amount / c.total_amount) * 100).toFixed(2)
+              }}%</strong
+            >
+          </v-progress-linear>
+        </div>
         <p>Details</p>
       </v-card>
     </v-col>
