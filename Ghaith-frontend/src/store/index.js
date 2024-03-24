@@ -3,12 +3,17 @@ import { createStore } from 'vuex'
 const store = createStore({
   state() {
     return {
-      user: null
+      user: JSON.parse(localStorage.getItem('user')) || null
     }
   },
   mutations: {
     setUser(state, user) {
       state.user = user
+      localStorage.setItem('user', JSON.stringify(user))
+    },
+    logout(state) {
+      state.user = null
+      localStorage.removeItem('user')
     }
   },
   actions: {
@@ -16,7 +21,7 @@ const store = createStore({
       commit('setUser', user)
     },
     logout({ commit }) {
-      commit('setUser', null)
+      commit('logout')
     }
   },
   getters: {
