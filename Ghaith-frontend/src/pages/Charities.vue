@@ -58,11 +58,11 @@ export default {
   </v-card> -->
   <div class="title">
     <h1 class="yellow-underlined title">Charities</h1>
-
   </div>
+
   <v-container class="pa-4 text-center">
     <v-row align="center" class="fill-height" justify="center">
-      <template v-for="(charity, i) in charities" :key="i">
+      <template class="card1" v-for="(charity, i) in charities" :key="i">
         <v-col cols="12" md="4">
           <v-hover v-slot="{ isHovering, props }">
             <v-card
@@ -71,16 +71,14 @@ export default {
               v-bind="props"
               @click="showCharity(charity._id)"
             >
-              <v-img :src="charity.logo" height="225px" cover>
-                <div class="align-self-center">
-                  <v-card-title class="text-h6 text-white d-flex flex-column">
-                    <p class="mt-4" v-if="isHovering">
-                      {{ charity.name }}
-                    </p>
-                  </v-card-title>
-                </div>
-              </v-img>
+              <v-img :src="charity.logo" height="100em" cover> </v-img>
             </v-card>
+            <!-- <p class="mt-4" 
+            v-if="isHovering"
+            > -->
+            <h3 class="mt-4">
+              {{ charity.name }}
+            </h3>
           </v-hover>
         </v-col>
       </template>
@@ -93,17 +91,45 @@ export default {
   color: red !important;
 }
 
+.v-img {
+  width: 50%; /* Adjust the desired width */
+  height: 50%; /* Adjust the desired height */
+  object-fit: contain;
+}
+
 .v-card {
-  transition: opacity 0.4s ease-in-out;
+  width: 9.5em; /* Adjust the width of the avatar picture */
+  height: 9.5em; /* Adjust the height of the avatar picture */
+  border-radius: 50%;
+  object-fit: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10%;
+  background-color: #b1bf5c;
 }
 
-.v-card:not(.on-hover) {
+.pa-4 {
+  display: flex;
+  text-align: center;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #4b5f23;
+  text-transform: capitalize;
+  margin-bottom: 5%;
+}
+
+.card1 {
+}
+
+/* .v-card:not(.on-hover) {
   opacity: 0.6;
-}
+} */
 
-.on-hover {
+/* .on-hover {
   cursor: pointer;
-}
+} */
 /* .... */
 .image-cover {
   width: 100%;
@@ -134,7 +160,7 @@ export default {
 }
 
 .text-container {
-  background-color: #b1bf5c;
+  background-color: #4b5f23;
   padding: 20px;
   padding-top: 2%;
   padding-bottom: 2%;
@@ -150,11 +176,12 @@ export default {
 .text-container p {
   font-size: 16px;
   line-height: 1.3em;
-  color: #4b5f23;
+  color: #e6e5d0;
   width: 45%;
 }
 
 .title {
+  margin-top: 2%;
   padding-top: 1%;
   display: flex;
   justify-content: center;
@@ -169,5 +196,13 @@ export default {
   padding-left: 0.15em;
   padding-right: 0.15em;
   align-self: center;
+}
+
+.three-containers {
+  display: flex;
+  text-align: center;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 </style>
