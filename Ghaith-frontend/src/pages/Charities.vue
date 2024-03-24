@@ -106,7 +106,8 @@ export default {
   justify-content: center;
   align-items: center;
   padding: 10%;
-  background-color: #b1bf5c;
+  border: 0.2em solid #4b5f23;
+   background-color: #E6E5D0 
 }
 
 .pa-4 {
@@ -160,7 +161,7 @@ export default {
 }
 
 .text-container {
-  background-color: #4b5f23;
+  background-color: #b1bf5c;
   padding: 20px;
   padding-top: 2%;
   padding-bottom: 2%;
@@ -176,7 +177,7 @@ export default {
 .text-container p {
   font-size: 16px;
   line-height: 1.3em;
-  color: #e6e5d0;
+  color: #4B5F23;
   width: 45%;
 }
 
