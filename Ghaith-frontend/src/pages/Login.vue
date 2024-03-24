@@ -38,6 +38,7 @@ export default {
 </script>
 
 <template>
+  <div class="BG">
   <div class="form-container">
     <v-sheet class="mx-auto" width="300">
       <h1 className="account-title">Login</h1>
@@ -67,15 +68,16 @@ export default {
       </div>
     </v-sheet>
   </div>
+</div>
 </template>
 
-<style>
+<style scoped>
 /* update-form2 */
 
 .account-title {
   font-size: 24px;
   text-align: left;
-  color: #10151d;
+  color: #4B5F23;
 }
 
 .account-description {
@@ -91,10 +93,10 @@ export default {
   width: 30vw;
   margin: 1em auto;
   padding: 2em;
-  border-radius: 10px;
+ border-radius: 10px; 
   background-color: #ffffff;
-  border: 2px solid #f2f2f2;
-  margin-top: -0.3%;
+  border: 0px solid #ffffff;
+  margin-top: 3%;
 }
 
 .register-link {
@@ -115,6 +117,16 @@ export default {
 }
 
 .register-link {
-  color: #4399f6;
+  color: #4B5F23
+}
+.BG {
+  min-height: 300vh;
+}
+
+.v-btn{
+  background-color: #4B5F23;
+  color:#E6E5CE;
+  box-shadow: none;
+  font-family: avenir, sans-serif;
 }
 </style>

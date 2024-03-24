@@ -98,12 +98,12 @@ export default {
   </div>
 </template>
 
-<style>
+<style scoped>
 /* update-form2 */
 .account-title {
   font-size: 24px;
   text-align: left;
-  color: #10151d;
+  color: #4B5F23;
 }
 
 .account-description {
@@ -117,11 +117,18 @@ export default {
 
 .form-container {
   width: 30vw;
-  margin: 1em auto;
+  margin: 4em auto;
   padding: 2em;
   border-radius: 10px;
   background-color: #ffffff;
-  border: 2px solid #f2f2f2;
+  border: 2px solid #ffffff;
   margin-top: -0.3%;
+}
+
+.v-btn{
+  background-color: #4B5F23;
+  color:#E6E5CE;
+  box-shadow: none;
+  font-family: avenir, sans-serif;
 }
 </style>
