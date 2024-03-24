@@ -18,7 +18,7 @@ export default {
     charityCases: [],
     inputValue: 0.1,
     collectedAmount: 0,
-    percentage: []
+    percentage: [],
     amount: 0.1
   }),
   mounted() {
