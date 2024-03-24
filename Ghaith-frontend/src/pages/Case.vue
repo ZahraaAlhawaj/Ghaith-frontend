@@ -98,14 +98,15 @@ export default {
             <div class="amount-bg">
               <div class="amount-row">
                 <div class="amount-col-one">
-                  <p class="amount-value">
-                    <b>Desired Amount: </b>{{ cases.total_amount }}BD
+                  <p class="amount-label">
+                    <b>Desired Amount:</b>
                   </p>
+
+                  <p class="amount-value">{{ cases.total_amount }}BD</p>
                 </div>
                 <div class="amount-col-two centered">
-                  <p class="amount-value">
-                    <b>Collected Amount: </b>{{ cases.collected_amount }}BD
-                  </p>
+                  <p class="amount-label"><b>Collected Amount: </b></p>
+                  <p class="amount-value">{{ cases.collected_amount }}BD</p>
                 </div>
               </div>
             </div>
@@ -133,11 +134,13 @@ export default {
       </v-col>
     </v-row>
   </v-container>
-
 </template>
 <style>
+.v-btn {
+  background-color: #4b5f23 !important;
+  color: white !important;
+}
 .container {
-  background-color: white;
   padding: 20px;
 }
 
@@ -168,7 +171,7 @@ export default {
   margin-bottom: 20px;
   padding: 20px !important;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  height: 64%;
+  height: 66%;
 }
 
 .card-title {
@@ -189,7 +192,7 @@ export default {
 }
 
 .v-responsive__sizer {
-  padding-bottom: 62% !important;
+  padding-bottom: 60% !important;
 }
 
 /**CSS for details case */
@@ -243,6 +246,8 @@ export default {
 
 .amount-value {
   margin: 0;
+  color: #4b5f23 !important;
+  font-weight: bolder;
 }
 .collected {
   margin-top: 5px;
