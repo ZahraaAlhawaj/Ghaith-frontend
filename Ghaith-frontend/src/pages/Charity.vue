@@ -7,17 +7,16 @@ export default {
   name: 'Charity',
   setup() {
     const store = useStore()
-    const isLoggedIn = computed(() => store.getters.isLoggedIn)
     const user = computed(() => store.getters.currentUser)
 
-    return { isLoggedIn, user }
+    return { user }
   },
   data: () => ({
     slider3: 100,
     charity: [],
     charityId: 0,
     charityCases: [],
-    inputValue: 0.1
+    amount: 0.1
   }),
   mounted() {
     this.charityId = this.$route.params.id
@@ -37,8 +36,7 @@ export default {
       this.$router.push(`/cases/${id}`)
     },
     async donate() {
-      const amount = this.inputValue
-      console.log(this.user)
+      const amount = this.amount
       const response = await donate({
         charity: this.charityId,
         amount: amount,
@@ -69,7 +67,7 @@ export default {
       <v-text-field
         :type="'number'"
         label="Amount"
-        v-model="inputValue"
+        v-model="amount"
         variant="solo"
         prefix="BD"
         :min="0.1"
