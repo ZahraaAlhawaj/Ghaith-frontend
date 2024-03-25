@@ -5,7 +5,12 @@ export default {
   name: 'Events',
   data() {
     return {
-      events: null
+      events: null,
+      alert: {
+        show: false,
+        message: '',
+        type: ''
+      }
     }
   },
   mounted() {
@@ -18,8 +23,18 @@ export default {
     },
 
     async joinEvent(id) {
+      this.alert.show = true
       const response = await joinEvent(id)
+      if (response.success === false) {
+        this.showAlert('Error: ' + response.msg, 'error')
+      }
       this.showEvents()
+    },
+
+    showAlert(message, type) {
+      this.alert.message = message
+      this.alert.type = type
+      this.alert.show = true
     }
   }
 }
@@ -27,6 +42,9 @@ export default {
 
 <template>
   <div>
+    <v-alert v-if="alert.show" :type="alert.type" dense>
+      {{ alert.message }}
+    </v-alert>
     <v-row>
       <v-col cols="4" v-for="event in events" :key="event._id">
         <v-card>
@@ -48,7 +66,7 @@ export default {
             <v-card-text>{{ event.description }}</v-card-text>
             <v-card-text>
               <v-icon left>mdi-account-group</v-icon>
-              {{ event.remainigVolunteers }} /
+              {{ event.volunteers.length }} /
               {{ event.requiredVolunteers }} joined
             </v-card-text>
           </div>
