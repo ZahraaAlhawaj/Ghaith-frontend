@@ -75,79 +75,190 @@ export default {
   }
 }
 </script>
+
 <template>
-  <h1>{{ charity.name }}</h1>
-  <img
-    height="200"
-    max-width="200"
-    max-height="200"
-    :src="charity.logo"
-    alt=""
-  />
-  <p v-if="charity.user">{{ charity.user.email }}</p>
+  <div class="charity-page">
+    <h1>{{ charity.name }}</h1>
+    <img
+      height="200"
+      max-width="200"
+      max-height="200"
+      :src="charity.logo"
+      alt=""
+    />
+    <p v-if="charity.user">{{ charity.user.email }}</p>
 
-  <v-row>
-    <v-col cols="8">
-      <v-text-field
-        :type="'number'"
-        label="Amount"
-        v-model="amount"
-        variant="solo"
-        prefix="BD"
-        :min="0.1"
-        :step="0.1"
-      ></v-text-field>
-    </v-col>
-    <v-col cols="4">
-      <v-btn
-        prepend-icon="$vuetify"
-        variant="outlined"
-        size="x-large"
-        @click="donate"
-        >Donate</v-btn
+    <div class="donation-card">
+      <div class="donation-input">
+        <label for="amount" class="donation-input-label">Amount</label>
+        <input
+          type="number"
+          id="amount"
+          v-model="amount"
+          min="0.1"
+          step="0.1"
+        />
+      </div>
+      <button class="donation-btn" @click="donate">Donate</button>
+    </div>
+
+    <div class="charity-cases">
+      <div
+        class="case-card"
+        v-for="(c, index) in charityCases"
+        :key="index"
+        @click="showCase(c._id)"
       >
-    </v-col>
-  </v-row>
+        <img class="case-image" :src="c.image" alt="" />
 
-  <v-row>
-    <v-col
-      v-for="(c, index) in charityCases"
-      :key="index"
-      cols="12"
-      sm="6"
-      md="4"
-    >
-      <v-card class="mx-auto" max-width="344" @click="showCase(c._id)">
-        <v-img height="200px" :src="c.image" cover></v-img>
+        <h2 class="case-title">{{ c.name }}</h2>
 
-        <v-card-title>{{ c.name }}</v-card-title>
-
-        <v-card-subtitle
-          >Desired amount: {{ c.total_amount }} BD</v-card-subtitle
-        >
-        <v-card-subtitle
-          >Start Date: {{ formatDate(c.start_date) }}</v-card-subtitle
-        >
-        <v-card-subtitle
-          >End Date: {{ formatDate(c.end_date) }}</v-card-subtitle
-        >
-
-        <div>
-          <v-progress-linear
-            v-model="percentage[index]"
-            height="25"
-            color="green"
-          >
-            <strong
-              >{{
-                ((c.collected_amount / c.total_amount) * 100).toFixed(2)
-              }}%</strong
-            >
-          </v-progress-linear>
+        <div class="case-info">
+          <p>Desired amount: {{ c.total_amount }} BD</p>
+          <p>Start Date: {{ formatDate(c.start_date) }}</p>
+          <p>End Date: {{ formatDate(c.end_date) }}</p>
         </div>
-        <p>Details</p>
-      </v-card>
-    </v-col>
-  </v-row>
+
+        <div class="case-progress">
+          <div
+            class="case-progress-bar"
+            :style="{
+              width:
+                ((c.collected_amount / c.total_amount) * 100).toFixed(2) + '%'
+            }"
+          ></div>
+          <strong class="case-progress-label">
+            {{ ((c.collected_amount / c.total_amount) * 100).toFixed(2) }}%
+          </strong>
+        </div>
+
+        <p class="case-details">Details</p>
+      </div>
+    </div>
+  </div>
 </template>
-<style scoped></style>
+
+<style scoped>
+.charity-page {
+  text-align: center;
+  padding: 20px;
+}
+
+.charity-page h1 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.charity-page img {
+  width: 200px;
+  height: 200px;
+  margin-bottom: 10px;
+}
+
+.charity-page .donation-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.charity-page .donation-input {
+  flex: 0 0 70%;
+}
+
+.charity-page .donation-input input {
+  width: 100%;
+  padding: 5px;
+}
+
+.charity-page .donation-input-label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.charity-page .donation-btn {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #f7f7f7;
+}
+
+.charity-page .charity-cases {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.charity-page .case-card {
+  margin: 20px;
+  width: 300px;
+  text-align: left;
+  background-color: #f7f7f7;
+  box-shadow: 0 2px 4px #4b5f23;
+}
+
+.charity-page .case-card:hover {
+  box-shadow: 0 4px 8px #4b5f23;
+}
+
+.charity-page .case-image {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.charity-page .case-title {
+  font-size: 18px;
+  margin: 10px;
+}
+
+
+
+.charity-page .case-progress-label {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 12px;
+}
+
+.donation-card {
+  background-color: #f7f7f7;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  padding: 20px;
+  width: 300px;
+  height: 200px;
+
+  justify-content: center;
+  align-items: center;
+}
+
+.donation-input {
+  margin-bottom: 10px;
+}
+
+.donation-input input[type='number'] {
+  padding: 8px;
+  font-size: 14px;
+  border: 1px solid #4b5f23;
+  border-radius: 4px;
+}
+
+.donation-input-label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #333;
+}
+
+.donation-input-label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.donation-btn {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #ac4646;
+}
+</style>

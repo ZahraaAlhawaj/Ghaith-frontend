@@ -22,7 +22,7 @@ export default {
         </div>
         <ul class="nav-links">
           <li><router-link to="/about">About</router-link></li>
-          <li><router-link to="/portfolio">Portfolio</router-link></li>
+          <li><router-link to="/profile">Profile</router-link></li>
           <li><router-link to="/services">Services</router-link></li>
           <li><router-link to="/contact">Contact</router-link></li>
           <li><router-link to="/login">Login</router-link></li>
