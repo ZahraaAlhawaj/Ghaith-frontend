@@ -113,7 +113,7 @@ export default {
   </v-container>
 </template>
 
-<style>
+<style scoped>
 .v-row {
   margin-top: 12px !important;
 }

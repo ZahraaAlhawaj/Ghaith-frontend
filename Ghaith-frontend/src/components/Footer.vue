@@ -12,7 +12,7 @@ export default {
 <template>
   <footer class="footer">
     <div class="footer-content">
-      <p>&copy; {{ currentYear }} Gaith. All rights reserved.</p>
+      <p>&copy; {{ currentYear }} Ghaith. All rights reserved.</p>
     </div>
   </footer>
 </template>
