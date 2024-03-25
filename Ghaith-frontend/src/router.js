@@ -12,6 +12,7 @@ import Request from './pages/Request.vue'
 import Pickup from './pages/Pickup.vue'
 import Events from './pages/Events.vue'
 import Profile from './pages/Profile.vue'
+import Text from './pages/text.vue'
 
 const routes = [
   { path: '/', component: HomePage, name: 'HomePage' },
@@ -36,7 +37,8 @@ const routes = [
 
   { path: '/events', component: Events, name: 'Events' },
 
-  { path: '/Profile', component: Profile, name: 'Profile' }
+  { path: '/Profile', component: Profile, name: 'Profile' },
+  { path: '/text', component: Text, name: 'Text' }
 ]
 
 const router = createRouter({
