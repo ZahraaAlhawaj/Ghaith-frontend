@@ -2,6 +2,7 @@
 import { showCase, donate, getStatistics } from '../services/case'
 import { computed } from 'vue'
 import { useStore } from 'vuex'
+
 export default {
   name: 'Case',
   setup() {
@@ -11,6 +12,7 @@ export default {
     return { user }
   },
   data: () => ({
+    shareLink: '',
     slider3: 100,
     casesId: 0,
     cases: [],
@@ -45,6 +47,7 @@ export default {
     this.casesId = this.$route.params.id
     this.showCase(this.casesId)
     this.getStatistics(this.casesId)
+    console.log('erw', this.apiURL)
   },
   methods: {
     async showCase(casesId) {
@@ -97,6 +100,20 @@ export default {
       const month = (date.getMonth() + 1).toString().padStart(2, '0')
       const year = date.getFullYear()
       return `${day}/${month}/${year}`
+    },
+    generateLink() {
+      const id = this.casesId
+      const url = import.meta.env.VITE_GHAITH_API
+      const shareUrl = `${url}/cases/${id}`
+      navigator.clipboard
+        .writeText(shareUrl)
+        .then(() => {
+          console.log('copy')
+        })
+        .catch((error) => {
+          console.log('Faild')
+        })
+      // this.shareLink = shareUrl
     }
   }
 }
@@ -107,6 +124,43 @@ export default {
       <v-col cols="6">
         <v-card class="image-card" outlined>
           <h2 class="card-title">{{ cases.name }}</h2>
+          <!-- <v-btn @click="generateLink"> Generate Link </v-btn> -->
+
+          <div class="pa-4 text-center">
+            <v-btn-group
+              color="#b2d7ef"
+              density="comfortable"
+              rounded="pill"
+              divided
+            >
+              <v-btn
+                class="pe-2"
+                prepend-icon="mdi-account-multiple-outline"
+                variant="flat"
+              >
+                <div class="text-none font-weight-regular">Share</div>
+              </v-btn>
+
+              <v-btn size="small" icon>
+                <v-icon icon="mdi-menu-down"></v-icon>
+                <v-menu
+                  activator="parent"
+                  location="bottom end"
+                  transition="fade-transition"
+                >
+                  <v-list density="compact" min-width="250" rounded="lg" slim>
+                    <v-list-item
+                      prepend-icon="mdi-link"
+                      title="Copy link"
+                      @click="generateLink"
+                      link
+                    ></v-list-item>
+                  </v-list>
+                </v-menu>
+              </v-btn>
+            </v-btn-group>
+          </div>
+
           <div class="image-container">
             <v-img
               src="https://ehsanimagesp.s3.me-south-1.amazonaws.com/P152.jpg"
