@@ -1,7 +1,15 @@
 <script>
 import { addRequest } from '../services/request'
+import { computed } from 'vue'
+import { useStore } from 'vuex'
 export default {
   name: 'Request',
+  setup() {
+    const store = useStore()
+    const user = computed(() => store.getters.currentUser)
+
+    return { user }
+  },
   data: function () {
     return {
       formValues: {
@@ -11,7 +19,8 @@ export default {
         salary: null,
         expected_amount: null,
         expected_date: null,
-        document: ''
+        document: '',
+        user: this.user ? this.user.id : null
       }
     }
   },
