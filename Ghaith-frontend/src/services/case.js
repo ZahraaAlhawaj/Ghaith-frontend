@@ -26,3 +26,12 @@ export const donate = async (data) => {
     console.log(error)
   }
 }
+
+export const getStatistics = async (caseId) => {
+  try {
+    const res = await Client.get(`cases/${caseId}/statistics`)
+    return res
+  } catch (error) {
+    console.log(error)
+  }
+}

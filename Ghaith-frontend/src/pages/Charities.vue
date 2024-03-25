@@ -71,14 +71,14 @@ export default {
               v-bind="props"
               @click="showCharity(charity._id)"
             >
-              <v-img :src="charity.logo" height="100em" cover> </v-img>
+              <v-img :src="charity.logo" height="100em"> </v-img>
             </v-card>
             <!-- <p class="mt-4" 
             v-if="isHovering"
             > -->
-            <h3 class="mt-4">
+            <!-- <h3 class="mt-4">
               {{ charity.name }}
-            </h3>
+            </h3> -->
           </v-hover>
         </v-col>
       </template>
@@ -92,22 +92,23 @@ export default {
 }
 
 .v-img {
-  width: 50%; /* Adjust the desired width */
-  height: 50%; /* Adjust the desired height */
-  object-fit: contain;
+  width: 30%; /* Adjust the desired width */
+  height: 10%; /* Adjust the desired height */
+  object-fit: contain !important;
 }
 
 .v-card {
-  width: 9.5em; /* Adjust the width of the avatar picture */
-  height: 9.5em; /* Adjust the height of the avatar picture */
-  border-radius: 50%;
-  object-fit: cover;
+  width: 13em; /* Adjust the width of the avatar picture */
+  height: 9em; /* Adjust the height of the avatar picture */
+  /* border-radius: 50%; */
+  /* object-fit: cover; */
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 10%;
+
   border: 0.2em solid #4b5f23;
-   background-color: #E6E5D0 
+  background-color: #e6e5d0;
+  object-fit: contain !important;
 }
 
 .pa-4 {
@@ -177,7 +178,7 @@ export default {
 .text-container p {
   font-size: 16px;
   line-height: 1.3em;
-  color: #4B5F23;
+  color: #4b5f23;
   width: 45%;
 }
 
@@ -197,6 +198,7 @@ export default {
   padding-left: 0.15em;
   padding-right: 0.15em;
   align-self: center;
+  margin-bottom: 2%;
 }
 
 .three-containers {
@@ -205,5 +207,9 @@ export default {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+.v-img__img .v-img__img--contain {
+  object-fit: contain !important;
 }
 </style>
