@@ -8,10 +8,16 @@ import * as components from 'vuetify/components'
 import * as directives from 'vuetify/directives'
 import '@mdi/font/css/materialdesignicons.css'
 import store from './store'
+import VueSocialSharing from 'vue-social-sharing'
 
 const vuetify = createVuetify({
   components,
   directives
 })
 
-createApp(App).use(store).use(router).use(vuetify).mount('#app')
+createApp(App)
+  .use(store)
+  .use(router)
+  .use(VueSocialSharing)
+  .use(vuetify)
+  .mount('#app')
