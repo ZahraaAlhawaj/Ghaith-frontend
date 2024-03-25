@@ -10,7 +10,8 @@ export default {
         email: null,
         password: null
       },
-      store: useStore()
+      store: useStore(),
+      error: ''
     }
   },
   methods: {
@@ -27,6 +28,7 @@ export default {
         password: this.formValues.password
       })
       if (res.status && res.status !== 200) {
+        this.error = res.data.msg
       } else {
         localStorage.setItem('token', res.data.token)
         this.store.dispatch('login', res.data.user)
@@ -49,6 +51,7 @@ export default {
             v-model="formValues['email']"
             label="email"
             @input="handleFormChange"
+            required
           ></v-text-field>
 
           <v-text-field
@@ -56,7 +59,10 @@ export default {
             label="password"
             type="password"
             @input="handleFormChange"
+            required
           ></v-text-field>
+
+          <p v-if="error" class="error">{{ error }}</p>
 
           <v-btn rounded="xl" class="mt-2" type="submit" block>Submit</v-btn>
         </v-form>
@@ -126,7 +132,11 @@ export default {
   box-shadow: none;
   font-family: avenir, sans-serif;
 }
-
+.error {
+  color: red;
+  margin-top: 5px;
+  font-size: 14px;
+}
 /* .v-sheet{
   display: none;
 } */
