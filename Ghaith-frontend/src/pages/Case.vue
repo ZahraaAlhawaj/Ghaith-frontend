@@ -142,7 +142,7 @@ export default {
     </v-row>
   </v-container>
 </template>
-<style>
+<style scoped>
 .v-btn {
   background-color: #4b5f23 !important;
   color: white !important;
