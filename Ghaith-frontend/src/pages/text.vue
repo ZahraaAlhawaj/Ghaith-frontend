@@ -1,5 +1,60 @@
 <template>
   <div>
+    <select v-model="selectedLang" @change="switchLanguage">
+      <option
+        v-for="(lang, index) in supportedLanguages"
+        :key="index"
+        :value="lang"
+      >
+        {{ lang }}
+      </option>
+    </select>
+  </div>
+</template>
+
+<script>
+import axios from 'axios'
+
+export default {
+  data() {
+    return {
+      supportedLanguages: ['en', 'fr'], // Add more languages if needed
+      selectedLang: 'en' // Set the initial selected language
+    }
+  },
+  methods: {
+    async switchLanguage() {
+      try {
+        const response = await axios.get(
+          `https://api.cognitive.microsofttranslator.com/translate?api-version=3.0&from=en&to=${this.selectedLang}`,
+          {
+            headers: {
+              'Content-Type': 'application/json',
+              'Ocp-Apim-Subscription-Key': 'YOUR_API_KEY'
+            },
+            params: {
+              text: ['Hello', 'Welcome to my app']
+            }
+          }
+        )
+
+        const translations = response.data[0].translations
+        this.$i18n.setLocaleMessage(this.selectedLang, {
+          greeting: translations[0].text,
+          welcome: translations[1].text
+        })
+
+        this.$i18n.locale = this.selectedLang
+      } catch (error) {
+        console.error(error)
+      }
+    }
+  }
+}
+</script>
+<!-- 
+<template>
+  <div>
     <div ref="paypal">
       <button v-if="loaded && !paidFor" @click="createOrder">
         Pay with PayPal
@@ -76,4 +131,4 @@ li {
 a {
   color: #42b983;
 }
-</style>
+</style> -->
