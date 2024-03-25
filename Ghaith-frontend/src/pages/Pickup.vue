@@ -18,17 +18,14 @@ export default {
       }
     }
   },
-  // mounted: function () {
-  //   navigator.geolocation.getCurrentPosition(async (position) => {
-  //     this.coords = {
-  //       latitude: position.coords.latitude,
-  //       longitude: position.coords.longitude
-  //     }
-  //     this.getNearCharity(this.coords)
-  //   })
-  // },
-  mounted() {
-    this.getNearCharity()
+  mounted: function () {
+    navigator.geolocation.getCurrentPosition(async (position) => {
+      this.coords = {
+        latitude: position.coords.latitude,
+        longitude: position.coords.longitude
+      }
+      this.getNearCharity()
+    })
   },
   computed: {
     isCardSelected() {
@@ -37,7 +34,7 @@ export default {
   },
   methods: {
     async getNearCharity() {
-      const res = await showChairties()
+      const res = await showChairties(this.coords)
       this.charities = res
       console.log('this', this.charities)
     },

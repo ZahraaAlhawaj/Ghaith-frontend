@@ -1,8 +1,8 @@
 import Client from './api'
 
-export const showChairties = async () => {
+export const showChairties = async (coords) => {
   try {
-    const res = await Client.get(`/pickup/charites`)
+    const res = await Client.post(`/pickup/charites`, coords)
     return res.data
   } catch (error) {
     console.log(error)
