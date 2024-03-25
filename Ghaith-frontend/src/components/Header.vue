@@ -1,7 +1,14 @@
 <script>
+import { computed } from 'vue'
+import { useStore } from 'vuex'
 export default {
   name: 'Header',
+  setup() {
+    const store = useStore()
+    const user = computed(() => store.getters.currentUser)
 
+    return { user }
+  },
   methods: {
     handleLogOut() {
       this.$store.dispatch('logout')
@@ -32,12 +39,14 @@ export default {
           </div>
           <ul class="nav-links">
             <li><router-link to="/about">About</router-link></li>
-            <li><router-link to="/portfolio">Portfolio</router-link></li>
+            <li v-if="user">
+              <router-link to="/portfolio">Portfolio</router-link>
+            </li>
             <li><router-link to="/services">Services</router-link></li>
             <li><router-link to="/contact">Contact</router-link></li>
-            <li><router-link to="/login">Login</router-link></li>
+            <li v-if="!user"><router-link to="/login">Login</router-link></li>
             <li><router-link to="/charities">Charities</router-link></li>
-            <li><a @click="handleLogOut">Logout</a></li>
+            <li v-if="user"><a @click="handleLogOut">Logout</a></li>
           </ul>
         </div>
         <!-- <div class="darkLight-searchBox">
