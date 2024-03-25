@@ -1,8 +1,15 @@
 <script>
 import { showAllEvent, joinEvent } from '../services/event'
-
+import { computed } from 'vue'
+import { useStore } from 'vuex'
 export default {
   name: 'Events',
+  setup() {
+    const store = useStore()
+    const user = computed(() => store.getters.currentUser)
+
+    return { user }
+  },
   data() {
     return {
       events: null,
@@ -26,7 +33,7 @@ export default {
       this.alert.show = true
       const response = await joinEvent(id)
       if (response.success === false) {
-        this.showAlert('Error: ' + response.msg, 'error')
+        this.showAlert('Error: ' + response.msg, 'warning')
       }
       this.showEvents()
     },
@@ -42,7 +49,7 @@ export default {
 
 <template>
   <div>
-    <v-alert v-if="alert.show" :type="alert.type" dense>
+    <v-alert v-if="alert.show" :type="alert.type" density="compact">
       {{ alert.message }}
     </v-alert>
     <v-row>
@@ -71,7 +78,9 @@ export default {
             </v-card-text>
           </div>
           <v-card-actions>
-            <v-btn text @click.stop="joinEvent(event._id)">Join Event</v-btn>
+            <v-btn text :disabled="!user" @click.stop="joinEvent(event._id)"
+              >Join Event</v-btn
+            >
           </v-card-actions>
         </v-card>
       </v-col>
