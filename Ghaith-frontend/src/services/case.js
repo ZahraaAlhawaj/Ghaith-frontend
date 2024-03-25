@@ -30,7 +30,7 @@ export const donate = async (data) => {
 export const getStatistics = async (caseId) => {
   try {
     const res = await Client.get(`cases/${caseId}/statistics`)
-    return res
+    return res.data
   } catch (error) {
     console.log(error)
   }

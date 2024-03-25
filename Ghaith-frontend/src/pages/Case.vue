@@ -16,7 +16,30 @@ export default {
     cases: [],
     amount: 0.1,
     inputValue: 0.1,
-    stat: null
+    stat: null,
+    cardStat: [],
+    cardItems: [
+      {
+        logo: 'https://www.freepik.com/icon/pie-chart_893220#fromView=search&page=1&position=1&uuid=eba18b99-91e2-44db-9fa2-2c2cfd97689f',
+        number: 123,
+        title: 'Title 1'
+      },
+      {
+        logo: 'https://www.freepik.com/icon/pie-chart_11176356#fromView=search&page=2&position=47&uuid=eba18b99-91e2-44db-9fa2-2c2cfd97689f',
+        number: 456,
+        title: 'Number of Donation'
+      },
+      {
+        logo: 'https://www.freepik.com/icon/bar-chart_1716515#fromView=search&page=3&position=4&uuid=eba18b99-91e2-44db-9fa2-2c2cfd97689f',
+        number: 789,
+        title: 'Title 3'
+      },
+      {
+        logo: 'https://www.freepik.com/icon/bar-chart_1716515#fromView=search&page=3&position=4&uuid=eba18b99-91e2-44db-9fa2-2c2cfd97689f',
+        number: 75,
+        title: 'Title 4'
+      }
+    ]
   }),
   mounted() {
     this.casesId = this.$route.params.id
@@ -43,6 +66,30 @@ export default {
     async getStatistics(casesId) {
       const response = await getStatistics(casesId)
       this.stat = response
+      this.cardStat = [
+        {
+          logo: 'https://i.ibb.co/cxVKkdJ/saving.png',
+          number: response.timeElapsedText,
+          title: 'Last Donation'
+        },
+        {
+          logo: 'https://i.ibb.co/pvk3k6r/donation-1.png',
+          number: response.numberOfDonations,
+          title: 'Donation'
+        },
+        {
+          logo: 'https://i.ibb.co/31Lg1wS/hourglass.png',
+          number: response.dayDifference,
+          title: 'Until last day'
+        },
+        {
+          logo: 'https://i.ibb.co/VNhWWJB/donation-2.png',
+          number: 3,
+          title: 'people'
+        }
+      ]
+      console.log(this.stat)
+      console.log('hi', this.cardStat)
     },
     formatDate(dateString) {
       const date = new Date(dateString)
@@ -113,7 +160,9 @@ export default {
                 </div>
                 <div class="amount-col-two centered">
                   <p class="amount-label"><b>Collected Amount: </b></p>
-                  <p class="amount-value">{{ cases.collected_amount }}BD</p>
+                  <p class="amount-value" v-if="cases.collected_amount">
+                    {{ cases.collected_amount.toFixed(2) }}BD
+                  </p>
                 </div>
               </div>
             </div>
@@ -137,6 +186,24 @@ export default {
               <h4 v-if="cases.charity">{{ cases.charity.name }}</h4>
             </div>
           </div>
+        </v-card>
+      </v-col>
+    </v-row>
+
+    <v-row class="second-row">
+      <v-col cols="3" v-for="(item, index) in cardStat" :key="index">
+        <v-card class="card-item" outlined>
+          <v-avatar
+            :image="item.logo"
+            rounded="0"
+            size="60"
+            class="stat-logo"
+          ></v-avatar>
+          <!-- <v-img :src="item.logo" height="200"></v-img> -->
+          <v-card-title class="headline">{{ item.number }}</v-card-title>
+          <v-card-subtitle class="sub-headline">{{
+            item.title
+          }}</v-card-subtitle>
         </v-card>
       </v-col>
     </v-row>
@@ -165,7 +232,7 @@ export default {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  /* align-items: center; */
 }
 
 .donation-card {
@@ -284,5 +351,28 @@ export default {
 .charity-details {
   display: flex;
   align-items: center;
+}
+
+.second-row {
+  margin-top: 20px;
+}
+
+.second-row .card-item {
+  width: 307px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.headline {
+  font-size: 40px !important;
+}
+
+.sub-headline {
+  font-size: 12px !important;
+  margin: 1px 0 23px 0;
+}
+
+.stat-logo {
+  margin: 18px 0;
 }
 </style>

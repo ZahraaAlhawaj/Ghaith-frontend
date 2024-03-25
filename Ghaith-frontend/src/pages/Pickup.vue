@@ -164,7 +164,7 @@ export default {
   </div> -->
 </template>
 
-<style>
+<style scoped>
 .selected-card {
   border: 2px solid green !important;
 }
