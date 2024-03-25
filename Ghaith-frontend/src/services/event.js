@@ -17,3 +17,12 @@ export const getEvent = async (eventId) => {
     console.log(error)
   }
 }
+
+export const joinEvent = async (eventId) => {
+  try {
+    const res = await Client.put(`/events/${eventId}/join`)
+    return res.data
+  } catch (error) {
+    console.log(error)
+  }
+}

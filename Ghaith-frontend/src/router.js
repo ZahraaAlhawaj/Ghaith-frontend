@@ -10,6 +10,7 @@ import Cases from './pages/Cases.vue'
 import Case from './pages/Case.vue'
 import Request from './pages/Request.vue'
 import Pickup from './pages/Pickup.vue'
+import Events from './pages/Events.vue'
 
 const routes = [
   { path: '/', component: HomePage, name: 'HomePage' },
@@ -30,7 +31,9 @@ const routes = [
 
   { path: '/request-case', component: Request, name: 'Request' },
 
-  { path: '/pickup', component: Pickup, name: 'Pickup' }
+  { path: '/pickup', component: Pickup, name: 'Pickup' },
+
+  { path: '/events', component: Events, name: 'Events' }
 ]
 
 const router = createRouter({
