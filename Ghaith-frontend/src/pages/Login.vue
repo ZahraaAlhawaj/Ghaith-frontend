@@ -95,7 +95,7 @@ export default {
   padding: 2em;
   border-radius: 10px;
   background-color: #ffffff;
-  border: 0px solid #ffffff;
+  border: 0.12em solid #4b5f23;
   margin-top: 3%;
 }
 
@@ -126,4 +126,8 @@ export default {
   box-shadow: none;
   font-family: avenir, sans-serif;
 }
+
+/* .v-sheet{
+  display: none;
+} */
 </style>
