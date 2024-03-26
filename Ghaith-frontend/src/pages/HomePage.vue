@@ -104,13 +104,13 @@ export default {
     </v-carousel>
   </div>
 
-  <div v-if="isLoggedIn">
-    <!-- <h1>User Is LoggedIn</h1> -->
+  <!--<div v-if="isLoggedIn">
+     <h1>User Is LoggedIn</h1>
     <h2>{{ user.name }}</h2>
   </div>
-  <div v-else>
-    <!-- <h1>User Is Not LoggedIn</h1> -->
-  </div>
+  <div v-else>  -->
+    <!-- <h1>User Is Not LoggedIn</h1> 
+  </div>-->
   <!-- Urgent Cases -->
 
   <!-- <v-container class="pa-4 text-center">
@@ -161,6 +161,7 @@ export default {
       </template>
     </v-row>
   </v-container> -->
+
 
   <!-- mission and vission -->
   <!-- <div style="background-color: white" class="misson"></div> -->
