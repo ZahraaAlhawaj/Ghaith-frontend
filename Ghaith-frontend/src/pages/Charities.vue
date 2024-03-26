@@ -66,19 +66,12 @@ export default {
         <v-col cols="12" md="4">
           <v-hover v-slot="{ isHovering, props }">
             <v-card
-              :class="{ 'on-hover': isHovering }"
               :elevation="isHovering ? 12 : 2"
               v-bind="props"
               @click="showCharity(charity._id)"
             >
               <v-img :src="charity.logo" height="100em"> </v-img>
             </v-card>
-            <!-- <p class="mt-4" 
-            v-if="isHovering"
-            > -->
-            <!-- <h3 class="mt-4">
-              {{ charity.name }}
-            </h3> -->
           </v-hover>
         </v-col>
       </template>
@@ -87,19 +80,15 @@ export default {
 </template>
 
 <style scoped>
-.v-card-title {
-  color: red !important;
-}
-
 .v-img {
-  width: 30%; /* Adjust the desired width */
-  height: 10%; /* Adjust the desired height */
+  width: 30%;
+  height: 10%;
   object-fit: contain !important;
 }
 
 .v-card {
-  width: 13em; /* Adjust the width of the avatar picture */
-  height: 9em; /* Adjust the height of the avatar picture */
+  width: 13em;
+  height: 9em;
   /* border-radius: 50%; */
   /* object-fit: cover; */
   display: flex;
@@ -122,14 +111,6 @@ export default {
   margin-bottom: 5%;
 }
 
-/* .v-card:not(.on-hover) {
-  opacity: 0.6;
-} */
-
-/* .on-hover {
-  cursor: pointer;
-} */
-/* .... */
 .image-cover {
   width: 100%;
   display: flex;
