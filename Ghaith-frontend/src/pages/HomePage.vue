@@ -13,6 +13,30 @@ export default {
   },
   data: function () {
     return {
+      item: [
+        {
+          color: '#4b5f23',
+          icon: 'mdi-star',
+          title: 'Our Vision',
+          text: 'Ghaith envisions a world where boundless kindness transforms lives, serving as a beacon of hope and driving positive change for all.'
+        },
+        {
+          color: '#4b5f23',
+          icon: 'mdi-book-variant',
+          title: 'Our Mission',
+          text: 'Ghaith envisions a world where boundless kindness transforms lives, serving as a beacon of hope and driving positive change for all.'
+        },
+        {
+          color: '#4b5f23',
+          icon: 'mdi-airballoon',
+          title: 'Our Vision',
+          text: 'Ghaith envisions a world where boundless kindness transforms lives, serving as a beacon of hope and driving positive change for all.'
+        }
+      ].map((item) => {
+        item.iconColor = '#e6e5d0'
+        return item
+      }),
+
       items: [
         {
           src: `images/1.jpg`
@@ -62,29 +86,30 @@ export default {
     <!-- <h1>User Is Not LoggedIn</h1> -->
   </div>
 
+  <!-- mission and vission -->
 
-<!-- mission and vission -->
-<div class="mission-vision-container">
-  <div class="mission-section">
-    <div class="mission-icon">
-      <!-- mission icon -->
-    </div>
-    <h3 class="section-title">Our Mission</h3>
-    <p class="section-description">
-      Ghaith's mission is to empower individuals and communities through kindness, connecting donors with causes, supporting those in need, and inspiring compassion for a thriving world.
-    </p>
+  <div class="timeline-container">
+    <v-timeline align="start">
+      <v-timeline-item
+        :class="item.class"
+        v-for="(item, i) in item"
+        :key="i"
+        :dot-color="item.color"
+        :icon="item.icon"
+        :icon-color="item.iconColor"
+        fill-dot
+      >
+        <v-card class="custom-timeline-item">
+          <v-card-title class="about-title">
+            {{ item.title }}
+          </v-card-title>
+          <v-card-text class="bg-white">
+            <p>{{ item.text }}</p>
+          </v-card-text>
+        </v-card>
+      </v-timeline-item>
+    </v-timeline>
   </div>
-  <div class="vision-section">
-    <div class="vision-icon">
-      <!-- vision icon  -->
-    </div>
-    <h3 class="section-title">Our Vision</h3>
-    <p class="section-description">
-      Ghaith envisions a world where boundless kindness transforms lives, serving as a beacon of hope and driving positive change for all.
-    </p>
-  </div>
-</div>
-
 
   <!-- chart -->
 
@@ -141,10 +166,6 @@ export default {
       <span class="progress-text">Teal Progress</span>
     </div>
   </div>
-
-
-
-  
 </template>
 
 <style scoped>
@@ -188,22 +209,40 @@ export default {
 }
 
 /* mision and vision */
-.mission-vision-container {
+.custom-timeline-item {
+  margin-bottom: 10%;
+  border: 0.12em solid #4b5f23;
+  background-color: #e6e5d0;
+}
+
+.custom-card {
+  width: 300%;
+  height: 200%;
+}
+
+.about-title {
+  background-color: #4b5f23;
+  color: #e6e5d0;
+}
+
+.bg-white {
+  background-color: #e6e5d0;
+  color: #4b5f23;
+}
+
+.timeline-container {
   display: flex;
+  justify-content: center;
+  width: 70%; /* Adjust the width as per your preference */
+  margin: 0 auto; /* Center the container horizontally */
 }
 
-.mission-section,
-.vision-section {
-  flex: 1;
+.v-card-title .v-card-text {
+  padding-top: 10%;
 }
 
-.section-title {
-  margin-top: 10px;
-  font-weight: bold;
+.v-card .v-card-text {
+  padding-top: 3%;
+  background: #e6e5d0 !important;
 }
-
-.section-description {
-  margin-top: 5px;
-}
-
 </style>
