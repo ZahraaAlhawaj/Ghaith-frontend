@@ -36,8 +36,11 @@ export default {
           res.data.user.role === 'Super Admin' ||
           res.data.user.role === 'Admin'
         ) {
+          console.log('adddminn')
           this.$router.push(`/admin`)
         } else {
+          console.log('usrer')
+
           this.$router.push(`/`)
         }
       }

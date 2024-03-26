@@ -16,6 +16,7 @@ import Text from './pages/text.vue'
 import AdminHomePage from './admin/AdminHomePage.vue'
 import Users from './admin/Users.vue'
 import Categories from './admin/Categories.vue'
+import AdminCases from './admin/Cases.vue'
 
 const routes = [
   { path: '/', component: HomePage, name: 'HomePage' },
@@ -47,7 +48,8 @@ const routes = [
 
   { path: '/admin/users', component: Users, name: 'Users' },
 
-  { path: '/admin/categories', component: Categories, name: 'Categories' }
+  { path: '/admin/categories', component: Categories, name: 'Categories' },
+  { path: '/admin/cases', component: AdminCases, name: 'AdminCases' }
 ]
 
 const router = createRouter({
