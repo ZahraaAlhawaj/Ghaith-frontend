@@ -75,79 +75,191 @@ export default {
   }
 }
 </script>
+
 <template>
-  <h1>{{ charity.name }}</h1>
-  <img
-    height="200"
-    max-width="200"
-    max-height="200"
-    :src="charity.logo"
-    alt=""
-  />
-  <p v-if="charity.user">{{ charity.user.email }}</p>
-
-  <v-row>
-    <v-col cols="8">
-      <v-text-field
-        :type="'number'"
-        label="Amount"
-        v-model="amount"
-        variant="solo"
-        prefix="BD"
-        :min="0.1"
-        :step="0.1"
-      ></v-text-field>
-    </v-col>
-    <v-col cols="4">
-      <v-btn
-        prepend-icon="$vuetify"
-        variant="outlined"
-        size="x-large"
-        @click="donate"
-        >Donate</v-btn
-      >
-    </v-col>
-  </v-row>
-
-  <v-row>
-    <v-col
-      v-for="(c, index) in charityCases"
-      :key="index"
-      cols="12"
-      sm="6"
-      md="4"
-    >
-      <v-card class="mx-auto" max-width="344" @click="showCase(c._id)">
-        <v-img height="200px" :src="c.image" cover></v-img>
-
-        <v-card-title>{{ c.name }}</v-card-title>
-
-        <v-card-subtitle
-          >Desired amount: {{ c.total_amount }} BD</v-card-subtitle
-        >
-        <v-card-subtitle
-          >Start Date: {{ formatDate(c.start_date) }}</v-card-subtitle
-        >
-        <v-card-subtitle
-          >End Date: {{ formatDate(c.end_date) }}</v-card-subtitle
-        >
-
-        <div>
-          <v-progress-linear
-            v-model="percentage[index]"
-            height="25"
-            color="green"
-          >
-            <strong
-              >{{
-                ((c.collected_amount / c.total_amount) * 100).toFixed(2)
-              }}%</strong
-            >
-          </v-progress-linear>
+  <div class="charity-page">
+    <div class="center">
+      <v-card class="charity-card">
+        <div class="image-section">
+          <img
+            height="200"
+            max-width="200"
+            max-height="200"
+            :src="charity.logo"
+            alt=""
+          />
         </div>
-        <p>Details</p>
+        <div class="divider"></div>
+        <div class="text-section">
+          <h1>{{ charity.name }}</h1>
+          <p v-if="charity.user">{{ charity.user.email }}</p>
+        </div>
       </v-card>
-    </v-col>
-  </v-row>
+
+      <div class="donation-card">
+        <div class="amount-section">
+          <label for="amount">Amount</label>
+        </div>
+
+        <div class="input-section">
+          <input
+            type="number"
+            id="amount"
+            placeholder="amount"
+            v-model="amount"
+            min="0.1"
+            step="0.1"
+          />
+        </div>
+
+        <div class="button-section">
+          <button class="donate-button" @click="donate">Donate</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="charity-cases">
+      <div
+        class="case-card"
+        v-for="(c, index) in charityCases"
+        :key="index"
+        @click="showCase(c._id)"
+      >
+        <img class="case-image" :src="c.image" alt="" />
+
+        <h2 class="case-title">{{ c.name }}</h2>
+
+        <div class="case-info">
+          <p>Desired amount: {{ c.total_amount }} BD</p>
+          <p>Start Date: {{ formatDate(c.start_date) }}</p>
+          <p>End Date: {{ formatDate(c.end_date) }}</p>
+        </div>
+
+        <div class="case-progress">
+          <div
+            class="case-progress-bar"
+            :style="{
+              width:
+                ((c.collected_amount / c.total_amount) * 100).toFixed(2) + '%'
+            }"
+          ></div>
+          <strong class="case-progress-label">
+            {{ ((c.collected_amount / c.total_amount) * 100).toFixed(2) }}%
+          </strong>
+        </div>
+
+        <p class="case-details">Details</p>
+      </div>
+    </div>
+  </div>
 </template>
-<style scoped></style>
+
+<style scoped>
+.charity-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.center {
+  justify-content: center;
+}
+.charity-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 2%;
+  width: 100%;
+  border: 0.12em solid #4b5f23;
+  background-color: #e6e5d0;
+  justify-content: center;
+}
+
+.image-section {
+  margin-bottom: -0.8%;
+  text-align: center;
+}
+
+.divider {
+  width: 100%;
+  height: 1px;
+  /* background-color: #ccc; */
+}
+
+.text-section {
+  text-align: center;
+  background-color: #4b5f23; /* Add your desired background color */
+
+  border-radius: 4px;
+  width: 100%;
+  color: #e6e5d0;
+  padding: 10px;
+}
+
+.text-section h1 {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: -0.8%;
+}
+
+.text-section p {
+  font-size: 18px;
+}
+
+.donation-card {
+  margin-top: 5%;
+  margin-bottom: 6%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 4px;
+  width: 100%;
+  border: 0.12em solid #4b5f23;
+  background-color: #e6e5d0;
+}
+
+.amount-section {
+  text-align: center;
+  background-color: #4b5f23; /* Add your desired background color */
+
+  width: 100%;
+  color: #e6e5d0;
+  padding: 10px;
+}
+
+.donate-button {
+  background-color: #4b5f23;
+  color: #e6e5d0;
+  border: none;
+  border-radius: 4px;
+  padding: 5% 10%;
+  transition: background-color 0.3s ease;
+  margin-bottom: 10%;
+  margin-top: 10%;
+}
+
+.donate-button:hover {
+  background-color: #627638;
+}
+
+.input-section input {
+  margin-top: 5%;
+  padding: 10px;
+  border: 2px solid #4b5f23;
+  border-radius: 4px;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.input-section input:focus {
+  border-color: #6e8247;
+}
+</style>
