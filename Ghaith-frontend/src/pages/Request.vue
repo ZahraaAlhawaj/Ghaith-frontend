@@ -1,7 +1,15 @@
 <script>
 import { addRequest } from '../services/request'
+import { computed } from 'vue'
+import { useStore } from 'vuex'
 export default {
   name: 'Request',
+  setup() {
+    const store = useStore()
+    const user = computed(() => store.getters.currentUser)
+
+    return { user }
+  },
   data: function () {
     return {
       formValues: {
@@ -11,7 +19,8 @@ export default {
         salary: null,
         expected_amount: null,
         expected_date: null,
-        document: ''
+        document: '',
+        user: this.user ? this.user.id : null
       }
     }
   },
@@ -51,7 +60,7 @@ export default {
         <p class="account-description">
           Enter your name, email, and password to create your account
         </p>
-        <v-form fast-fail @submit.prevent @aubmit="submitForm">
+        <v-form fast-fail @submit.prevent @submit="submitForm">
           <v-text-field
             v-model="formValues['title']"
             label="Title"

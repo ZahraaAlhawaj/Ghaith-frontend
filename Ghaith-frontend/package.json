@@ -9,9 +9,12 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@mdi/font": "^7.4.47",
     "axios": "^1.6.8",
     "vue": "^3.4.21",
     "vue-router": "^4.3.0",
+    "vue-share-it": "^1.1.8",
+    "vue-social-sharing": "^4.0.0-alpha4",
     "vuetify": "^3.5.11",
     "vuex": "^4.1.0"
   },
