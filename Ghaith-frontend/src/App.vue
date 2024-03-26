@@ -25,8 +25,13 @@ export default {
       ) {
         return true
       }
-
       return false
+    },
+    adminOnboading() {
+      if (this.isAdmin() && this.user.onboarding === false) {
+        return false
+      }
+      return true
     }
   }
 }
@@ -34,11 +39,11 @@ export default {
 
 <template>
   <div :class="isAdmin() ? 'adminMainApp' : 'mainApp'">
-    <Header />
+    <Header v-if="adminOnboading()" />
     <main class="content">
       <router-view></router-view>
     </main>
 
-    <Footer />
+    <Footer v-if="!isAdmin()" />
   </div>
 </template>

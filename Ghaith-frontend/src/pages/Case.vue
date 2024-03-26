@@ -123,42 +123,46 @@ export default {
     <v-row>
       <v-col cols="6">
         <v-card class="image-card" outlined>
-          <h2 class="card-title">{{ cases.name }}</h2>
-          <!-- <v-btn @click="generateLink"> Generate Link </v-btn> -->
+          <div class="title-header">
+            <h2 class="card-title">{{ cases.name }}</h2>
+            <!-- <v-btn icon>
+              <v-icon>mdi-share</v-icon>
+            </v-btn> -->
 
-          <div class="pa-4 text-center">
-            <v-btn-group
-              color="#b2d7ef"
-              density="comfortable"
-              rounded="pill"
-              divided
-            >
-              <v-btn
-                class="pe-2"
-                prepend-icon="mdi-account-multiple-outline"
-                variant="flat"
+            <div class="text-center">
+              <v-btn-group
+                color="#b2d7ef"
+                density="comfortable"
+                rounded="pill"
+                divided
               >
-                <div class="text-none font-weight-regular">Share</div>
-              </v-btn>
-
-              <v-btn size="small" icon>
-                <v-icon icon="mdi-menu-down"></v-icon>
-                <v-menu
-                  activator="parent"
-                  location="bottom end"
-                  transition="fade-transition"
+                <v-btn
+                  class="pe-2"
+                  prepend-icon="mdi-account-multiple-outline"
+                  variant="flat"
                 >
-                  <v-list density="compact" min-width="250" rounded="lg" slim>
-                    <v-list-item
-                      prepend-icon="mdi-link"
-                      title="Copy link"
-                      @click="generateLink"
-                      link
-                    ></v-list-item>
-                  </v-list>
-                </v-menu>
-              </v-btn>
-            </v-btn-group>
+                  <div class="text-none font-weight-regular">Share</div>
+                </v-btn>
+
+                <v-btn size="small" icon>
+                  <v-icon icon="mdi-menu-down"></v-icon>
+                  <v-menu
+                    activator="parent"
+                    location="bottom end"
+                    transition="fade-transition"
+                  >
+                    <v-list density="compact" min-width="250" rounded="lg" slim>
+                      <v-list-item
+                        prepend-icon="mdi-link"
+                        title="Copy link"
+                        @click="generateLink"
+                        link
+                      ></v-list-item>
+                    </v-list>
+                  </v-menu>
+                </v-btn>
+              </v-btn-group>
+            </div>
           </div>
 
           <div class="image-container">
@@ -175,19 +179,19 @@ export default {
           <h2 class="card-title">Donation</h2>
           <v-container>
             <v-row>
-              <v-col cols="10">
+              <v-col cols="9">
                 <v-text-field
                   :type="'number'"
                   label="Amount"
                   v-model="inputValue"
-                  variant="solo"
+                  variant="outlined"
                   prefix="BD"
                   :min="0.1"
                   :step="0.1"
                 ></v-text-field>
               </v-col>
 
-              <v-col cols="2">
+              <v-col cols="3">
                 <v-btn variant="outlined" size="x-large" @click="donate"
                   >Donate</v-btn
                 >
@@ -282,7 +286,10 @@ export default {
   height: 100%;
   margin-bottom: 20px;
   padding: 20px !important;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); */
+  border: 0.2em solid #4b5f23;
+  background-color: #e6e5d0;
+
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -292,13 +299,17 @@ export default {
 .donation-card {
   margin-bottom: 20px;
   padding: 20px !important;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); */
+  border: 0.2em solid #4b5f23;
+  background-color: #e6e5d0;
 }
 
 .details-card {
   margin-bottom: 20px;
   padding: 20px !important;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); */
+  border: 0.2em solid #4b5f23;
+  background-color: #e6e5d0;
   height: 66%;
 }
 
@@ -351,7 +362,7 @@ export default {
 }
 
 .amount-bg {
-  background-color: #f5f5f5;
+  background-color: #b1bf5c;
   padding: 10px;
 }
 
@@ -397,7 +408,7 @@ export default {
   width: 50px;
   height: 50px;
   margin-top: 10px;
-  border: 0.5px solid black;
+  border: 0.5px solid #4b5f23;
   border-radius: 9px;
   margin-right: 5px;
 }
@@ -412,9 +423,11 @@ export default {
 }
 
 .second-row .card-item {
-  width: 307px;
+  /* width: 307px; */
   margin-bottom: 20px;
   text-align: center;
+  border: 0.2em solid #4b5f23;
+  background-color: #e6e5d0;
 }
 
 .headline {
@@ -428,5 +441,11 @@ export default {
 
 .stat-logo {
   margin: 18px 0;
+}
+
+.title-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 </style>

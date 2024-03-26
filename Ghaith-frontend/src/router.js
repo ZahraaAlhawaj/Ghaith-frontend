@@ -16,6 +16,9 @@ import Text from './pages/text.vue'
 import AdminHomePage from './admin/AdminHomePage.vue'
 import Users from './admin/Users.vue'
 import Categories from './admin/Categories.vue'
+import AdminCharities from './admin/Charities.vue'
+import ResetPassword from './admin/ResetPassword.vue'
+import AdminDonations from './admin/Donations.vue'
 import AdminCases from './admin/Cases.vue'
 
 const routes = [
@@ -47,6 +50,26 @@ const routes = [
   { path: '/admin', component: AdminHomePage, name: 'AdminHomePage' },
 
   { path: '/admin/users', component: Users, name: 'Users' },
+
+  { path: '/admin/categories', component: Categories, name: 'Categories' },
+
+  {
+    path: '/admin/donations',
+    component: AdminDonations,
+    name: 'AdminDonations'
+  },
+
+  {
+    path: '/admin/charities',
+    component: AdminCharities,
+    name: 'AdminCharities'
+  },
+
+  {
+    path: '/admin/reset',
+    component: ResetPassword,
+    name: 'ResetPassword'
+  },
 
   { path: '/admin/categories', component: Categories, name: 'Categories' },
   { path: '/admin/cases', component: AdminCases, name: 'AdminCases' }

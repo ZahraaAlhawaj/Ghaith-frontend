@@ -118,7 +118,7 @@ export default {
       </div>
     </div>
 
-    <div class="charity-cases">
+    <!-- <div class="charity-cases">
       <div
         class="case-card"
         v-for="(c, index) in charityCases"
@@ -150,7 +150,7 @@ export default {
 
         <p class="case-details">Details</p>
       </div>
-    </div>
+    </div> -->
   </div>
 </template>
 
