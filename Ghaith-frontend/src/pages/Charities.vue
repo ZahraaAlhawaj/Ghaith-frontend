@@ -122,9 +122,6 @@ export default {
   margin-bottom: 5%;
 }
 
-.card1 {
-}
-
 /* .v-card:not(.on-hover) {
   opacity: 0.6;
 } */

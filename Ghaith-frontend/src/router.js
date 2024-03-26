@@ -17,6 +17,7 @@ import Users from './admin/Users.vue'
 import Categories from './admin/Categories.vue'
 import AdminCharities from './admin/Charities.vue'
 import ResetPassword from './admin/ResetPassword.vue'
+import AdminDonations from './admin/Donations.vue'
 
 const routes = [
   { path: '/', component: HomePage, name: 'HomePage' },
@@ -48,6 +49,12 @@ const routes = [
   { path: '/admin/users', component: Users, name: 'Users' },
 
   { path: '/admin/categories', component: Categories, name: 'Categories' },
+
+  {
+    path: '/admin/donations',
+    component: AdminDonations,
+    name: 'AdminDonations'
+  },
 
   {
     path: '/admin/charities',
