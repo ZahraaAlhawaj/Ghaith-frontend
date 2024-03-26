@@ -18,6 +18,15 @@ export const getCharity = async (charityId) => {
   }
 }
 
+export const updateCharity = async (charityId, data) => {
+  try {
+    const res = await Client.put(`/charities/${charityId}`, data)
+    return res.data
+  } catch (error) {
+    console.log(error)
+  }
+}
+
 export const showCharityCases = async (charityId) => {
   try {
     const res = await Client.get(`/cases/charity/${charityId}`)

@@ -1,5 +1,4 @@
 <script>
-import Login from '../pages/Login.vue'
 import {
   getCategories,
   createCategory,

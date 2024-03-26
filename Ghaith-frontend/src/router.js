@@ -15,6 +15,8 @@ import Profile from './pages/Profile.vue'
 import AdminHomePage from './admin/AdminHomePage.vue'
 import Users from './admin/Users.vue'
 import Categories from './admin/Categories.vue'
+import AdminCharities from './admin/Charities.vue'
+import ResetPassword from './admin/ResetPassword.vue'
 
 const routes = [
   { path: '/', component: HomePage, name: 'HomePage' },
@@ -44,8 +46,20 @@ const routes = [
   { path: '/admin', component: AdminHomePage, name: 'AdminHomePage' },
 
   { path: '/admin/users', component: Users, name: 'Users' },
-  
-  { path: '/admin/categories', component: Categories, name: 'Categories' }
+
+  { path: '/admin/categories', component: Categories, name: 'Categories' },
+
+  {
+    path: '/admin/charities',
+    component: AdminCharities,
+    name: 'AdminCharities'
+  },
+
+  {
+    path: '/admin/reset',
+    component: ResetPassword,
+    name: 'ResetPassword'
+  }
 ]
 
 const router = createRouter({
