@@ -1,6 +1,8 @@
 <script>
 import { getDonations } from '../services/donation'
 import { getCharity } from '../services/charity'
+import { useStore } from 'vuex'
+import { computed } from 'vue'
 
 export default {
   name: 'Donations',

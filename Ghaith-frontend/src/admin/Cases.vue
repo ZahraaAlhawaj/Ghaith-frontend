@@ -50,12 +50,10 @@ export default {
     },
     async getAllCategories() {
       this.categories = await getCategories()
-      console.log(this.categories)
     },
     async handleSubmit(event, action, item = null) {
       event.preventDefault()
       if (action === 'create') {
-        console.log('formvaluee', this.formValues)
         const newCase = await createCase(this.formValues)
         if (newCase) {
           this.getAllCases()
@@ -269,7 +267,7 @@ export default {
                   @click="
                     (event) => {
                       if (handleSubmit(event, 'update', item)) {
-                        updateDialog = false
+                        updateDialog[item._id] = false
                       }
                     }
                   "
