@@ -7,7 +7,11 @@ export default {
 <template>
   <div class="about-us">
     <div class="container">
-      <h1 class="title">About Us</h1>
+      <!-- <h1 class="title">About Us</h1> -->
+
+      <div class="title">
+        <h1 class="yellow-underlined title">About Us</h1>
+      </div>
 
       <div class="image-section">
         <div class="image-container">
@@ -20,8 +24,8 @@ export default {
           <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla eget
             lectus nulla. Sed eleifend consectetur lacus, id blandit purus
-            facilisis vitae.In id nibh sit amet turpis pharetra consectetur in vitae mauris.
-            Donec a orci at mi laoreet facilisis et ut felis.
+            facilisis vitae.In id nibh sit amet turpis pharetra consectetur in
+            vitae mauris. Donec a orci at mi laoreet facilisis et ut felis.
           </p>
         </div>
       </div>
@@ -69,14 +73,6 @@ export default {
 }
 
 /* Styles for the title section */
-
-.title {
-  margin-top: -4%;
-  text-align: center;
-  font-size: 2.5em;
-  margin-bottom: 30px;
-  color: #4b5f23;
-}
 
 /* Styles for the image section */
 
@@ -129,8 +125,8 @@ export default {
 .feature {
   width: 30%;
   padding: 20px;
-  /* background-color: #b1bf5c; */
-  border: 0.12em solid #4b5f23;
+  background-color: #b1bf5c;
+  /* border: 0.12em solid #4b5f23; */
   border-radius: 10px;
 }
 
@@ -142,5 +138,26 @@ export default {
 
 .feature p {
   color: #4b5f23;
+}
+
+.title {
+  margin-top: -2%;
+  text-align: center;
+  margin-bottom: 2%;
+  color: #4b5f23;
+  display: flex;
+  justify-content: center;
+}
+
+.yellow-underlined {
+  border-bottom: solid 10px #b1bf5c;
+  color: #4b5f23;
+  line-height: 0.35em;
+  margin-top: 0.65em;
+  display: inline-block;
+  padding-left: 0.15em;
+  padding-right: 0.15em;
+  align-self: center;
+  margin-bottom: 2%;
 }
 </style>

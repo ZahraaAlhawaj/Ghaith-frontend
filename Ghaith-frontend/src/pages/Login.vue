@@ -40,7 +40,7 @@ export default {
 <template>
   <div class="BG">
     <div class="form-container">
-      <v-sheet class="mx-auto" width="300">
+      <div class="mx-auto" width="300">
         <h1 className="account-title">Login</h1>
         <p className="account-description">Enter your email and password</p>
 
@@ -66,7 +66,7 @@ export default {
             Create account
           </router-link>
         </div>
-      </v-sheet>
+      </div>
     </div>
   </div>
 </template>
@@ -83,7 +83,7 @@ export default {
 .account-description {
   font-size: 16px;
   text-align: left;
-  color: #555;
+  color: #4b5f23;
   padding-top: 10px;
   font-size: 14px;
   margin-bottom: 20px;
