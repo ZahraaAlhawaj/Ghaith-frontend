@@ -82,14 +82,6 @@ export default {
     </v-carousel>
   </div>
 
-  <div v-if="isLoggedIn">
-    <!-- <h1>User Is LoggedIn</h1> -->
-    <h2>{{ user.name }}</h2>
-  </div>
-  <div v-else>
-    <!-- <h1>User Is Not LoggedIn</h1> -->
-  </div>
-
   <!-- mission and vission -->
   <!-- <div style="background-color: white" class="misson"></div> -->
   <div class="misson">

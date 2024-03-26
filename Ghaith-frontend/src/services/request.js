@@ -17,3 +17,13 @@ export const addRequest = async (data) => {
     console.log(error)
   }
 }
+
+export const selectRequest = async (id, data) => {
+  try {
+    console.log(data)
+    const res = await Client.post(`/request/${id}`, data)
+    return res.data
+  } catch (error) {
+    return error
+  }
+}
