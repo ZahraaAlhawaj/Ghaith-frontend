@@ -17,3 +17,21 @@ export const addPickup = async (data) => {
     console.log(error)
   }
 }
+
+export const getPickupsByCharity = async () => {
+  try {
+    const res = await Client.get(`/pickup/charity`)
+    return res.data
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+export const updatePickupStatus = async (id, data) => {
+  try {
+    const res = await Client.put(`/pickup/${id}/status`)
+    return res.data
+  } catch (error) {
+    console.log(error)
+  }
+}
