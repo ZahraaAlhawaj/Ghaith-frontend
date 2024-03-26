@@ -1,7 +1,15 @@
 <script>
 import { getDonations } from '../services/donation'
+import { getCharity } from '../services/charity'
+
 export default {
   name: 'Donations',
+  setup() {
+    const store = useStore()
+    const user = computed(() => store.getters.currentUser)
+
+    return { user }
+  },
   data: function () {
     return {
       search: '',
@@ -17,7 +25,12 @@ export default {
   },
   methods: {
     async getAllDonations() {
-      this.donations = await getDonations()
+      if (this.user.role == 'Admin') {
+        const res = await getCharity()
+        this.donations = res.donations
+      } else {
+        this.donations = await getDonations()
+      }
     }
   }
 }

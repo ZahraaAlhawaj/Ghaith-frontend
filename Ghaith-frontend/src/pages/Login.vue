@@ -10,7 +10,8 @@ export default {
         email: null,
         password: null
       },
-      store: useStore()
+      store: useStore(),
+      error: ''
     }
   },
   methods: {
@@ -27,10 +28,15 @@ export default {
         password: this.formValues.password
       })
       if (res.status && res.status !== 200) {
+        this.error = res.data.msg
       } else {
         localStorage.setItem('token', res.data.token)
         this.store.dispatch('login', res.data.user)
-        if (res.data.user.role === 'Super Admin') {
+        if (
+          res.data.user.role === 'Super Admin' ||
+          res.data.user.role === 'Admin'
+        ) {
+          console.log('adddminn')
           this.$router.push(`/admin`)
         } else if (res.data.user.role === 'Admin') {
           if (!res.data.user.onboarding) {
@@ -39,6 +45,8 @@ export default {
             this.$router.push(`/admin`)
           }
         } else {
+          console.log('usrer')
+
           this.$router.push(`/`)
         }
       }
@@ -58,6 +66,7 @@ export default {
           v-model="formValues['email']"
           label="email"
           @input="handleFormChange"
+          required
         ></v-text-field>
 
         <v-text-field
@@ -65,7 +74,10 @@ export default {
           label="password"
           type="password"
           @input="handleFormChange"
+          required
         ></v-text-field>
+
+        <p v-if="error" class="error">{{ error }}</p>
 
         <v-btn rounded="xl" class="mt-2" type="submit" block>Login</v-btn>
       </v-form>
@@ -91,7 +103,7 @@ export default {
 .account-description {
   font-size: 16px;
   text-align: left;
-  color: #555;
+  color: #4b5f23;
   padding-top: 10px;
   font-size: 14px;
   margin-bottom: 20px;
@@ -134,7 +146,11 @@ export default {
   box-shadow: none;
   font-family: avenir, sans-serif;
 }
-
+.error {
+  color: red;
+  margin-top: 5px;
+  font-size: 14px;
+}
 /* .v-sheet{
   display: none;
 } */

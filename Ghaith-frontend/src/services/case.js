@@ -35,3 +35,30 @@ export const getStatistics = async (caseId) => {
     console.log(error)
   }
 }
+
+export const createCase = async (data) => {
+  try {
+    const res = await Client.post(`/cases`, data)
+    return res.data
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+export const updateCase = async (id, data) => {
+  try {
+    const res = await Client.put(`/cases/${id}`, data)
+    return res.data
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+export const deleteCase = async (id) => {
+  try {
+    const res = await Client.delete(`/cases/${id}`)
+    return res.data
+  } catch (error) {
+    console.log(error)
+  }
+}
