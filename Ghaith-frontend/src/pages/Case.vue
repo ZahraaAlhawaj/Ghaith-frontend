@@ -125,43 +125,25 @@ export default {
         <v-card class="image-card" outlined>
           <div class="title-header">
             <h2 class="card-title">{{ cases.name }}</h2>
-            <!-- <v-btn icon>
-              <v-icon>mdi-share</v-icon>
-            </v-btn> -->
 
             <div class="text-center">
-              <v-btn-group
-                color="#b2d7ef"
-                density="comfortable"
-                rounded="pill"
-                divided
-              >
-                <v-btn
-                  class="pe-2"
-                  prepend-icon="mdi-account-multiple-outline"
-                  variant="flat"
+              <v-btn icon size="30">
+                <v-icon size="22">mdi-share</v-icon>
+                <v-menu
+                  activator="parent"
+                  location="bottom end"
+                  transition="fade-transition"
                 >
-                  <div class="text-none font-weight-regular">Share</div>
-                </v-btn>
-
-                <v-btn size="small" icon>
-                  <v-icon icon="mdi-menu-down"></v-icon>
-                  <v-menu
-                    activator="parent"
-                    location="bottom end"
-                    transition="fade-transition"
-                  >
-                    <v-list density="compact" min-width="250" rounded="lg" slim>
-                      <v-list-item
-                        prepend-icon="mdi-link"
-                        title="Copy link"
-                        @click="generateLink"
-                        link
-                      ></v-list-item>
-                    </v-list>
-                  </v-menu>
-                </v-btn>
-              </v-btn-group>
+                  <v-list density="compact" min-width="250" rounded="lg" slim>
+                    <v-list-item
+                      prepend-icon="mdi-link"
+                      title="Copy link"
+                      @click="generateLink"
+                      link
+                    ></v-list-item>
+                  </v-list>
+                </v-menu>
+              </v-btn>
             </div>
           </div>
 
