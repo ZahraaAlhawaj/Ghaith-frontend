@@ -12,6 +12,14 @@ import Request from './pages/Request.vue'
 import Pickup from './pages/Pickup.vue'
 import Events from './pages/Events.vue'
 import Profile from './pages/Profile.vue'
+import Text from './pages/text.vue'
+import AdminHomePage from './admin/AdminHomePage.vue'
+import Users from './admin/Users.vue'
+import Categories from './admin/Categories.vue'
+import AdminCharities from './admin/Charities.vue'
+import ResetPassword from './admin/ResetPassword.vue'
+import AdminDonations from './admin/Donations.vue'
+import AdminCases from './admin/Cases.vue'
 
 const routes = [
   { path: '/', component: HomePage, name: 'HomePage' },
@@ -36,7 +44,35 @@ const routes = [
 
   { path: '/events', component: Events, name: 'Events' },
 
-  { path: '/Profile', component: Profile, name: 'Profile' }
+  { path: '/Profile', component: Profile, name: 'Profile' },
+  { path: '/text', component: Text, name: 'Text' },
+
+  { path: '/admin', component: AdminHomePage, name: 'AdminHomePage' },
+
+  { path: '/admin/users', component: Users, name: 'Users' },
+
+  { path: '/admin/categories', component: Categories, name: 'Categories' },
+
+  {
+    path: '/admin/donations',
+    component: AdminDonations,
+    name: 'AdminDonations'
+  },
+
+  {
+    path: '/admin/charities',
+    component: AdminCharities,
+    name: 'AdminCharities'
+  },
+
+  {
+    path: '/admin/reset',
+    component: ResetPassword,
+    name: 'ResetPassword'
+  },
+
+  { path: '/admin/categories', component: Categories, name: 'Categories' },
+  { path: '/admin/cases', component: AdminCases, name: 'AdminCases' }
 ]
 
 const router = createRouter({

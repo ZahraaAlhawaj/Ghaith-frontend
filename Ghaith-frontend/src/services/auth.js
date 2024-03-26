@@ -26,3 +26,12 @@ export const CheckSesion = async () => {
     console.log(error)
   }
 }
+
+export const ResetPassword = async (data) => {
+  try {
+    const res = await Client.put('/auth/reset', data)
+    return res.data
+  } catch (error) {
+    return error.response
+  }
+}

@@ -1,12 +1,42 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+
+:root {
+  --body-color: #e6e5d0;
+  --nav-color: #4b5f23;
+  --side-nav: #010718;
+  --text-color: #e6e5d0;
+  --search-bar: #e6e5d0;
+  --search-text: #010718;
+}
+
 body {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+  transition: all 0.4s ease;
+  background-color: var(--body-color);
+}
+
+body.dark {
+  --body-color: #18191a;
+  --nav-color: #242526;
+  --side-nav: #242526;
+  --text-color: #e6e5d0;
+  --search-bar: #242526;
 }
 
 .mainApp {
   display: grid;
   grid-template-rows: 100px 3fr 50px;
   grid-template-areas: 'header' 'main' 'footer';
+  height: 100vh;
+}
+
+.adminMainApp {
+  display: grid;
+  grid-template-columns: 200px 3fr;
+  grid-template-areas: 'header main';
   height: 100vh;
 }
 
@@ -18,9 +48,29 @@ header {
   grid-area: main;
 }
 
-footer {
+.footer {
   display: grid;
   justify-items: center;
   align-items: center;
   grid-area: footer;
+}
+
+.list-title {
+  color: var(--nav-color);
+}
+
+.list-header {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 0;
+}
+
+.list-header .list-create-btn {
+  color: var(--text-color);
+  background-color: var(--nav-color);
+}
+
+.list-form {
+  width: 90%;
+  margin: 0 auto;
 }

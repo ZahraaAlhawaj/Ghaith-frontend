@@ -12,7 +12,10 @@ export default {
   },
   data: () => ({
     tab: null,
-    userDetails: null
+    userDetails: null,
+    userRequests: [],
+    userPickup: [],
+    userDonation: []
   }),
   mounted() {
     this.getUserInfo()
@@ -21,7 +24,17 @@ export default {
     async getUserInfo() {
       const response = await getUserInfo()
       this.userDetails = response
+      this.userRequests = response.request
+      this.userPickup = response.pickup
+      this.userDonation = response.donation
       console.log(response)
+    },
+    formatDate(dateString) {
+      const date = new Date(dateString)
+      const day = date.getDate().toString().padStart(2, '0')
+      const month = (date.getMonth() + 1).toString().padStart(2, '0')
+      const year = date.getFullYear()
+      return `${day}/${month}/${year}`
     }
   }
 }
@@ -48,9 +61,15 @@ export default {
         <img src="/images/av.png" alt="Avatar" />
       </div>
       <div class="profile-details">
-        <div class="name">John Doe</div>
-        <div class="email">john.doe@example.com</div>
-        <div class="phone">123-456-7890</div>
+        <div class="name" v-if="userDetails">
+          {{ userDetails.user.name }}
+        </div>
+        <div class="email" v-if="userDetails">
+          {{ this.userDetails.user.email }}
+        </div>
+        <div class="phone" v-if="userDetails">
+          {{ this.userDetails.user.phone_number }}
+        </div>
       </div>
     </div>
   </div>
@@ -58,61 +77,76 @@ export default {
   <div class="list">
     <v-card class="custom-card">
       <v-tabs v-model="tab" class="custom-tabs">
-        <v-tab value="one">Item One</v-tab>
-        <v-tab value="two">Item Two</v-tab>
-        <v-tab value="three">Item Three</v-tab>
+        <v-tab value="one">Request List</v-tab>
+        <v-tab value="two">Pick up List</v-tab>
+        <v-tab value="three">Donation List</v-tab>
       </v-tabs>
 
       <v-card-text>
         <v-window v-model="tab">
           <v-window-item value="one">
-            <div class="one">
+            <div class="one" v-for="req in userRequests">
               <v-card
                 class="mx-auto my-8"
                 max-width="600"
-                subtitle="Same looks, no anchor"
-                title="Hover and click me"
+                :subtitle="req.description"
+                :title="req.title"
                 link
-              ></v-card>
-            </div>
-            <div class="one">
-              <v-card
-                class="mx-auto my-8"
-                max-width="600"
-                subtitle="Same looks, no anchor"
-                title="Hover and click me"
-                link
-              ></v-card>
-            </div>
-            <div class="one">
-              <v-card
-                class="mx-auto my-8"
-                max-width="600"
-                subtitle="Same looks, no anchor"
-                title="Hover and click me"
-                link
-              ></v-card>
+              >
+                <v-card-text class="d-flex justify-space-between">
+                  <div>
+                    <p>Amount: {{ req.expected_amount }}</p>
+                    <p v-if="req.charity">
+                      Sponsored Charity: {{ req.charity.name }}
+                    </p>
+                  </div>
+                  <div class="d-flex">
+                    <v-btn class="mt-4" color="primary">{{ req.status }}</v-btn>
+                  </div>
+                </v-card-text>
+              </v-card>
             </div>
           </v-window-item>
 
           <v-window-item value="two">
-            <v-card
-              class="mx-auto my-8"
-              max-width="600"
-              subtitle="Same looks, no anchor"
-              title="Hover and click me"
-              link
-            ></v-card>
+            <div class="two" v-for="pick in userPickup">
+              <v-card
+                class="mx-auto my-8"
+                max-width="600"
+                :subtitle="pick.quantity"
+                :title="pick.type"
+                link
+              >
+                <v-card-text class="d-flex justify-space-between align-center">
+                  <div>
+                    <p>Date: {{ formatDate(pick.date) }}</p>
+                    <p>Time: {{ pick.time }}</p>
+                    <p v-if="pick.charity">
+                      Sponsored Charity: {{ pick.charity.name }}
+                    </p>
+                  </div>
+                  <div class="d-flex">
+                    <span v-if="pick.urgent" class="mr-2">Urgent</span>
+                    <v-btn class="mt-4" color="primary">{{
+                      pick.status
+                    }}</v-btn>
+                  </div>
+                </v-card-text>
+              </v-card>
+            </div>
           </v-window-item>
 
           <v-window-item value="three">
-            <v-card
-              class="mx-auto my-8"
-              max-width="600"
-              subtitle="Same looks, no anchor"
-              title="Hover and click me"
-              link
-            ></v-card>
+            <div class="three" v-for="donate in userDonation">
+              <v-card
+                class="mx-auto my-8"
+                max-width="600"
+                :subtitle="formatDate(donate.updatedAt)"
+                :title="`${donate.amount} BD`"
+                link
+              >
+              </v-card>
+            </div>
           </v-window-item>
         </v-window>
       </v-card-text>
