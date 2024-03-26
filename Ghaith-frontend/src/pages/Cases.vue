@@ -9,7 +9,8 @@ export default {
       search: '',
       cases: [],
       collectedAmount: 0,
-      percentage: []
+      percentage: [],
+      showCases: []
     }
   },
   mounted() {
@@ -17,9 +18,13 @@ export default {
   },
   computed: {
     filteredCases() {
-      return this.cases.filter((c) =>
-        c.name.toLowerCase().includes(this.search.toLowerCase())
-      )
+      if (this.showCases.length != 0) {
+        return this.showCases
+      } else {
+        return this.cases.filter((c) =>
+          c.name.toLowerCase().includes(this.search.toLowerCase())
+        )
+      }
     }
   },
   watch: {
@@ -50,6 +55,12 @@ export default {
       const month = (date.getMonth() + 1).toString().padStart(2, '0')
       const year = date.getFullYear()
       return `${day}/${month}/${year}`
+    },
+    showCategory(val) {
+      this.showCases = this.cases.filter(
+        (c) => c.category && c.category.name == val
+      )
+      return this.showCases
     }
   }
 }
@@ -57,9 +68,20 @@ export default {
 
 <template>
   <v-container class="pa-4 text-center">
-    <div class="title">
+    <!-- <div class="title">
       <h1 class="yellow-underlined title">Cases</h1>
-    </div>
+    </div> -->
+    <v-tabs align-tabs="center" color="deep-purple-accent-4">
+      <v-tab value="general" @click="showCategory('general')">Generel</v-tab>
+      <v-tab value="Treatment" @click="showCategory('Treatment')"
+        >Treatment</v-tab
+      >
+      <v-tab value="Home Renovation" @click="showCategory('Home-Renovation')"
+        >Home Renovation</v-tab
+      >
+      <v-tab value="Family" @click="showCategory('Family')">Family</v-tab>
+    </v-tabs>
+    <br />
     <v-text-field
       v-model="search"
       label="Search"
