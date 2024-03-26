@@ -35,3 +35,12 @@ export const updatePickupStatus = async (id, data) => {
     console.log(error)
   }
 }
+
+export const showAllPickup = async () => {
+  try {
+    const res = await Client.get(`/pickup`)
+    return res.data
+  } catch (error) {
+    console.log(error)
+  }
+}

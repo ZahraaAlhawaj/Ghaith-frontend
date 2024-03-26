@@ -1,10 +1,20 @@
 <script>
 import { useStore } from 'vuex'
 import { computed } from 'vue'
-import { getPickupsByCharity, updatePickupStatus } from '../services/pickup'
+import {
+  getPickupsByCharity,
+  updatePickupStatus,
+  showAllPickup
+} from '../services/pickup'
 
 export default {
   name: 'Pickup',
+  setup() {
+    const store = useStore()
+    const user = computed(() => store.getters.currentUser)
+
+    return { user }
+  },
   data: function () {
     return {
       search: '',
@@ -30,7 +40,11 @@ export default {
   },
   methods: {
     async getAllPickups() {
-      this.pickups = await getPickupsByCharity()
+      if (this.user.role == 'Admin') {
+        this.pickups = await getPickupsByCharity()
+      } else {
+        this.pickups = await showAllPickup()
+      }
     },
     async handleSubmit(event, item) {
       event.preventDefault()
