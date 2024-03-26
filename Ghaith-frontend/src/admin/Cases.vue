@@ -4,6 +4,8 @@ import { computed } from 'vue'
 import { showCharityCases } from '../services/charity'
 import { createCase, updateCase, deleteCase } from '../services/case'
 import { getCategories } from '../services/category'
+import { format } from 'date-fns'
+
 export default {
   name: 'Cases',
   setup() {
@@ -86,13 +88,16 @@ export default {
       this.getAllCases()
     },
     openUpdateDialog(item) {
+      const startDate = format(new Date(item.start_date), 'yyyy-MM-dd')
+      const endDate = format(new Date(item.start_date), 'yyyy-MM-dd')
+
       this.formValues = {
         name: item.name,
         image: item.image,
         description: item.description,
         total_amount: item.total_amount,
-        end_date: item.end_date,
-        start_date: item.start_date,
+        end_date: endDate,
+        start_date: startDate,
         category: item.category
       }
       this.updateDialog = {
