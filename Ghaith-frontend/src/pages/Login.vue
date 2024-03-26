@@ -30,7 +30,14 @@ export default {
       } else {
         localStorage.setItem('token', res.data.token)
         this.store.dispatch('login', res.data.user)
-        this.$router.push(`/`)
+        if (
+          res.data.user.role === 'Super Admin' ||
+          res.data.user.role === 'Admin'
+        ) {
+          this.$router.push(`/admin`)
+        } else {
+          this.$router.push(`/`)
+        }
       }
     }
   }
