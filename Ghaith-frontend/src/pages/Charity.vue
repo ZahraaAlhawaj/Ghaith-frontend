@@ -78,28 +78,44 @@ export default {
 
 <template>
   <div class="charity-page">
-    <h1>{{ charity.name }}</h1>
-    <img
-      height="200"
-      max-width="200"
-      max-height="200"
-      :src="charity.logo"
-      alt=""
-    />
-    <p v-if="charity.user">{{ charity.user.email }}</p>
+    <div class="center">
+      <v-card class="charity-card">
+        <div class="image-section">
+          <img
+            height="200"
+            max-width="200"
+            max-height="200"
+            :src="charity.logo"
+            alt=""
+          />
+        </div>
+        <div class="divider"></div>
+        <div class="text-section">
+          <h1>{{ charity.name }}</h1>
+          <p v-if="charity.user">{{ charity.user.email }}</p>
+        </div>
+      </v-card>
 
-    <div class="donation-card">
-      <div class="donation-input">
-        <label for="amount" class="donation-input-label">Amount</label>
-        <input
-          type="number"
-          id="amount"
-          v-model="amount"
-          min="0.1"
-          step="0.1"
-        />
+      <div class="donation-card">
+        <div class="amount-section">
+          <label for="amount">Amount</label>
+        </div>
+
+        <div class="input-section">
+          <input
+            type="number"
+            id="amount"
+            placeholder="amount"
+            v-model="amount"
+            min="0.1"
+            step="0.1"
+          />
+        </div>
+
+        <div class="button-section">
+          <button class="donate-button" @click="donate">Donate</button>
+        </div>
       </div>
-      <button class="donation-btn" @click="donate">Donate</button>
     </div>
 
     <div class="charity-cases">
@@ -140,125 +156,110 @@ export default {
 
 <style scoped>
 .charity-page {
-  text-align: center;
-  padding: 20px;
-}
-
-.charity-page h1 {
-  font-size: 24px;
-  margin-bottom: 10px;
-}
-
-.charity-page img {
-  width: 200px;
-  height: 200px;
-  margin-bottom: 10px;
-}
-
-.charity-page .donation-section {
   display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.center {
+  justify-content: center;
+}
+.charity-card {
+  display: flex;
+  flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 20px;
-}
-
-.charity-page .donation-input {
-  flex: 0 0 70%;
-}
-
-.charity-page .donation-input input {
+  border-radius: 2%;
   width: 100%;
-  padding: 5px;
-}
-
-.charity-page .donation-input-label {
-  display: block;
-  margin-bottom: 5px;
-}
-
-.charity-page .donation-btn {
-  padding: 10px 20px;
-  font-size: 16px;
-  background-color: #f7f7f7;
-}
-
-.charity-page .charity-cases {
-  display: flex;
-  flex-wrap: wrap;
+  border: 0.12em solid #4b5f23;
+  background-color: #e6e5d0;
   justify-content: center;
 }
 
-.charity-page .case-card {
-  margin: 20px;
-  width: 300px;
-  text-align: left;
-  background-color: #f7f7f7;
-  box-shadow: 0 2px 4px #4b5f23;
+.image-section {
+  margin-bottom: -0.8%;
+  text-align: center;
 }
 
-.charity-page .case-card:hover {
-  box-shadow: 0 4px 8px #4b5f23;
-}
-
-.charity-page .case-image {
+.divider {
   width: 100%;
-  height: auto;
-  object-fit: cover;
+  height: 1px;
+  /* background-color: #ccc; */
 }
 
-.charity-page .case-title {
+.text-section {
+  text-align: center;
+  background-color: #4b5f23; /* Add your desired background color */
+
+  border-radius: 4px;
+  width: 100%;
+  color: #e6e5d0;
+  padding: 10px;
+}
+
+.text-section h1 {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: -0.8%;
+}
+
+.text-section p {
   font-size: 18px;
-  margin: 10px;
-}
-
-
-
-.charity-page .case-progress-label {
-  position: absolute;
-  right: 10px;
-  top: 50%;
-  transform: translateY(-50%);
-  font-size: 12px;
 }
 
 .donation-card {
-  background-color: #f7f7f7;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  padding: 20px;
-  padding: 20px;
-  width: 300px;
-  height: 200px;
-
-  justify-content: center;
+  margin-top: 5%;
+  margin-bottom: 6%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   align-items: center;
-}
-
-.donation-input {
-  margin-bottom: 10px;
-}
-
-.donation-input input[type='number'] {
-  padding: 8px;
-  font-size: 14px;
-  border: 1px solid #4b5f23;
   border-radius: 4px;
+  width: 100%;
+  border: 0.12em solid #4b5f23;
+  background-color: #e6e5d0;
 }
 
-.donation-input-label {
-  display: block;
-  margin-bottom: 5px;
-  font-weight: bold;
-  color: #333;
+.amount-section {
+  text-align: center;
+  background-color: #4b5f23; /* Add your desired background color */
+
+  width: 100%;
+  color: #e6e5d0;
+  padding: 10px;
 }
 
-.donation-input-label {
-  display: block;
-  margin-bottom: 5px;
+.donate-button {
+  background-color: #4b5f23;
+  color: #e6e5d0;
+  border: none;
+  border-radius: 4px;
+  padding: 5% 10%;
+  transition: background-color 0.3s ease;
+  margin-bottom: 10%;
+  margin-top: 10%;
 }
 
-.donation-btn {
-  padding: 10px 20px;
-  font-size: 16px;
-  background-color: #ac4646;
+.donate-button:hover {
+  background-color: #627638;
+}
+
+.input-section input {
+  margin-top: 5%;
+  padding: 10px;
+  border: 2px solid #4b5f23;
+  border-radius: 4px;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.input-section input:focus {
+  border-color: #6e8247;
 }
 </style>
