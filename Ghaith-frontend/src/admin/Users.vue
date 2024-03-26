@@ -92,6 +92,7 @@ export default {
   height: 100%;
   margin: auto;
 }
+
 .list-title {
   color: var(--nav-color);
 }
