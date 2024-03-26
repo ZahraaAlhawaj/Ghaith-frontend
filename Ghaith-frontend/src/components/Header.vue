@@ -102,11 +102,12 @@ export default {
         </div>
         <ul class="nav-links">
           <li><router-link to="/about">About</router-link></li>
-          <li><router-link to="/portfolio">Portfolio</router-link></li>
-          <li><router-link to="/services">Services</router-link></li>
-          <li><router-link to="/contact">Contact</router-link></li>
-          <li><router-link to="/login">Login</router-link></li>
+          <li v-if="user">
+            <router-link to="/profile">Profile</router-link>
+          </li>
+          <li v-if="!user"><router-link to="/login">Login</router-link></li>
           <li><router-link to="/charities">Charities</router-link></li>
+          <li v-if="user"><a @click="handleLogOut">Logout</a></li>
         </ul>
       </div>
       <!-- <div class="darkLight-searchBox">
@@ -153,6 +154,13 @@ nav .nav-bar {
   position: relative;
   /* height: 100%;
     max-width: 1000px; */
+  width: 100%;
+  background-color: var(--nav-color);
+  /* margin: 0 auto; */
+  padding: 0 30px;
+  display: flex;
+  /* align-items: center; */
+  justify-content: space-between;
   width: 100%;
   background-color: var(--nav-color);
   /* margin: 0 auto; */
@@ -233,7 +241,24 @@ nav .nav-bar .logo a {
   margin: 0 5px;
 }
 
+.darkLight-searchBox .searchToggle {
+  height: 40px;
+  width: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 5px;
+}
+
 .dark-light i,
+.searchToggle i {
+  position: absolute;
+  color: var(--text-color);
+  font-size: 22px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
 .searchToggle i {
   position: absolute;
   color: var(--text-color);
@@ -341,6 +366,47 @@ body.dark .search-field i {
 }
 
 @media (max-width: 790px) {
+  nav .nav-bar .sidebarOpen {
+    display: block;
+  }
+  .menu {
+    position: fixed;
+    height: 100%;
+    width: 320px;
+    left: -100%;
+    top: 0;
+    padding: 20px;
+    background-color: var(--side-nav);
+    z-index: 100;
+    transition: all 0.4s ease;
+  }
+  nav.active .menu {
+    left: -0%;
+  }
+  nav.active .nav-bar .navLogo a {
+    opacity: 0;
+    transition: all 0.3s ease;
+  }
+  .menu .logo-toggle {
+    display: block;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .logo-toggle .siderbarClose {
+    color: var(--text-color);
+    font-size: 24px;
+    cursor: pointer;
+  }
+  .nav-bar .nav-links {
+    flex-direction: column;
+    padding-top: 30px;
+  }
+  .nav-links li a {
+    display: block;
+    margin-top: 20px;
+  }
   nav .nav-bar .sidebarOpen {
     display: block;
   }

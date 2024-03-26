@@ -10,6 +10,7 @@ import Cases from './pages/Cases.vue'
 import Case from './pages/Case.vue'
 import Request from './pages/Request.vue'
 import Pickup from './pages/Pickup.vue'
+import Events from './pages/Events.vue'
 import Profile from './pages/Profile.vue'
 import AdminHomePage from './admin/AdminHomePage.vue'
 import Users from './admin/Users.vue'
@@ -35,6 +36,8 @@ const routes = [
   { path: '/request-case', component: Request, name: 'Request' },
 
   { path: '/pickup', component: Pickup, name: 'Pickup' },
+
+  { path: '/events', component: Events, name: 'Events' },
 
   { path: '/Profile', component: Profile, name: 'Profile' },
 
