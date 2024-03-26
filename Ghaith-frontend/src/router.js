@@ -75,9 +75,7 @@ const routes = [
 
   { path: '/admin/categories', component: Categories, name: 'Categories' },
   { path: '/admin/cases', component: AdminCases, name: 'AdminCases' },
-  { path: '/admin/pickup', component: AdminPickup, name: 'AdminPickup' }
-  },
-
+  { path: '/admin/pickup', component: AdminPickup, name: 'AdminPickup' },
   {
     path: '/admin/requests',
     component: AdminRequests,
