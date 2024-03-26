@@ -1,6 +1,8 @@
 <script>
 import { computed } from 'vue'
 import { useStore } from 'vuex'
+import { getStatistics } from '../services/donation'
+import { findUrgentCases } from '../services/case'
 
 export default {
   name: 'HomePage',
@@ -13,6 +15,11 @@ export default {
   },
   data: function () {
     return {
+      numberOfDonations: 0,
+      numberOfCharities: 0,
+      numberOfCategories: 0,
+      totalAmountDonations: 0,
+      urgentCases: [],
       item: [
         {
           color: '#b1bf5c',
@@ -60,12 +67,27 @@ export default {
     clearInterval(this.interval)
   },
   mounted() {
+    this.getStatistics()
+    this.getUrgentCases()
     this.interval = setInterval(() => {
       if (this.value === 100) {
         return (this.value = 0)
       }
       this.value += 10
     }, 1000)
+  },
+  methods: {
+    async getStatistics() {
+      const response = await getStatistics()
+      this.numberOfDonations = response.numberOfDonations
+      this.numberOfCharities = response.numberOfCharities
+      this.numberOfCategories = response.numberOfCategories
+      this.totalAmountDonations = response.totalAmountDonations.toFixed(2)
+    },
+    async getUrgentCases() {
+      const response = await findUrgentCases()
+      console.log(response)
+    }
   }
 }
 </script>
@@ -81,6 +103,65 @@ export default {
       ></v-carousel-item>
     </v-carousel>
   </div>
+
+  <!--<div v-if="isLoggedIn">
+     <h1>User Is LoggedIn</h1>
+    <h2>{{ user.name }}</h2>
+  </div>
+  <div v-else>  -->
+    <!-- <h1>User Is Not LoggedIn</h1> 
+  </div>-->
+  <!-- Urgent Cases -->
+
+  <!-- <v-container class="pa-4 text-center">
+
+  <v-row align="center" class="fill-height" justify="center">
+      <template class="card1" v-for="(c, index) in filteredCases" :key="index">
+        <v-col cols="12" md="4">
+          <v-hover v-slot="{ isHovering, props }">
+            <v-card
+              :elevation="isHovering ? 12 : 2"
+              v-bind="props"
+              @click="showCase(c._id)"
+            >
+              <v-img :src="c.image" cover> </v-img>
+
+              <v-progress-linear
+                v-model="percentage[index]"
+                height="25"
+                color="green"
+              >
+                <strong
+                  >{{
+                    ((c.collected_amount / c.total_amount) * 100).toFixed(2)
+                  }}%</strong
+                >
+              </v-progress-linear>
+              <br />
+              <v-card-title>{{ c.name }}</v-card-title>
+
+              <v-card-subtitle>code: {{ c.code }}</v-card-subtitle>
+
+              <v-card-subtitle
+                >Desired amount: {{ c.total_amount }} BD</v-card-subtitle
+              >
+              <div class="date-style">
+                <div class="date-label">
+                  <p>Start Date</p>
+                  <p>End Date</p>
+                </div>
+                <div class="date-value">
+                  <p>{{ formatDate(c.start_date) }}</p>
+                  <p>{{ formatDate(c.end_date) }}</p>
+                </div>
+              </div>
+            </v-card>
+          </v-hover>
+        </v-col>
+      </template>
+    </v-row>
+  </v-container> -->
+
 
   <!-- mission and vission -->
   <!-- <div style="background-color: white" class="misson"></div> -->
@@ -119,57 +200,57 @@ export default {
 
   <!-- chart -->
 
+  <br />
+  <br />
   <div class="text-center">
     <div class="progress-container">
       <v-progress-circular
-        :model-value="value"
-        :rotate="360"
-        :size="100"
-        :width="15"
+        :model-value="numberOfDonations"
+        :size="150"
+        :width="16"
         color="#4b5f23"
       >
-        <p class="value">{{ value }}</p>
+        <p class="value">{{ numberOfDonations }}</p>
       </v-progress-circular>
-      <span class="progress-text progress-color1">Teal Progress</span>
+      <span class="progress-text progress-color1">Number of Donations</span>
     </div>
 
     <div class="progress-container">
       <v-progress-circular
-        :model-value="value"
-        :rotate="-90"
-        :size="100"
-        :width="15"
+        :model-value="numberOfCharities"
+        :size="150"
+        :width="16"
         color="#748132"
       >
-        <p class="value">{{ value }}</p>
+        <p class="value">{{ numberOfCharities }}</p>
       </v-progress-circular>
-      <span class="progress-text progress-color2">Teal Progress</span>
+      <span class="progress-text progress-color2">Number of Charities</span>
     </div>
 
     <div class="progress-container">
       <v-progress-circular
-        :model-value="value"
-        :rotate="90"
-        :size="100"
-        :width="15"
+        :model-value="numberOfCategories"
+        :size="150"
+        :width="16"
         color="#96A640"
       >
-        <p class="value">{{ value }}</p>
+        <p class="value">{{ numberOfCategories }}</p>
       </v-progress-circular>
-      <span class="progress-text progress-color3">Teal Progress</span>
+      <span class="progress-text progress-color3">Number of Categories</span>
     </div>
 
     <div class="progress-container">
       <v-progress-circular
-        :model-value="value"
-        :rotate="180"
-        :size="100"
-        :width="15"
+        :model-value="totalAmountDonations"
+        :size="150"
+        :width="16"
         color="#AFBF58"
       >
-        <p class="value">{{ value }}</p>
+        <p class="value">{{ totalAmountDonations }}BD</p>
       </v-progress-circular>
-      <span class="progress-text progress-color4">Teal Progress</span>
+      <span class="progress-text progress-color4"
+        >Total Amount of Donations</span
+      >
     </div>
   </div>
 </template>
