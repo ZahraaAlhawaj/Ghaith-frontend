@@ -63,7 +63,7 @@ export default {
         name: item.name
       }
       this.updateDialog = {
-        ...this.updateCategory,
+        ...this.updateDialog,
         [item._id]: true
       }
     }

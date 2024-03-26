@@ -68,7 +68,7 @@ export default {
           class="admin-link"
           link
           title="Requests"
-          to="/admin/request"
+          to="/admin/requests"
         ></v-list-item>
         <v-list-item
           class="admin-link"
