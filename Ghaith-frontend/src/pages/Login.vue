@@ -30,11 +30,14 @@ export default {
       } else {
         localStorage.setItem('token', res.data.token)
         this.store.dispatch('login', res.data.user)
-        if (
-          res.data.user.role === 'Super Admin' ||
-          res.data.user.role === 'Admin'
-        ) {
+        if (res.data.user.role === 'Super Admin') {
           this.$router.push(`/admin`)
+        } else if (res.data.user.role === 'Admin') {
+          if (!res.data.user.onboarding) {
+            this.$router.push('/admin/reset')
+          } else {
+            this.$router.push(`/admin`)
+          }
         } else {
           this.$router.push(`/`)
         }
@@ -45,37 +48,35 @@ export default {
 </script>
 
 <template>
-  <div class="BG">
-    <div class="form-container">
-      <v-sheet class="mx-auto" width="300">
-        <h1 className="account-title">Login</h1>
-        <p className="account-description">Enter your email and password</p>
+  <v-container class="form-container">
+    <v-sheet class="mx-auto" width="300">
+      <h1 className="account-title">Login</h1>
+      <p className="account-description">Enter your email and password</p>
 
-        <v-form fast-fail @submit.prevent @submit="handleSubmit">
-          <v-text-field
-            v-model="formValues['email']"
-            label="email"
-            @input="handleFormChange"
-          ></v-text-field>
+      <v-form fast-fail @submit.prevent @submit="handleSubmit">
+        <v-text-field
+          v-model="formValues['email']"
+          label="email"
+          @input="handleFormChange"
+        ></v-text-field>
 
-          <v-text-field
-            v-model="formValues['password']"
-            label="password"
-            type="password"
-            @input="handleFormChange"
-          ></v-text-field>
+        <v-text-field
+          v-model="formValues['password']"
+          label="password"
+          type="password"
+          @input="handleFormChange"
+        ></v-text-field>
 
-          <v-btn rounded="xl" class="mt-2" type="submit" block>Submit</v-btn>
-        </v-form>
-        <div class="register-container">
-          <p class="register">No account?</p>
-          <router-link to="/register" class="register-link">
-            Create account
-          </router-link>
-        </div>
-      </v-sheet>
-    </div>
-  </div>
+        <v-btn rounded="xl" class="mt-2" type="submit" block>Login</v-btn>
+      </v-form>
+      <div class="register-container">
+        <p class="register">No account?</p>
+        <router-link to="/register" class="register-link">
+          Create account
+        </router-link>
+      </div>
+    </v-sheet>
+  </v-container>
 </template>
 
 <style scoped>
