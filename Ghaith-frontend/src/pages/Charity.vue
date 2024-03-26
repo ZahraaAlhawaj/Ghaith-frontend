@@ -19,15 +19,7 @@ export default {
     inputValue: 0.1,
     collectedAmount: 0,
     percentage: [],
-    amount: 0.1,
-    select: { state: 'Florida', abbr: 'FL' },
-    items: [
-      { state: 'Florida', abbr: 'FL' },
-      { state: 'Georgia', abbr: 'GA' },
-      { state: 'Nebraska', abbr: 'NE' },
-      { state: 'California', abbr: 'CA' },
-      { state: 'New York', abbr: 'NY' }
-    ]
+    amount: 0.1
   }),
   mounted() {
     this.charityId = this.$route.params.id
@@ -123,16 +115,6 @@ export default {
         <div class="button-section">
           <button class="donate-button" @click="donate">Donate</button>
         </div>
-
-        <!-- <v-select
-          v-model="select"
-          :items="items"
-          item-title="state"
-          item-value="abbr"
-          label="Select"
-          return-object
-          single-line
-        ></v-select> -->
       </div>
     </div>
 
