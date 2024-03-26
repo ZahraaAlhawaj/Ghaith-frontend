@@ -35,7 +35,8 @@ export default {
     }
   },
   mounted() {
-    this.getAllCategories(), this.getAllCases()
+    this.getAllCategories()
+    this.getAllCases()
   },
   methods: {
     async getAllCases() {
@@ -44,7 +45,7 @@ export default {
     },
     async getAllCategories() {
       this.categories = await getCategories()
-      // console.log(this.categories)
+      console.log(this.categories)
     },
     async handleSubmit(event, action, item = null) {
       event.preventDefault()
@@ -119,8 +120,8 @@ export default {
           <h3>New Case</h3>
           <v-form fast-fail @submit.prevent @submit="handleSubmit">
             <v-select
-              v-model="formValues['category']"
               :items="categories"
+              item-title="name"
               item-value="_id"
               item-text="name"
               label="Category"
@@ -212,10 +213,12 @@ export default {
                   <v-select
                     v-model="formValues['category']"
                     :items="categories"
-                    item-value="_id"
+                    :item-title="categories.name"
+                    :item-value="categories._id"
                     item-text="name"
                     label="Category"
                   ></v-select>
+
                   <v-text-field
                     v-model="formValues['name']"
                     label="Name"
