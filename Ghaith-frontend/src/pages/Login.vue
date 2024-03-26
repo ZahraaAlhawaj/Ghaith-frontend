@@ -103,7 +103,7 @@ export default {
 .account-description {
   font-size: 16px;
   text-align: left;
-  color: #555;
+  color: #4b5f23;
   padding-top: 10px;
   font-size: 14px;
   margin-bottom: 20px;
