@@ -13,6 +13,9 @@ import Pickup from './pages/Pickup.vue'
 import Events from './pages/Events.vue'
 import Profile from './pages/Profile.vue'
 import Text from './pages/text.vue'
+import AdminHomePage from './admin/AdminHomePage.vue'
+import Users from './admin/Users.vue'
+import Categories from './admin/Categories.vue'
 
 const routes = [
   { path: '/', component: HomePage, name: 'HomePage' },
@@ -38,7 +41,13 @@ const routes = [
   { path: '/events', component: Events, name: 'Events' },
 
   { path: '/Profile', component: Profile, name: 'Profile' },
-  { path: '/text', component: Text, name: 'Text' }
+  { path: '/text', component: Text, name: 'Text' },
+
+  { path: '/admin', component: AdminHomePage, name: 'AdminHomePage' },
+
+  { path: '/admin/users', component: Users, name: 'Users' },
+
+  { path: '/admin/categories', component: Categories, name: 'Categories' }
 ]
 
 const router = createRouter({
