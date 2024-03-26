@@ -18,6 +18,7 @@ import Categories from './admin/Categories.vue'
 import AdminCharities from './admin/Charities.vue'
 import ResetPassword from './admin/ResetPassword.vue'
 import AdminDonations from './admin/Donations.vue'
+import AdminRequests from './admin/Requests.vue'
 
 const routes = [
   { path: '/', component: HomePage, name: 'HomePage' },
@@ -66,6 +67,12 @@ const routes = [
     path: '/admin/reset',
     component: ResetPassword,
     name: 'ResetPassword'
+  },
+
+  {
+    path: '/admin/requests',
+    component: AdminRequests,
+    name: 'AdminRequests'
   }
 ]
 
