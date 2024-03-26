@@ -107,7 +107,9 @@ export default {
           </li>
           <li v-if="!user"><router-link to="/login">Login</router-link></li>
           <li><router-link to="/charities">Charities</router-link></li>
-          <li v-if="user"><a @click="handleLogOut">Logout</a></li>
+          <li v-if="user">
+            <a to="/logout" @click="logout">Logout</a>
+          </li>
         </ul>
       </div>
       <!-- <div class="darkLight-searchBox">
@@ -206,6 +208,7 @@ nav .nav-bar .logo a {
   color: var(--text-color);
   text-decoration: none;
   padding: 10px;
+  cursor: pointer;
 }
 
 .nav-links li a::before {
