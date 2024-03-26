@@ -22,6 +22,7 @@ export default {
 <template>
   <nav>
     <nav>
+
       <div class="nav-bar">
         <i class="bx bx-menu sidebarOpen"></i>
         <!-- <span class="logo navLogo"><router-link to="/">Gaith </router-link></span> -->
@@ -40,11 +41,10 @@ export default {
           <ul class="nav-links">
             <li><router-link to="/about">About</router-link></li>
             <li v-if="user">
-              <router-link to="/portfolio">Portfolio</router-link>
+              <router-link to="/profile">Profile</router-link>
             </li>
-            <li><router-link to="/services">Services</router-link></li>
-            <li><router-link to="/contact">Contact</router-link></li>
             <li v-if="!user"><router-link to="/login">Login</router-link></li>
+
             <li><router-link to="/charities">Charities</router-link></li>
             <li v-if="user"><a @click="handleLogOut">Logout</a></li>
           </ul>
