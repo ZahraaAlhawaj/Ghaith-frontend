@@ -24,7 +24,6 @@ export default {
     <nav>
       <div class="nav-bar">
         <i class="bx bx-menu sidebarOpen"></i>
-        <!-- <span class="logo navLogo"><router-link to="/">Gaith </router-link></span> -->
         <span class="logo navLogo">
           <router-link to="/">
             <img src="/images/lo.png" alt="Logo" />
@@ -49,29 +48,8 @@ export default {
             <li v-if="user"><a @click="handleLogOut">Logout</a></li>
           </ul>
         </div>
-        <!-- <div class="darkLight-searchBox">
-        <div class="dark-light">
-          <i class='bx bx-moon moon'></i>
-          <i class='bx bx-sun sun'></i>
-        </div>
-        <div class="searchBox">
-          <div class="searchToggle">
-            <i class='bx bx-x cancel'></i>
-            <i class='bx bx-search search'></i>
-          </div>
-          <div class="search-field">
-            <input type="text" placeholder="Search...">
-            <i class='bx bx-search'></i>
-          </div>
-        </div>
-      </div> -->
       </div>
     </nav>
-    <!-- <router-link to="/">Home</router-link>
-    <router-link to="/login">Login</router-link>
-    <router-link to="/register">Register</router-link>
-    <router-link to="/about">About</router-link>
-    <router-link to="/charities">Charities</router-link> -->
   </nav>
 </template>
 
