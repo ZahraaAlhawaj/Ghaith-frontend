@@ -18,6 +18,15 @@ export const showCase = async (casesId) => {
   }
 }
 
+export const findUrgentCases = async () => {
+  try {
+    const res = await Client.get(`/cases/urgent`)
+    return res.data
+  } catch (error) {
+    console.log(error)
+  }
+}
+
 export const donate = async (data) => {
   try {
     const res = await Client.post('/donations', data)

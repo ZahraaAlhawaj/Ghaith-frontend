@@ -8,3 +8,12 @@ export const getDonations = async () => {
     return error
   }
 }
+
+export const getStatistics = async () => {
+  try {
+    const res = await Client.get(`/donations/statistics`)
+    return res.data
+  } catch (error) {
+    return error
+  }
+}

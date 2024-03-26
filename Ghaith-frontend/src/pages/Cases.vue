@@ -114,8 +114,6 @@ export default {
                 >
               </v-progress-linear>
               <br />
-              <!-- <div class="break"></div> -->
-
               <v-card-title>{{ c.name }}</v-card-title>
 
               <v-card-subtitle>code: {{ c.code }}</v-card-subtitle>
@@ -133,12 +131,6 @@ export default {
                   <p>{{ formatDate(c.end_date) }}</p>
                 </div>
               </div>
-              <!-- <v-card-subtitle
-                >Start Date: {{ formatDate(c.start_date) }}</v-card-subtitle
-              >
-              <v-card-subtitle
-                >End Date: {{ formatDate(c.end_date) }}</v-card-subtitle
-              > -->
             </v-card>
           </v-hover>
         </v-col>
@@ -171,7 +163,7 @@ export default {
   border: 0.2em solid #4b5f23;
   background-color: #e6e5d0;
   object-fit: contain !important;
-  padding: 0 0 13% 0;
+  padding: 0 0 7% 0;
 }
 
 .pa-4 {
