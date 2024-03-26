@@ -21,6 +21,7 @@ export default {
 </script>
 
 <template>
+
   <v-app
     class="header"
     v-if="isLoggedIn && (user.role === 'Admin' || user.role === 'Super Admin')"
