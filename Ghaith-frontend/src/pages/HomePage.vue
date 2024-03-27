@@ -196,7 +196,6 @@ export default {
   </v-container>
 
   <!-- mission and vission -->
-  <!-- <div style="background-color: white" class="misson"></div> -->
   <div class="misson">
     <div class="timeline-container">
       <v-timeline align="start">
@@ -364,8 +363,8 @@ export default {
 .timeline-container {
   display: flex;
   justify-content: center;
-  width: 70%; /* Adjust the width as per your preference */
-  margin: 0 auto; /* Center the container horizontally */
+  width: 70%;
+  margin: 0 auto;
 }
 
 .misson {
@@ -392,8 +391,8 @@ export default {
 .icon-border {
   display: inline-block;
   border: 0.12em solid #4b5f23;
-  border-radius: 50%; /* Optional: Applies a circular border */
-  padding: 15%; /* Optional: Adjust the padding around the icon */
+  border-radius: 50%;
+  padding: 15%;
 }
 
 .v-row {
@@ -409,8 +408,6 @@ export default {
 .urgentCases {
   width: 18em;
   height: 28em;
-  /* border-radius: 50%; */
-  /* object-fit: cover; */
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -427,7 +424,6 @@ export default {
   text-align: center;
   flex-direction: column;
   justify-content: center;
-  /* align-items: center; */
   color: #4b5f23;
   text-transform: capitalize;
   margin-bottom: 5%;
