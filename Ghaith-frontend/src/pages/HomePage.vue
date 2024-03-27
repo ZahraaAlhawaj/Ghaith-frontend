@@ -83,9 +83,7 @@ export default {
       this.numberOfDonations = response.numberOfDonations
       this.numberOfCharities = response.numberOfCharities
       this.numberOfCategories = response.numberOfCategories
-      this.totalAmountDonations = this.totalAmountDonations
-        ? response.totalAmountDonations.toFixed(2)
-        : this.totalAmountDonations
+      this.totalAmountDonations = response.totalAmountDonations
     },
     async getUrgentCases() {
       this.urgentCases = await findUrgentCases()
@@ -99,6 +97,20 @@ export default {
     },
     showCase(id) {
       this.$router.push(`/cases/${id}`)
+    }
+  },
+  watch: {
+    urgentCases: {
+      deep: true,
+      handler(newVal) {
+        newVal.forEach((c, index) => {
+          if (c.total_amount == 0) {
+            this.percentage[index] = 0
+          } else {
+            this.percentage[index] = (c.collected_amount / c.total_amount) * 100
+          }
+        })
+      }
     }
   }
 }
@@ -141,8 +153,10 @@ export default {
               >
                 <strong
                   >{{
-                    (urgentCase.collected_amount / urgentCase.total_amount) *
-                    100
+                    (
+                      (urgentCase.collected_amount / urgentCase.total_amount) *
+                      100
+                    ).toFixed(2)
                   }}%</strong
                 >
               </v-progress-linear>
@@ -253,7 +267,7 @@ export default {
         :width="16"
         color="#AFBF58"
       >
-        <p class="value">{{ totalAmountDonations }}BD</p>
+        <p class="value">{{ totalAmountDonations.toFixed(2) }}BD</p>
       </v-progress-circular>
       <span class="progress-text progress-color4"
         >Total Amount of Donations</span
