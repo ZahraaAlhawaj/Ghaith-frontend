@@ -35,7 +35,7 @@ export default {
       event.preventDefault()
       const res = await addRequest(this.formValues)
       this.resetForm()
-      this.$router.push(`/`)
+      this.$router.push(`/profile`)
     },
     resetForm() {
       this.formValues = {

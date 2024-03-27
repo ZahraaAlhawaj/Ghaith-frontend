@@ -69,6 +69,7 @@ export default {
         console.log('something wrong')
       }
       this.resetForm()
+      this.$router.push(`/profile`)
     },
     resetForm() {
       this.formValues = {
@@ -143,7 +144,7 @@ export default {
                 <v-checkbox
                   v-model="formValues['urgent']"
                   label="Urgent"
-                  @change="handleUrgentChange"
+                  @click="handleUrgentChange"
                 ></v-checkbox>
                 <v-btn rounded="xl" class="mt-2" type="submit" block
                   >Submit</v-btn
