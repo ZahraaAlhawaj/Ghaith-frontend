@@ -102,7 +102,7 @@ export default {
         <ul class="nav-links">
           <li><router-link to="/charities">Charities</router-link></li>
           <li><router-link to="/cases">Cases</router-link></li>
-          <li><router-link to="/cases">Events</router-link></li>
+          <li><router-link to="/events">Events</router-link></li>
           <li><router-link to="/about">About</router-link></li>
           <li v-if="user">
             <router-link to="/profile">Profile</router-link>
