@@ -131,14 +131,6 @@ export default {
         <template v-slot:item.actions="{ item }">
           <v-dialog v-model="updateDialog[item._id]" max-width="400" persistent>
             <template v-slot:activator="{ on, attrs }">
-              <!-- <v-btn
-                @click="openUpdateDialog(item)"
-                v-bind="attrs"
-                class="mr-4"
-                color="primary">
-                Update
-              </v-btn> -->
-
               <v-icon
                 left
                 @click="openUpdateDialog(item)"
@@ -181,9 +173,6 @@ export default {
             </v-card>
           </v-dialog>
 
-          <!-- <v-btn @click="deleteOneCategory(item)" color="primary" text>
-            Delete
-          </v-btn> -->
           <v-icon left @click="deleteOneCategory(item)" color="red" text
             >mdi-delete</v-icon
           >

@@ -13,7 +13,6 @@ export default {
   },
   data: () => ({
     shareLink: '',
-    slider3: 100,
     casesId: 0,
     cases: [],
     amount: 0.1,
@@ -57,11 +56,6 @@ export default {
           logo: 'https://i.ibb.co/31Lg1wS/hourglass.png',
           number: response.dayDifference,
           title: 'Until last day'
-        },
-        {
-          logo: 'https://i.ibb.co/VNhWWJB/donation-2.png',
-          number: 3,
-          title: 'people'
         }
       ]
     },
@@ -76,14 +70,7 @@ export default {
       const id = this.casesId
       const url = import.meta.env.VITE_GHAITH_API
       const shareUrl = `${url}/cases/${id}`
-      navigator.clipboard
-        .writeText(shareUrl)
-        .then(() => {
-          console.log('copy')
-        })
-        .catch((error) => {
-          console.log('Faild')
-        })
+      navigator.clipboard.writeText(shareUrl)
       this.shareLink = shareUrl
     },
     showAlert(message, type) {
@@ -185,9 +172,6 @@ export default {
                   </template>
                   Donate <strong>Successfully</strong>.
                 </v-snackbar>
-
-                <!-- <v-btn variant="outlined" size="x-large" @click="donate"
-                  >Donate</v-btn> -->
               </v-col>
             </v-row>
           </v-container>
@@ -250,7 +234,6 @@ export default {
             size="60"
             class="stat-logo"
           ></v-avatar>
-          <!-- <v-img :src="item.logo" height="200"></v-img> -->
           <v-card-title class="headline">{{ item.number }}</v-card-title>
           <v-card-subtitle class="sub-headline">{{
             item.title
@@ -279,20 +262,17 @@ export default {
   height: 100%;
   margin-bottom: 20px;
   padding: 20px !important;
-  /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); */
   border: 0.2em solid #4b5f23;
   background-color: #e6e5d0;
 
   display: flex;
   flex-direction: column;
   justify-content: center;
-  /* align-items: center; */
 }
 
 .donation-card {
   margin-bottom: 20px;
   padding: 20px !important;
-  /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); */
   border: 0.2em solid #4b5f23;
   background-color: #e6e5d0;
 }
@@ -300,10 +280,9 @@ export default {
 .details-card {
   margin-bottom: 20px;
   padding: 20px !important;
-  /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); */
   border: 0.2em solid #4b5f23;
   background-color: #e6e5d0;
-  height: 66%;
+  height: 64%;
 }
 
 .card-title {
@@ -332,12 +311,10 @@ export default {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  /* padding: 10px; */
 }
 
 .title {
   margin: 0;
-  /* padding: 5px 10px; */
 }
 
 .code {
@@ -413,10 +390,10 @@ export default {
 
 .second-row {
   margin-top: 20px;
+  justify-content: center;
 }
 
 .second-row .card-item {
-  /* width: 307px; */
   margin-bottom: 20px;
   text-align: center;
   border: 0.2em solid #4b5f23;

@@ -24,7 +24,10 @@ export default {
   <div class="container">
     <h1>All Charities</h1>
     <p>
-      Extending a helping hand to those in need, our charity provides vital support and resources to empower individuals and communities. Through our compassionate initiatives, we strive to create positive change, inspire hope, and make a lasting impact on the lives of those facing challenges. 
+      Extending a helping hand to those in need, our charity provides vital
+      support and resources to empower individuals and communities. Through our
+      compassionate initiatives, we strive to create positive change, inspire
+      hope, and make a lasting impact on the lives of those facing challenges.
     </p>
   </div>
 
@@ -33,24 +36,15 @@ export default {
       <img src="/images/Charity.jpeg" alt="Cover Image" class="image-cover" />
       <div class="text-container">
         <p>
-          our charity is dedicated to providing essential services and support to underserved communities. With a focus on healthcare, education, and social empowerment, we aim to break barriers, uplift individuals, and create a more equitable society. Join us in building bridges of care.
+          our charity is dedicated to providing essential services and support
+          to underserved communities. With a focus on healthcare, education, and
+          social empowerment, we aim to break barriers, uplift individuals, and
+          create a more equitable society. Join us in building bridges of care.
         </p>
       </div>
     </div>
   </div>
 
-  <!-- <v-card
-    v-for="charity in charities"
-    :key="charity._id"
-    class="mx-auto"
-    height="200"
-    :image="charity.logo"
-    max-width="300"
-    max-height="350"
-    theme="dark"
-    @click="showCharity(charity._id)">
-  </v-card> -->
-  
   <div class="title">
     <h1 class="yellow-underlined title">Charities</h1>
   </div>
@@ -84,8 +78,6 @@ export default {
 .v-card {
   width: 13em;
   height: 9em;
-  /* border-radius: 50%; */
-  /* object-fit: cover; */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -94,17 +86,6 @@ export default {
   background-color: #e6e5d0;
   object-fit: contain !important;
 }
-
-/* .pa-4 {
-  display: flex;
-  text-align: center;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  color: #4b5f23;
-  text-transform: capitalize;
-  margin-bottom: 5%;
-} */
 
 .image-cover {
   width: 100%;

@@ -7,8 +7,6 @@ export default {
 <template>
   <div class="about-us">
     <div class="container">
-      <!-- <h1 class="title">About Us</h1> -->
-
       <div class="title">
         <h1 class="yellow-underlined title">About Us</h1>
       </div>
@@ -22,7 +20,11 @@ export default {
       <div class="paragraph-section">
         <div class="paragraph-container">
           <p>
-            Extending a helping hand to those in need, our charity provides vital support and resources to empower individuals and communities. Through our compassionate initiatives, we strive to create positive change, inspire hope, and make a lasting impact on the lives of those facing challenges. 
+            Extending a helping hand to those in need, our charity provides
+            vital support and resources to empower individuals and communities.
+            Through our compassionate initiatives, we strive to create positive
+            change, inspire hope, and make a lasting impact on the lives of
+            those facing challenges.
           </p>
         </div>
       </div>
@@ -123,7 +125,6 @@ export default {
   width: 30%;
   padding: 20px;
   background-color: #b1bf5c;
-  /* border: 0.12em solid #4b5f23; */
   border-radius: 10px;
 }
 
