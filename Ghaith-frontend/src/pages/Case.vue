@@ -212,12 +212,12 @@ export default {
               <h6>Sponser Charity</h6>
             </div>
             <div class="charity-details">
-              <v-img
+              <img
                 v-if="cases.charity"
                 :src="cases.charity.logo"
                 alt="Charity Logo"
                 class="logo"
-              ></v-img>
+              />
               <h4 v-if="cases.charity">{{ cases.charity.name }}</h4>
             </div>
           </div>
