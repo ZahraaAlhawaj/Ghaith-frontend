@@ -9,6 +9,19 @@ export default {
         password: '',
         confirmPassword: ''
       },
+      passwordRules: [
+        (v) => !!v || 'Password is required',
+        (v) => (v && v.length >= 8) || 'Password must be at least 8 characters'
+      ],
+      confirmPasswordRules: [
+        (v) => !!v || 'Confirm Password is required',
+        (v, vm) => {
+          if (v !== this.formValues.password) {
+            return 'Passwords must match'
+          }
+          return true
+        }
+      ],
       store: useStore()
     }
   },
@@ -36,11 +49,13 @@ export default {
           v-model="formValues['password']"
           label="Password"
           type="password"
+          :rules="passwordRules"
         ></v-text-field>
         <v-text-field
           v-model="formValues['confirmPassword']"
           label="Confirm Password"
           type="password"
+          :rules="confirmPasswordRules"
         ></v-text-field>
         <v-btn rounded="xl" class="mt-2" type="submit" block>Reset</v-btn>
       </v-form>

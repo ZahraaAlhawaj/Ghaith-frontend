@@ -32,7 +32,7 @@ export default {
     },
     async handleSubmit(event, action, item = null) {
       event.preventDefault()
-      if (action === 'delete') {
+      if (action === 'create') {
         const category = await createCategory(this.formValues)
         if (category) {
           this.getAllCategories()
@@ -101,7 +101,7 @@ export default {
             type="submit"
             @click="
               (event) => {
-                if (handleSubmit(event, 'delete')) {
+                if (handleSubmit(event, 'create')) {
                   createDialog = false
                 }
               }
@@ -131,14 +131,22 @@ export default {
         <template v-slot:item.actions="{ item }">
           <v-dialog v-model="updateDialog[item._id]" max-width="400" persistent>
             <template v-slot:activator="{ on, attrs }">
-              <v-btn
+              <!-- <v-btn
+                @click="openUpdateDialog(item)"
+                v-bind="attrs"
+                class="mr-4"
+                color="primary">
+                Update
+              </v-btn> -->
+
+              <v-icon
+                left
                 @click="openUpdateDialog(item)"
                 v-bind="attrs"
                 class="mr-4"
                 color="primary"
+                >mdi-pencil</v-icon
               >
-                Update
-              </v-btn>
             </template>
 
             <v-card prepend-icon="mdi-map-marker">
@@ -173,13 +181,16 @@ export default {
             </v-card>
           </v-dialog>
 
-          <v-btn @click="deleteOneCategory(item)" color="primary" text>
+          <!-- <v-btn @click="deleteOneCategory(item)" color="primary" text>
             Delete
-          </v-btn>
+          </v-btn> -->
+          <v-icon left @click="deleteOneCategory(item)" color="red" text
+            >mdi-delete</v-icon
+          >
         </template>
         <template v-slot:headers="props">
           <tr>
-            <th>Name</th>
+            <th width="90%">Name</th>
             <th>Action</th>
           </tr>
         </template>
