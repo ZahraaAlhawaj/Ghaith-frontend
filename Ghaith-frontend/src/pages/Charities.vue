@@ -24,10 +24,7 @@ export default {
   <div class="container">
     <h1>All Charities</h1>
     <p>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nec lectus
-      auctor, auctor mi id, aliquet neque. Suspendisse potenti. Nullam bibendum
-      tristique justo, ac viverra ex eleifend ac. Vestibulum ante ipsum primis
-      in faucibus orci
+      Extending a helping hand to those in need, our charity provides vital support and resources to empower individuals and communities. Through our compassionate initiatives, we strive to create positive change, inspire hope, and make a lasting impact on the lives of those facing challenges. 
     </p>
   </div>
 
@@ -36,10 +33,7 @@ export default {
       <img src="/images/Charity.jpeg" alt="Cover Image" class="image-cover" />
       <div class="text-container">
         <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nec
-          lectus Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
-          nec lectus auctor, auctor mi id, aliquet neque. Suspendisse potenti.
-          Nullam bibendum tristique justo, ac viverra ex eleifend ac. Vestibulum
+          our charity is dedicated to providing essential services and support to underserved communities. With a focus on healthcare, education, and social empowerment, we aim to break barriers, uplift individuals, and create a more equitable society. Join us in building bridges of care.
         </p>
       </div>
     </div>
@@ -56,12 +50,13 @@ export default {
     theme="dark"
     @click="showCharity(charity._id)">
   </v-card> -->
+  
   <div class="title">
     <h1 class="yellow-underlined title">Charities</h1>
   </div>
 
-  <v-container class="pa-4 text-center">
-    <v-row align="center" class="fill-height" justify="center">
+  <v-container class="pa-4">
+    <v-row class="fill-height" justify="center">
       <template class="card1" v-for="(charity, i) in charities" :key="i">
         <v-col cols="12" md="4">
           <v-hover v-slot="{ isHovering, props }">
@@ -100,7 +95,7 @@ export default {
   object-fit: contain !important;
 }
 
-.pa-4 {
+/* .pa-4 {
   display: flex;
   text-align: center;
   flex-direction: column;
@@ -109,7 +104,7 @@ export default {
   color: #4b5f23;
   text-transform: capitalize;
   margin-bottom: 5%;
-}
+} */
 
 .image-cover {
   width: 100%;

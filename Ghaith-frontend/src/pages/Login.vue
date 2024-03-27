@@ -125,6 +125,7 @@ export default {
   font-weight: 400px;
   font-size: 13px;
   margin-right: 5px;
+  color: #4b5f23;
 }
 
 .register-container {

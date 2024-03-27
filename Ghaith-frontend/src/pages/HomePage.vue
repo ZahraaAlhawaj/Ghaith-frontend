@@ -33,14 +33,14 @@ export default {
           color: '#b1bf5c',
           icon: 'mdi-book-variant',
           title: 'Our Mission',
-          text: 'Ghaith envisions a world where boundless kindness transforms lives, serving as a beacon of hope and driving positive change for all.',
+          text: 'Our mission at Ghaith is to Empower individuals and communities, fostering kindness and generosity, connecting donors with causes, supporting those in need, making a positive impact, inspiring compassion, fostering collaboration, and creating a world where all thrive.',
           textColor: '#4b5f23'
         },
         {
           color: '#b1bf5c',
           icon: 'mdi-airballoon',
-          title: 'Our Vision',
-          text: 'Ghaith envisions a world where boundless kindness transforms lives, serving as a beacon of hope and driving positive change for all.',
+          title: 'Our Values',
+          text: '(1)Kindness: We believe in the power of kindness to transform lives,(2)Empowerment: We strive to empower individuals, giving them the tools to thrive. (3)Generosity: We encourage acts of generosity, recognizing the impact they have on society.',
           textColor: '#4b5f23'
         }
       ].map((item) => {
@@ -130,7 +130,10 @@ export default {
   <!-- Urgent Cases -->
 
   <v-container class="pa-4 text-center">
-    <h2>Featured Cases</h2>
+    <div class="title">
+      <h1 class="yellow-underlined title">Featured Cases</h1>
+    </div>
+
     <v-row align="center" class="fill-height" justify="center">
       <template
         class="card1"
@@ -149,9 +152,9 @@ export default {
               <v-progress-linear
                 v-model="percentage[index]"
                 height="25"
-                color="green"
+                color="#B1BF5C"
               >
-                <strong
+                <strong class="text-color"
                   >{{
                     (
                       (urgentCase.collected_amount / urgentCase.total_amount) *
@@ -161,20 +164,20 @@ export default {
                 >
               </v-progress-linear>
               <br />
-              <v-card-title>{{ urgentCase.name }}</v-card-title>
-              <v-card-subtitle>code: {{ urgentCase.code }}</v-card-subtitle>
-              <v-card-subtitle
+              <v-card-title class="text-color">{{ urgentCase.name }}</v-card-title>
+              <v-card-subtitle class="text-color2">code: {{ urgentCase.code }}</v-card-subtitle>
+              <v-card-subtitle class="text-color2"
                 >Desired amount:
                 {{ urgentCase.total_amount }} BD</v-card-subtitle
               >
               <div class="date-style">
                 <div class="date-label">
-                  <p>Start Date</p>
-                  <p>End Date</p>
+                  <p class="text-color">Start Date</p>
+                  <p class="text-color">End Date</p>
                 </div>
                 <div class="date-value">
-                  <p>{{ formatDate(urgentCase.start_date) }}</p>
-                  <p>{{ formatDate(urgentCase.end_date) }}</p>
+                  <p class="text-color">{{ formatDate(urgentCase.start_date) }}</p>
+                  <p class="text-color">{{ formatDate(urgentCase.end_date) }}</p>
                 </div>
               </div>
             </v-card>
@@ -267,7 +270,7 @@ export default {
         :width="16"
         color="#AFBF58"
       >
-        <p class="value">{{ totalAmountDonations.toFixed(2) }}BD</p>
+      <p class="value">{{ totalAmountDonations.toFixed(2) }}BD</p>
       </v-progress-circular>
       <span class="progress-text progress-color4"
         >Total Amount of Donations</span
@@ -278,7 +281,7 @@ export default {
 
 <style scoped>
 .carousel-wrapper {
-  margin-top: -1.5%; /* Adjust the negative margin to remove the space above */
+  margin-top: -1.5%;
 }
 
 .v-progress-circular {
@@ -357,6 +360,10 @@ export default {
   margin: 0 auto; /* Center the container horizontally */
 }
 
+.misson {
+  background-color: #d8d7be;
+}
+
 .v-card-title .v-card-text {
   padding-top: 10%;
 }
@@ -401,7 +408,7 @@ export default {
   justify-content: center;
   align-items: center;
 
-  border: 0.2em solid #4b5f23;
+  border: 0.1em solid #4b5f23;
   background-color: #e6e5d0;
   object-fit: contain !important;
   padding: 0 0 7% 0;
@@ -442,5 +449,34 @@ export default {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+}
+
+.title {
+  margin-top: 2%;
+  text-align: center;
+  margin-bottom: 0%;
+  color: #4b5f23;
+  display: flex;
+  justify-content: center;
+}
+
+.yellow-underlined {
+  border-bottom: solid 10px #b1bf5c;
+  color: #4b5f23;
+  line-height: 0.35em;
+  margin-top: 0.65em;
+  display: inline-block;
+  padding-left: 0.15em;
+  padding-right: 0.15em;
+  align-self: center;
+  margin-bottom: 2%;
+}
+
+.text-color{
+  color: #4b5f23;
+}
+
+.text-color2{
+  color: #566833;
 }
 </style>
