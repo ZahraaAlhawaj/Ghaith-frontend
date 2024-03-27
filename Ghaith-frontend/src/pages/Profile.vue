@@ -1,5 +1,7 @@
 <script>
 import { getUserInfo } from '../services/profile'
+import { getEventByUser } from '../services/event'
+
 import { computed } from 'vue'
 import { useStore } from 'vuex'
 export default {
@@ -15,10 +17,12 @@ export default {
     userDetails: null,
     userRequests: [],
     userPickup: [],
-    userDonation: []
+    userDonation: [],
+    userEvents: []
   }),
   mounted() {
     this.getUserInfo()
+    this.getAllEvent()
   },
   methods: {
     async getUserInfo() {
@@ -28,6 +32,10 @@ export default {
       this.userPickup = response.pickup
       this.userDonation = response.donation
       console.log(response)
+    },
+    async getAllEvent() {
+      this.userEvents = await getEventByUser()
+      console.log('userEvents', this.userEvents)
     },
     formatDate(dateString) {
       const date = new Date(dateString)
@@ -121,7 +129,6 @@ export default {
                   <v-card-title>
                     {{ pick.type }}
                     <span v-if="pick.urgent" class="urgent-label">
-                      
                       <span class="urgent-text">URGENT!</span>
                     </span>
                   </v-card-title>
@@ -182,7 +189,6 @@ export default {
   color: rgb(247, 56, 56);
   font-size: 12pt;
   text-decoration: underline;
-  
 }
 
 .list {

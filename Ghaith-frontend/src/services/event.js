@@ -44,3 +44,12 @@ export const createEvent = async (data) => {
     console.log(error)
   }
 }
+
+export const getEventByUser = async () => {
+  try {
+    const res = await Client.get(`/events/user`)
+    return res.data
+  } catch (error) {
+    console.log(error)
+  }
+}
