@@ -10,7 +10,7 @@ export default {
       //isSelected: false,
       selectedCharities: null,
       formValues: {
-        charityId: null,
+        charity: null,
         date: '',
         type: '',
         quantity: '',
@@ -40,12 +40,12 @@ export default {
     selectCharity(charityID) {
       if (this.selectedCharities == charityID) {
         this.selectedCharities = null
-        this.formValues.charityId = null
+        this.formValues.charity = null
       } else {
         this.selectedCharities = charityID
-        this.formValues.charityId = charityID
+        this.formValues.charity = charityID
       }
-      this.$emit('select', this.formValues.charityId)
+      this.$emit('select', this.formValues.charity)
       console.log('form', this.formValues)
     },
     isSelected(charityID) {
@@ -62,6 +62,7 @@ export default {
     },
     async handleSubmit() {
       event.preventDefault()
+      console.log('this.formValues', this.formValues)
       const res = await addPickup(this.formValues)
       if (res) {
         console.log('done')
@@ -69,6 +70,7 @@ export default {
         console.log('something wrong')
       }
       this.resetForm()
+      this.$router.push(`/profile`)
     },
     resetForm() {
       this.formValues = {
@@ -143,7 +145,7 @@ export default {
                 <v-checkbox
                   v-model="formValues['urgent']"
                   label="Urgent"
-                  @change="handleUrgentChange"
+                  @click="handleUrgentChange"
                 ></v-checkbox>
                 <v-btn rounded="xl" class="mt-2" type="submit" block
                   >Submit</v-btn

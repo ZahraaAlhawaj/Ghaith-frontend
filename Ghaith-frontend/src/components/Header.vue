@@ -89,7 +89,6 @@ export default {
   <nav class="header" v-else>
     <div class="nav-bar">
       <i class="bx bx-menu sidebarOpen"></i>
-      <!-- <span class="logo navLogo"><router-link to="/">Gaith </router-link></span> -->
       <span class="logo navLogo">
         <router-link to="/">
           <img src="/images/lo.png" alt="Logo" />
@@ -101,15 +100,15 @@ export default {
           <i class="bx bx-x siderbarClose"></i>
         </div>
         <ul class="nav-links">
+          <li><router-link to="/charities">Charities</router-link></li>
+          <li><router-link to="/cases">Cases</router-link></li>
+          <li><router-link to="/events">Events</router-link></li>
           <li><router-link to="/about">About</router-link></li>
           <li v-if="user">
             <router-link to="/profile">Profile</router-link>
-          </li>
-          <li v-if="!user"><router-link to="/login">Login</router-link></li>
-          <li><router-link to="/charities">Charities</router-link></li>
-          <li v-if="user">
             <a to="/logout" @click="logout">Logout</a>
           </li>
+          <li v-else><router-link to="/login">Login</router-link></li>
         </ul>
       </div>
     </div>
