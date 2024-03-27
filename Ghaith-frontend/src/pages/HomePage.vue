@@ -109,7 +109,7 @@ export default {
     <h2>{{ user.name }}</h2>
   </div>
   <div v-else>  -->
-    <!-- <h1>User Is Not LoggedIn</h1> 
+  <!-- <h1>User Is Not LoggedIn</h1> 
   </div>-->
   <!-- Urgent Cases -->
 
@@ -161,7 +161,6 @@ export default {
       </template>
     </v-row>
   </v-container> -->
-
 
   <!-- mission and vission -->
   <!-- <div style="background-color: white" class="misson"></div> -->
@@ -257,7 +256,7 @@ export default {
 
 <style scoped>
 .carousel-wrapper {
-  margin-top: -2.5%; /* Adjust the negative margin to remove the space above */
+  margin-top: -1.5%; /* Adjust the negative margin to remove the space above */
 }
 
 .v-progress-circular {
