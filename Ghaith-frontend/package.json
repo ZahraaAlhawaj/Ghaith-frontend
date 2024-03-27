@@ -20,6 +20,7 @@
     "vuex": "^4.1.0"
   },
   "devDependencies": {
+    "@mdi/js": "^7.4.47",
     "@vitejs/plugin-vue": "^5.0.4",
     "vite": "^5.2.0"
   }
