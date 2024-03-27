@@ -9,6 +9,8 @@ export default {
       charities: null,
       //isSelected: false,
       selectedCharities: null,
+      prevCoords: null,
+
       formValues: {
         charity: null,
         date: '',
@@ -27,6 +29,7 @@ export default {
       this.getNearCharity()
     })
   },
+
   computed: {
     isCardSelected() {
       return this.selectedCharities !== null
@@ -84,7 +87,7 @@ export default {
 }
 </script>
 <template>
-  <div>
+  <div v-if="coords">
     <v-container>
       <v-stepper alt-labels :items="['Step 1', 'Step 2']">
         <!-- to show nearby charity -->
@@ -164,6 +167,26 @@ export default {
       No charity available at this location, please select your location.
     </div>
   </div> -->
+  <div v-else>
+    <v-sheet
+      class="pa-4 text-center mx-auto"
+      elevation="12"
+      max-width="600"
+      rounded="lg"
+      width="100%"
+    >
+      <v-icon
+        class="mb-5"
+        color="error"
+        icon="mdi-map-marker-off"
+        size="112"
+      ></v-icon>
+
+      <h2 class="text-h5 mb-6">We have trouble detecting your location</h2>
+
+      <v-divider class="mb-4"></v-divider>
+    </v-sheet>
+  </div>
 </template>
 
 <style scoped>

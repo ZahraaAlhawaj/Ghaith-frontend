@@ -29,7 +29,7 @@ export const getPickupsByCharity = async () => {
 
 export const updatePickupStatus = async (id, data) => {
   try {
-    const res = await Client.put(`/pickup/${id}/status`)
+    const res = await Client.put(`/pickup/${id}/status`, data)
     return res.data
   } catch (error) {
     console.log(error)

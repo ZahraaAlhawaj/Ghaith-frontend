@@ -64,6 +64,13 @@ export default {
         ...this.updateCategory,
         [item._id]: true
       }
+    },
+    formatDate(date) {
+      const formattedDate = new Date(date)
+      const day = String(formattedDate.getDate()).padStart(2, '0')
+      const month = String(formattedDate.getMonth() + 1).padStart(2, '0')
+      const year = formattedDate.getFullYear()
+      return `${day}/${month}/${year}`
     }
   }
 }
@@ -88,6 +95,9 @@ export default {
         ></v-text-field>
       </v-card-title>
       <v-data-table :headers="headers" :items="pickups" :search="search">
+        <template v-slot:item.date="{ item }">
+          {{ formatDate(item.date) }}
+        </template>
         <template v-slot:headers="props">
           <tr>
             <th>Date</th>
