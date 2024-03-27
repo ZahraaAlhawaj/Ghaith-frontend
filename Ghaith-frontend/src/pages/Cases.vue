@@ -10,7 +10,8 @@ export default {
       cases: [],
       collectedAmount: 0,
       percentage: [],
-      showCases: []
+      showCases: [],
+      catVal: null
     }
   },
   mounted() {
@@ -18,13 +19,9 @@ export default {
   },
   computed: {
     filteredCases() {
-      if (this.showCases.length != 0) {
-        return this.showCases
-      } else {
-        return this.cases.filter((c) =>
-          c.name.toLowerCase().includes(this.search.toLowerCase())
-        )
-      }
+      this.showCases = this.cases.filter((c) =>
+        c.name.toLowerCase().includes(this.search.toLowerCase())
+      )
     }
   },
   watch: {
@@ -57,10 +54,16 @@ export default {
       return `${day}/${month}/${year}`
     },
     showCategory(val) {
-      this.showCases = this.cases.filter(
-        (c) => c.category && c.category.name == val
-      )
-      return this.showCases
+      //this.catVal = val
+      if (val == 'general') {
+        this.showCases = this.cases
+      } else {
+        this.showCases = this.cases.filter(
+          (c) => c.category && c.category.name == val
+        )
+      }
+
+      // return this.showCases
     }
   }
 }
@@ -92,7 +95,7 @@ export default {
     ></v-text-field>
 
     <v-row align="center" class="fill-height" justify="center">
-      <template class="card1" v-for="(c, index) in filteredCases" :key="index">
+      <template class="card1" v-for="(c, index) in showCases" :key="index">
         <v-col cols="12" md="4">
           <v-hover v-slot="{ isHovering, props }">
             <v-card
