@@ -24,8 +24,8 @@ export default {
         { text: 'description', value: 'description' },
         { text: 'Total Amount', value: 'total_amount' },
         { text: 'Collected Amount', value: 'collected_amount' },
-        { text: 'Start Date', value: 'start_date' },
-        { text: 'End Date', value: 'end_date' },
+        { text: 'Start Date', value: 'start_date', sortable: true },
+        { text: 'End Date', value: 'end_date', sortable: true },
         { text: 'Actions', value: 'actions', sortable: false }
       ],
       createDialog: false,
@@ -213,6 +213,12 @@ export default {
       </v-card-title>
 
       <v-data-table :headers="headers" :items="cases" :search="search">
+        <template v-slot:item.start_date="{ item }">
+          {{ formatDate(item.start_date) }}
+        </template>
+        <template v-slot:item.end_date="{ item }">
+          {{ formatDate(item.end_date) }}
+        </template>
         <template v-slot:item.actions="{ item }">
           <v-dialog v-model="updateDialog[item._id]" max-width="400" persistent>
             <template v-slot:activator="{ on, attrs }">
