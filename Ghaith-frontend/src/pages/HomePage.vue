@@ -20,6 +20,7 @@ export default {
       numberOfCategories: 0,
       totalAmountDonations: 0,
       urgentCases: [],
+      percentage: [],
       item: [
         {
           color: '#b1bf5c',
@@ -82,11 +83,22 @@ export default {
       this.numberOfDonations = response.numberOfDonations
       this.numberOfCharities = response.numberOfCharities
       this.numberOfCategories = response.numberOfCategories
-      this.totalAmountDonations = response.totalAmountDonations.toFixed(2)
+      this.totalAmountDonations = this.totalAmountDonations
+        ? response.totalAmountDonations.toFixed(2)
+        : this.totalAmountDonations
     },
     async getUrgentCases() {
-      const response = await findUrgentCases()
-      console.log(response)
+      this.urgentCases = await findUrgentCases()
+    },
+    formatDate(date) {
+      const formattedDate = new Date(date)
+      const day = String(formattedDate.getDate()).padStart(2, '0')
+      const month = String(formattedDate.getMonth() + 1).padStart(2, '0')
+      const year = formattedDate.getFullYear()
+      return `${day}/${month}/${year}`
+    },
+    showCase(id) {
+      this.$router.push(`/cases/${id}`)
     }
   }
 }
@@ -104,28 +116,25 @@ export default {
     </v-carousel>
   </div>
 
-  <!--<div v-if="isLoggedIn">
-     <h1>User Is LoggedIn</h1>
-    <h2>{{ user.name }}</h2>
-  </div>
-  <div v-else>  -->
-    <!-- <h1>User Is Not LoggedIn</h1> 
-  </div>-->
   <!-- Urgent Cases -->
 
-  <!-- <v-container class="pa-4 text-center">
-
-  <v-row align="center" class="fill-height" justify="center">
-      <template class="card1" v-for="(c, index) in filteredCases" :key="index">
+  <v-container class="pa-4 text-center">
+    <h2>Featured Cases</h2>
+    <v-row align="center" class="fill-height" justify="center">
+      <template
+        class="card1"
+        v-for="(urgentCase, index) in urgentCases"
+        :key="index"
+      >
         <v-col cols="12" md="4">
           <v-hover v-slot="{ isHovering, props }">
             <v-card
-              :elevation="isHovering ? 12 : 2"
+              class="urgentCases"
+              :elavation="isHovering ? 12 : 2"
               v-bind="props"
-              @click="showCase(c._id)"
+              @click="showCase(urgentCase._id)"
             >
-              <v-img :src="c.image" cover> </v-img>
-
+              <v-img :src="urgentCase.image" cover></v-img>
               <v-progress-linear
                 v-model="percentage[index]"
                 height="25"
@@ -133,17 +142,17 @@ export default {
               >
                 <strong
                   >{{
-                    ((c.collected_amount / c.total_amount) * 100).toFixed(2)
+                    (urgentCase.collected_amount / urgentCase.total_amount) *
+                    100
                   }}%</strong
                 >
               </v-progress-linear>
               <br />
-              <v-card-title>{{ c.name }}</v-card-title>
-
-              <v-card-subtitle>code: {{ c.code }}</v-card-subtitle>
-
+              <v-card-title>{{ urgentCase.name }}</v-card-title>
+              <v-card-subtitle>code: {{ urgentCase.code }}</v-card-subtitle>
               <v-card-subtitle
-                >Desired amount: {{ c.total_amount }} BD</v-card-subtitle
+                >Desired amount:
+                {{ urgentCase.total_amount }} BD</v-card-subtitle
               >
               <div class="date-style">
                 <div class="date-label">
@@ -151,8 +160,8 @@ export default {
                   <p>End Date</p>
                 </div>
                 <div class="date-value">
-                  <p>{{ formatDate(c.start_date) }}</p>
-                  <p>{{ formatDate(c.end_date) }}</p>
+                  <p>{{ formatDate(urgentCase.start_date) }}</p>
+                  <p>{{ formatDate(urgentCase.end_date) }}</p>
                 </div>
               </div>
             </v-card>
@@ -160,8 +169,7 @@ export default {
         </v-col>
       </template>
     </v-row>
-  </v-container> -->
-
+  </v-container>
 
   <!-- mission and vission -->
   <!-- <div style="background-color: white" class="misson"></div> -->
@@ -358,5 +366,68 @@ export default {
   border: 0.12em solid #4b5f23;
   border-radius: 50%; /* Optional: Applies a circular border */
   padding: 15%; /* Optional: Adjust the padding around the icon */
+}
+
+.v-row {
+  margin-top: 12px !important;
+}
+
+.v-img {
+  width: 100%;
+  height: 50%;
+  object-fit: cover !important;
+}
+
+.urgentCases {
+  width: 18em;
+  height: 28em;
+  /* border-radius: 50%; */
+  /* object-fit: cover; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  border: 0.2em solid #4b5f23;
+  background-color: #e6e5d0;
+  object-fit: contain !important;
+  padding: 0 0 7% 0;
+}
+
+.pa-4 {
+  display: flex;
+  text-align: center;
+  flex-direction: column;
+  justify-content: center;
+  /* align-items: center; */
+  color: #4b5f23;
+  text-transform: capitalize;
+  margin-bottom: 5%;
+}
+
+.v-img__img--cover {
+  object-fit: cover !important;
+}
+
+.v-progress-linear {
+  margin-bottom: -10%;
+}
+
+.date-style {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  font-size: 15px;
+}
+.date-label {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.date-value {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 </style>
