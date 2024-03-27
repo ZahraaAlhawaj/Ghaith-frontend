@@ -49,7 +49,6 @@ export default {
         this.formValues.charity = charityID
       }
       this.$emit('select', this.formValues.charity)
-      console.log('form', this.formValues)
     },
     isSelected(charityID) {
       return this.selectedCharities == charityID
@@ -65,7 +64,6 @@ export default {
     },
     async handleSubmit() {
       event.preventDefault()
-      console.log('this.formValues', this.formValues)
       const res = await addPickup(this.formValues)
       if (res) {
         console.log('done')

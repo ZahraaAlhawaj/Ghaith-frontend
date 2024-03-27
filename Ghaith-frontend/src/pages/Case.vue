@@ -70,14 +70,7 @@ export default {
       const id = this.casesId
       const url = import.meta.env.VITE_GHAITH_API
       const shareUrl = `${url}/cases/${id}`
-      navigator.clipboard
-        .writeText(shareUrl)
-        .then(() => {
-          console.log('copy')
-        })
-        .catch((error) => {
-          console.log('Faild')
-        })
+      navigator.clipboard.writeText(shareUrl)
       this.shareLink = shareUrl
     },
     showAlert(message, type) {
