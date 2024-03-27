@@ -107,13 +107,6 @@ export default {
             @input="handleFormChange"
           ></v-text-field>
 
-          <!-- <v-file-input
-          v-model="formValues['document']"
-          label="Document"
-          @input="handleFormChange"
-          accept="image/*, application/pdf"
-        ></v-file-input> -->
-
           <v-btn rounded class="mt-2" type="submit" block>Submit</v-btn>
         </v-form>
       </v-sheet>
