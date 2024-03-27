@@ -118,6 +118,60 @@ export default {
       </div>
     </div>
 
+    <v-container class="pa-4 text-center">
+      <v-row align="center" class="fill-height" justify="center">
+        <template
+          class="card1"
+          v-for="(c, index) in charityCases"
+          :key="index"
+          @click="showCase(c._id)"
+        >
+          <v-col cols="12" md="4">
+            <v-hover v-slot="{ isHovering, props }">
+              <v-card
+                class="CaseCharityCard"
+                :elevation="isHovering ? 12 : 2"
+                v-bind="props"
+                @click="showCase(c._id)"
+              >
+                <v-img :src="c.image" cover> </v-img>
+
+                <v-progress-linear
+                  v-model="percentage[index]"
+                  height="25"
+                  color="green"
+                >
+                  <strong
+                    >{{
+                      ((c.collected_amount / c.total_amount) * 100).toFixed(2)
+                    }}%</strong
+                  >
+                </v-progress-linear>
+                <br />
+                <v-card-title>{{ c.name }}</v-card-title>
+
+                <v-card-subtitle>code: {{ c.code }}</v-card-subtitle>
+
+                <v-card-subtitle
+                  >Desired amount: {{ c.total_amount }} BD</v-card-subtitle
+                >
+                <div class="date-style">
+                  <div class="date-label">
+                    <p>Start Date</p>
+                    <p>End Date</p>
+                  </div>
+                  <div class="date-value">
+                    <p>{{ formatDate(c.start_date) }}</p>
+                    <p>{{ formatDate(c.end_date) }}</p>
+                  </div>
+                </div>
+              </v-card>
+            </v-hover>
+          </v-col>
+        </template>
+      </v-row>
+    </v-container>
+
     <!-- <div class="charity-cases">
       <div
         class="case-card"
@@ -157,8 +211,12 @@ export default {
 <style scoped>
 .charity-page {
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: space-between;
+  padding: 3% 14%;
+}
+
+.v-row {
+  justify-content: space-around !important;
 }
 
 .center {
@@ -261,5 +319,78 @@ export default {
 
 .input-section input:focus {
   border-color: #6e8247;
+}
+
+.CaseCharityCard {
+  width: 18em;
+  height: 28em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  border: 0.2em solid #4b5f23;
+  background-color: #e6e5d0;
+  object-fit: contain !important;
+  padding: 0 0 7% 0;
+}
+
+.v-img {
+  width: 100%;
+  height: 50%;
+  object-fit: cover !important;
+}
+
+.pa-4 {
+  display: flex;
+  text-align: center;
+  flex-direction: column;
+  justify-content: center;
+  /* align-items: center; */
+  color: #4b5f23;
+  text-transform: capitalize;
+  margin-bottom: 1%;
+}
+
+.image-cover {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.container {
+  display: flex;
+  text-align: center;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.v-img__img--cover {
+  object-fit: cover !important;
+}
+
+.v-progress-linear {
+  margin-bottom: -10%;
+}
+
+.date-style {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  font-size: 15px;
+}
+
+.date-label {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.date-value {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 </style>
