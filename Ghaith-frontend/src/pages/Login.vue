@@ -56,11 +56,10 @@ export default {
 </script>
 
 <template>
-  <div class="BG">
-    <div class="form-container">
-      <v-sheet class="mx-auto" width="300">
-        <h1 className="account-title">Login</h1>
-        <p className="account-description">Enter your email and password</p>
+  <v-container class="form-container">
+    <v-sheet class="mx-auto" width="300">
+      <h1 className="account-title">Login</h1>
+      <p className="account-description">Enter your email and password</p>
 
       <v-form fast-fail @submit.prevent @submit="handleSubmit">
         <v-text-field
@@ -78,17 +77,18 @@ export default {
           required
         ></v-text-field>
 
-          <v-btn rounded="xl" class="mt-2" type="submit" block>Submit</v-btn>
-        </v-form>
-        <div class="register-container">
-          <p class="register">No account?</p>
-          <router-link to="/register" class="register-link">
-            Create account
-          </router-link>
-        </div>
-      </v-sheet>
-    </div>
-  </div>
+        <p v-if="error" class="error">{{ error }}</p>
+
+        <v-btn rounded="xl" class="mt-2" type="submit" block>Login</v-btn>
+      </v-form>
+      <div class="register-container">
+        <p class="register">No account?</p>
+        <router-link to="/register" class="register-link">
+          Create account
+        </router-link>
+      </div>
+    </v-sheet>
+  </v-container>
 </template>
 
 <style scoped>

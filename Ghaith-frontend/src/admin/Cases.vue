@@ -4,6 +4,7 @@ import { computed } from 'vue'
 import { showCharityCases } from '../services/charity'
 import { createCase, updateCase, deleteCase } from '../services/case'
 import { getCategories } from '../services/category'
+
 export default {
   name: 'Cases',
   setup() {
@@ -28,8 +29,8 @@ export default {
         image: '',
         description: '',
         total_amount: null,
-        start_date: new Date(),
-        end_date: new Date(),
+        start_date: null,
+        end_date: '',
         category: null
       }
     }
@@ -40,8 +41,8 @@ export default {
   },
   methods: {
     async getAllCases() {
-      this.cases = await showCharityCases(this.user.charityId)
-      // console.log(this.cases)
+      const response = await showCharityCases(this.user.charityId)
+      this.cases = response
     },
     async getAllCategories() {
       this.categories = await getCategories()
@@ -192,6 +193,7 @@ export default {
           single-line
         ></v-text-field>
       </v-card-title>
+
       <v-data-table :headers="headers" :items="cases" :search="search">
         <template v-slot:item.actions="{ item }">
           <v-dialog v-model="updateDialog[item._id]" max-width="400" persistent>
@@ -213,8 +215,8 @@ export default {
                   <v-select
                     v-model="formValues['category']"
                     :items="categories"
-                    :item-title="categories.name"
-                    :item-value="categories._id"
+                    item-title="name"
+                    item-value="_id"
                     item-text="name"
                     label="Category"
                   ></v-select>
