@@ -31,11 +31,9 @@ export default {
       this.userRequests = response.request
       this.userPickup = response.pickup
       this.userDonation = response.donation
-      console.log(response)
     },
     async getAllEvent() {
       this.userEvents = await getEventByUser()
-      console.log('userEvents', this.userEvents)
     },
     formatDate(dateString) {
       const date = new Date(dateString)
@@ -49,20 +47,6 @@ export default {
 </script>
 
 <template>
-  <!-- <div class="user-profile-card">
-    <div class="header">
-      <img src="/images/av.png" class="avatar" />
-      <h2>esra</h2>
-      <p>esra@gmail.com</p>
-    </div>
-
-    <div class="details">
-      <div class="detail-row">
-        <p class="label">phone number:</p>
-        <p class="value">+973 33233243</p>
-      </div>
-    </div>
-  </div> -->
   <div class="centered-card">
     <div class="profile-card">
       <div class="avatar">
@@ -88,6 +72,7 @@ export default {
         <v-tab value="one">Request List</v-tab>
         <v-tab value="two">Pick up List</v-tab>
         <v-tab value="three">Donation List</v-tab>
+        <v-tab value="four">Event List</v-tab>
       </v-tabs>
 
       <v-card-text>
@@ -144,8 +129,6 @@ export default {
                   </div>
 
                   <div class="urgent-btn-container">
-                    <!-- <font-awesome-icon v-if="pick.urgent" icon="triangle-exclamation" style="color: #4b5f24;" /> -->
-
                     <v-btn class="status-btn">{{ pick.status }}</v-btn>
                   </div>
                 </v-card-text>
@@ -162,6 +145,25 @@ export default {
                 :title="`${donate.amount} BD`"
                 link
               >
+              </v-card>
+            </div>
+          </v-window-item>
+
+          <v-window-item value="four">
+            <div class="four" v-for="evnt in userEvents">
+              <v-card
+                class="mx-auto my-8"
+                max-width="600"
+                :title="evnt.title"
+                link
+              >
+                <v-card-text class="d-flex justify-space-between">
+                  <div>
+                    <p>Location: {{ evnt.location }}</p>
+                    <p>Time: {{ evnt.time }}</p>
+                    <p v-if="evnt.date">Date: {{ formatDate(evnt.date) }}</p>
+                  </div>
+                </v-card-text>
               </v-card>
             </div>
           </v-window-item>
@@ -194,10 +196,6 @@ export default {
 .list {
   margin-bottom: 5%;
 }
-/* .custom-card {
-  background-color: #e6e5d0;
-  border: 0.12em solid #4b5f23;
-} */
 
 .urgent-label {
   font-weight: bold;
@@ -232,48 +230,10 @@ export default {
 }
 
 .custom-card {
-  width: 50%; /* Adjust the width to your preference */
-  margin: 0 auto; /* Center align the card */
-}
-/* .user-profile-card {
-  border: 0.14em solid #4b5f23;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  padding: 20px;
-  font-family: Arial, sans-serif;
-  margin: 20px auto;
-  max-width: 400px;
-  color: #4b5f23;
+  width: 50%;
+  margin: 0 auto;
 }
 
-.header {
-  text-align: center;
-  margin-bottom: 20px;
-}
-
-.avatar {
-  width: 120px;
-  height: 120px;
-  border-radius: 50%;
-}
-
-.details {
-  margin-top: 20px;
-}
-
-.detail-row {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 12px;
-}
-
-.label {
-  font-weight: bold;
-}
-
-.value {
-  color: #4b5f23;
-} */
 .centered-card {
   display: flex;
   justify-content: center;
@@ -331,12 +291,12 @@ export default {
 }
 
 .urgent-label {
-  margin-bottom: 8%; /* Adjust the spacing between the label and the button */
+  margin-bottom: 8%;
   align-items: left;
 }
 
 .status-btn {
-  margin-top: 0%; /* Adjust the spacing between the button and other elements */
+  margin-top: 0%;
   color: #4b5f23;
   background-color: #b1bf5c;
 }

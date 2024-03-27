@@ -143,7 +143,7 @@ export default {
   padding: 2em;
   border-radius: 10px;
   background-color: #ffffff;
-  border: 2px solid #ffffff;
+  border: 0.12em solid #4b5f23;
   margin-top: -0.3%;
 }
 

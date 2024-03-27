@@ -34,7 +34,7 @@ export default {
         start_date: '',
         end_date: '',
         category: '',
-        charityId: null
+        charity: null
       },
       updateDialog: {}
     }
@@ -63,7 +63,7 @@ export default {
           start_date: null,
           end_date: '',
           category: null,
-          charityId: null
+          charity: null
         }
       }
     },
@@ -75,7 +75,7 @@ export default {
         total_amount: item.expected_amount,
         start_date: new Date(),
         end_date: new Date(),
-        charityId: this.user.charityId
+        charity: this.user.charityId
       }
       this.updateDialog = {
         ...this.updateDialog,

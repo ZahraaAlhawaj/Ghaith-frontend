@@ -22,10 +22,7 @@ export default {
       <div class="paragraph-section">
         <div class="paragraph-container">
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla eget
-            lectus nulla. Sed eleifend consectetur lacus, id blandit purus
-            facilisis vitae.In id nibh sit amet turpis pharetra consectetur in
-            vitae mauris. Donec a orci at mi laoreet facilisis et ut felis.
+            Extending a helping hand to those in need, our charity provides vital support and resources to empower individuals and communities. Through our compassionate initiatives, we strive to create positive change, inspire hope, and make a lasting impact on the lives of those facing challenges. 
           </p>
         </div>
       </div>
