@@ -11,7 +11,9 @@ export default {
         { text: 'Title', value: 'title' },
         { text: 'Location', value: 'location' },
         { text: 'Description', value: 'description' },
+        { text: 'Date', value: 'date', sortable: true },
         { text: 'Time', value: 'time' },
+
         { text: 'Volunteers', value: 'requiredVolunteers' }
       ],
       formValues: {
@@ -50,13 +52,20 @@ export default {
         }
         return true
       }
+    },
+    formatDate(date) {
+      const formattedDate = new Date(date)
+      const day = String(formattedDate.getDate()).padStart(2, '0')
+      const month = String(formattedDate.getMonth() + 1).padStart(2, '0')
+      const year = formattedDate.getFullYear()
+      return `${day}/${month}/${year}`
     }
   }
 }
 </script>
 <template>
   <v-container class="list-header">
-    <h1 class="list-title">Cases</h1>
+    <h1 class="list-title">Event</h1>
     <v-dialog v-model="createDialog" max-width="400" persistent>
       <template v-slot:activator="{ props: createActivatorProps }">
         <v-btn class="list-create-btn" v-bind="createActivatorProps">
@@ -125,6 +134,9 @@ export default {
   </v-container>
   <v-container>
     <v-data-table :headers="headers" :items="events">
+      <template v-slot:item.date="{ item }">
+        {{ formatDate(item.date) }}
+      </template>
       <template v-slot:item.actions="{ item }">
         <v-dialog v-model="updateDialog[item._id]" max-width="400" persistent>
         </v-dialog>
@@ -134,6 +146,7 @@ export default {
           <th>Title</th>
           <th>Location</th>
           <th>Description</th>
+          <th>Date</th>
           <th>Time</th>
           <th>Volunteers</th>
         </tr>
