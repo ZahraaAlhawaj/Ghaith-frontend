@@ -104,7 +104,7 @@ export default {
     },
     openUpdateDialog(item) {
       const startDate = format(new Date(item.start_date), 'yyyy-MM-dd')
-      const endDate = format(new Date(item.start_date), 'yyyy-MM-dd')
+      const endDate = format(new Date(item.end_date), 'yyyy-MM-dd')
 
       this.formValues = {
         name: item.name,
