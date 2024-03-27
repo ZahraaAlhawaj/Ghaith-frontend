@@ -101,7 +101,7 @@ export default {
                     </p>
                   </div>
                   <div class="d-flex">
-                    <v-btn class="mt-4" color="primary">{{ req.status }}</v-btn>
+                    <v-btn class="mt-4">{{ req.status }}</v-btn>
                   </div>
                 </v-card-text>
               </v-card>
@@ -114,9 +114,19 @@ export default {
                 class="mx-auto my-8"
                 max-width="600"
                 :subtitle="pick.quantity"
-                :title="pick.type"
                 link
               >
+                <!-- urgent -->
+                <div class="info-container">
+                  <v-card-title>
+                    {{ pick.type }}
+                    <span v-if="pick.urgent" class="urgent-label">
+                      
+                      <span class="urgent-text">URGENT!</span>
+                    </span>
+                  </v-card-title>
+                </div>
+
                 <v-card-text class="d-flex justify-space-between align-center">
                   <div>
                     <p>Date: {{ formatDate(pick.date) }}</p>
@@ -125,11 +135,11 @@ export default {
                       Sponsored Charity: {{ pick.charity.name }}
                     </p>
                   </div>
-                  <div class="d-flex">
-                    <span v-if="pick.urgent" class="mr-2">Urgent</span>
-                    <v-btn class="mt-4" color="primary">{{
-                      pick.status
-                    }}</v-btn>
+
+                  <div class="urgent-btn-container">
+                    <!-- <font-awesome-icon v-if="pick.urgent" icon="triangle-exclamation" style="color: #4b5f24;" /> -->
+
+                    <v-btn class="status-btn">{{ pick.status }}</v-btn>
                   </div>
                 </v-card-text>
               </v-card>
@@ -155,6 +165,26 @@ export default {
 </template>
 
 <style scoped>
+/* urgent */
+.info-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: -5%;
+}
+
+.urgent-label {
+  display: inline-block;
+
+  padding-left: 21.5em;
+}
+
+.urgent-text {
+  color: rgb(247, 56, 56);
+  font-size: 12pt;
+  text-decoration: underline;
+  
+}
+
 .list {
   margin-bottom: 5%;
 }
@@ -162,8 +192,22 @@ export default {
   background-color: #e6e5d0;
   border: 0.12em solid #4b5f23;
 } */
+
+.urgent-label {
+  font-weight: bold;
+}
+
+.mt-4 {
+  color: #e6e5d0;
+  background-color: #4b5f23;
+}
+
+.mt-5 {
+  color: #4b5f23;
+  background-color: #b1bf5c;
+}
 .custom-card {
-  background-color: #e6e5d0;
+  background-color: #b1bf5c;
   border: 0.12em solid #4b5f23;
 }
 .custom-tabs {
@@ -272,5 +316,22 @@ export default {
 .phone {
   font-size: 16px;
   margin-bottom: 5px;
+}
+
+.urgent-btn-container {
+  display: flex;
+  flex-direction: column;
+  align-items: right;
+}
+
+.urgent-label {
+  margin-bottom: 8%; /* Adjust the spacing between the label and the button */
+  align-items: left;
+}
+
+.status-btn {
+  margin-top: 0%; /* Adjust the spacing between the button and other elements */
+  color: #4b5f23;
+  background-color: #b1bf5c;
 }
 </style>
