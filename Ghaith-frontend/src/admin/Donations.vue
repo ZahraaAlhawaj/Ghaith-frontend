@@ -28,7 +28,7 @@ export default {
   methods: {
     async getAllDonations() {
       if (this.user.role == 'Admin') {
-        const res = await getCharity()
+        const res = await getCharity(this.user.charityId)
         this.donations = res.donations
       } else {
         this.donations = await getDonations()
