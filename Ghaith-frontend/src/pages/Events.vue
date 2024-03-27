@@ -87,7 +87,7 @@ export default {
               {{ event.requiredVolunteers }} joined
             </div>
           </div>
-
+          <v-spacer></v-spacer>
           <v-card-actions>
             <v-btn
               class="status-btn"
@@ -105,7 +105,7 @@ export default {
 
 <style scoped>
 .card2 {
-  height: 5%;
+  height: 1%;
 }
 .card-outline {
   margin-left: 20%;
@@ -119,6 +119,10 @@ export default {
   padding: 5%;
 }
 
+.status-btn {
+  margin-bottom: 1%;
+}
+
 .card-container {
   text-align: left;
 }
@@ -128,7 +132,7 @@ export default {
   border-radius: 0.5em;
   background-color: #e6e5d0;
   width: 80%;
-  height: 100%;
+  height: 93%;
 }
 
 .bg-warning {
