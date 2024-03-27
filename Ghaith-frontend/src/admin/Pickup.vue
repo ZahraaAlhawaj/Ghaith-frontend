@@ -25,7 +25,6 @@ export default {
         { text: 'Name', value: 'user.name' },
         { text: 'Email', value: 'user.email' },
         { text: 'Type', value: 'type' },
-        { text: 'Quantity', value: 'quantity' },
         { text: 'Status', value: 'status' },
         { text: 'Actions', value: 'actions', sortable: false }
       ],
@@ -96,7 +95,6 @@ export default {
             <th>Name</th>
             <th>Email</th>
             <th>Type</th>
-            <th>Quantity</th>
             <th>Status</th>
             <th>Action</th>
           </tr>
