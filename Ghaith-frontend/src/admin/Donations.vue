@@ -30,6 +30,7 @@ export default {
       if (this.user.role == 'Admin') {
         const res = await getCharity(this.user.charityId)
         this.donations = res.donations
+        console.log(this.donations)
       } else {
         this.donations = await getDonations()
       }
