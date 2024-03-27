@@ -21,6 +21,11 @@ export default {
       categories: [],
       headers: [
         { text: 'Name', value: 'name' },
+        { text: 'description', value: 'description' },
+        { text: 'Total Amount', value: 'total_amount' },
+        { text: 'Collected Amount', value: 'collected_amount' },
+        { text: 'Start Date', value: 'start_date' },
+        { text: 'End Date', value: 'end_date' },
         { text: 'Actions', value: 'actions', sortable: false }
       ],
       createDialog: false,
@@ -43,13 +48,21 @@ export default {
   methods: {
     async getAllCases() {
       if (this.user.role == 'Admin') {
-        this.cases = await showCharityCases(this.user.charityId)
+        const response = await showCharityCases(this.user.charityId)
+        this.cases = response
       } else {
         this.cases = await getCases()
       }
     },
     async getAllCategories() {
       this.categories = await getCategories()
+    },
+    formatDate(date) {
+      const formattedDate = new Date(date)
+      const day = String(formattedDate.getDate()).padStart(2, '0')
+      const month = String(formattedDate.getMonth() + 1).padStart(2, '0')
+      const year = formattedDate.getFullYear()
+      return `${day}/${month}/${year}`
     },
     async handleSubmit(event, action, item = null) {
       event.preventDefault()
@@ -203,14 +216,22 @@ export default {
         <template v-slot:item.actions="{ item }">
           <v-dialog v-model="updateDialog[item._id]" max-width="400" persistent>
             <template v-slot:activator="{ on, attrs }">
-              <v-btn
+              <v-icon
+                left
+                @click="openUpdateDialog(item)"
+                v-bind="attrs"
+                class="mr-4"
+                color="primary"
+                >mdi-pencil</v-icon
+              >
+              <!-- <v-btn
                 @click="openUpdateDialog(item)"
                 v-bind="attrs"
                 class="mr-4"
                 color="primary"
               >
                 Update
-              </v-btn>
+              </v-btn> -->
             </template>
 
             <v-card prepend-icon="mdi-map-marker">
@@ -278,21 +299,25 @@ export default {
             </v-card>
           </v-dialog>
 
-          <v-btn @click="deleteOneCase(item)" color="primary" text>
+          <!-- <v-btn @click="deleteOneCase(item)" color="primary" text>
             Delete
-          </v-btn>
+          </v-btn> -->
+          <v-icon left @click="deleteOneCase(item)" color="red" text
+            >mdi-delete</v-icon
+          >
         </template>
         <template v-slot:headers="props">
           <tr>
             <th>Name</th>
+            <th>Description</th>
+            <th>Total Amount</th>
+            <th>Collected Amount</th>
+            <th>Start Date</th>
+            <th>End Date</th>
             <th>Action</th>
           </tr>
         </template>
-        <template v-slot:items="props">
-          <tr>
-            <td>{{ item.name }}</td>
-          </tr>
-        </template>
+        <template v-slot:items="props"> </template>
       </v-data-table>
     </v-card>
   </v-container>
