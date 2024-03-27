@@ -106,6 +106,14 @@ export default {
           <li><router-link to="/about">About</router-link></li>
           <li v-if="user">
             <router-link to="/profile">Profile</router-link>
+          </li>
+          <li v-if="user">
+            <router-link to="/request-case">Request</router-link>
+          </li>
+          <li v-if="user">
+            <router-link to="/pickup">Pickup </router-link>
+          </li>
+          <li v-if="user">
             <a to="/logout" @click="logout">Logout</a>
           </li>
           <li v-else><router-link to="/login">Login</router-link></li>
