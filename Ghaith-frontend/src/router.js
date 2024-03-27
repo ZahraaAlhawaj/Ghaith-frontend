@@ -22,6 +22,7 @@ import AdminDonations from './admin/Donations.vue'
 import AdminCases from './admin/Cases.vue'
 import AdminPickup from './admin/Pickup.vue'
 import AdminRequests from './admin/Requests.vue'
+import AdminEvent from './admin/Events.vue'
 
 const routes = [
   { path: '/', component: HomePage, name: 'HomePage' },
@@ -80,7 +81,8 @@ const routes = [
     path: '/admin/requests',
     component: AdminRequests,
     name: 'AdminRequests'
-  }
+  },
+  { path: '/admin/events', component: AdminEvent, name: 'AdminEvent' }
 ]
 
 const router = createRouter({
