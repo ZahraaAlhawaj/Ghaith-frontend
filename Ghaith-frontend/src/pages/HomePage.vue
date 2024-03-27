@@ -168,6 +168,7 @@ export default {
         </v-col>
       </template>
     </v-row>
+  </v-container>
 
   <!-- mission and vission -->
   <!-- <div style="background-color: white" class="misson"></div> -->
