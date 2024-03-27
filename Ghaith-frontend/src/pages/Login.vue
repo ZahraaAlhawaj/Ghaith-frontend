@@ -32,21 +32,16 @@ export default {
       } else {
         localStorage.setItem('token', res.data.token)
         this.store.dispatch('login', res.data.user)
-        if (
-          res.data.user.role === 'Super Admin' ||
-          res.data.user.role === 'Admin'
-        ) {
-          console.log('adddminn')
+
+        if (res.data.user.role === 'Super Admin') {
           this.$router.push(`/admin`)
         } else if (res.data.user.role === 'Admin') {
-          if (!res.data.user.onboarding) {
+          if (res.data.user.onboarding === false) {
             this.$router.push('/admin/reset')
           } else {
             this.$router.push(`/admin`)
           }
         } else {
-          console.log('usrer')
-
           this.$router.push(`/`)
         }
       }

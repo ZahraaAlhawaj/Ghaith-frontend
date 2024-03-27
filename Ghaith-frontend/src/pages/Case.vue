@@ -47,7 +47,6 @@ export default {
     this.casesId = this.$route.params.id
     this.showCase(this.casesId)
     this.getStatistics(this.casesId)
-    console.log('erw', this.apiURL)
   },
   methods: {
     async showCase(casesId) {
@@ -60,6 +59,8 @@ export default {
         amount: this.inputValue,
         user: this.user ? this.user.id : null
       })
+      this.showCase(this.casesId)
+
       if (response) {
         console.log('done')
       } else {
@@ -105,6 +106,7 @@ export default {
       const id = this.casesId
       const url = import.meta.env.VITE_GHAITH_API
       const shareUrl = `${url}/cases/${id}`
+      console.log('share', this.shareLink)
       navigator.clipboard
         .writeText(shareUrl)
         .then(() => {
@@ -113,7 +115,7 @@ export default {
         .catch((error) => {
           console.log('Faild')
         })
-      // this.shareLink = shareUrl
+      this.shareLink = shareUrl
     }
   }
 }
@@ -141,6 +143,28 @@ export default {
                       @click="generateLink"
                       link
                     ></v-list-item>
+                    <v-list-item link>
+                      <ShareNetwork
+                        network="Twitter"
+                        @click="generateLink"
+                        :url="this.shareLink"
+                        title="The Case need to Donate"
+                      >
+                        <v-icon color="#1DA1F2">mdi-twitter</v-icon>
+                        Share on Twitter
+                      </ShareNetwork>
+                    </v-list-item>
+                    <v-list-item>
+                      <ShareNetwork
+                        network="WhatsApp"
+                        @click="generateLink"
+                        :url="this.shareLink"
+                        title="The Case need to Donate"
+                      >
+                        <v-icon color="green darken-4">mdi-whatsapp</v-icon>
+                        Share on WhatsApp
+                      </ShareNetwork>
+                    </v-list-item>
                   </v-list>
                 </v-menu>
               </v-btn>

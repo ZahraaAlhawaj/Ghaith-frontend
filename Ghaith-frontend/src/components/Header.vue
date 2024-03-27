@@ -8,7 +8,7 @@ export default {
     const store = useStore()
     const user = computed(() => store.getters.currentUser)
     const isLoggedIn = computed(() => store.getters.isLoggedIn)
-    console.log('hiii', user.value)
+
     return { isLoggedIn, user }
   },
   methods: {
@@ -21,7 +21,6 @@ export default {
 </script>
 
 <template>
-
   <v-app
     class="header"
     v-if="isLoggedIn && (user.role === 'Admin' || user.role === 'Super Admin')"
@@ -68,7 +67,7 @@ export default {
           class="admin-link"
           link
           title="Requests"
-          to="/admin/request"
+          to="/admin/requests"
         ></v-list-item>
         <v-list-item
           class="admin-link"
@@ -113,28 +112,7 @@ export default {
           </li>
         </ul>
       </div>
-      <!-- <div class="darkLight-searchBox">
-            <div class="dark-light">
-            <i class='bx bx-moon moon'></i>
-            <i class='bx bx-sun sun'></i>
-            </div>
-            <div class="searchBox">
-            <div class="searchToggle">
-                <i class='bx bx-x cancel'></i>
-                <i class='bx bx-search search'></i>
-            </div>
-            <div class="search-field">
-                <input type="text" placeholder="Search...">
-                <i class='bx bx-search'></i>
-            </div>
-            </div>
-        </div> -->
     </div>
-    <!-- <router-link to="/">Home</router-link>
-        <router-link to="/login">Login</router-link>
-        <router-link to="/register">Register</router-link>
-        <router-link to="/about">About</router-link>
-        <router-link to="/charities">Charities</router-link> -->
   </nav>
 </template>
 
@@ -171,6 +149,7 @@ nav .nav-bar {
   display: flex;
   /* align-items: center; */
   justify-content: space-between;
+  align-items: center;
 }
 
 nav .nav-bar .sidebarOpen {

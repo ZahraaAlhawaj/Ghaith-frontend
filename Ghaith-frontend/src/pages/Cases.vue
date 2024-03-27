@@ -9,7 +9,8 @@ export default {
       search: '',
       cases: [],
       collectedAmount: 0,
-      percentage: []
+      percentage: [],
+      showCases: []
     }
   },
   mounted() {
@@ -17,9 +18,13 @@ export default {
   },
   computed: {
     filteredCases() {
-      return this.cases.filter((c) =>
-        c.name.toLowerCase().includes(this.search.toLowerCase())
-      )
+      if (this.showCases.length != 0) {
+        return this.showCases
+      } else {
+        return this.cases.filter((c) =>
+          c.name.toLowerCase().includes(this.search.toLowerCase())
+        )
+      }
     }
   },
   watch: {
@@ -50,6 +55,12 @@ export default {
       const month = (date.getMonth() + 1).toString().padStart(2, '0')
       const year = date.getFullYear()
       return `${day}/${month}/${year}`
+    },
+    showCategory(val) {
+      this.showCases = this.cases.filter(
+        (c) => c.category && c.category.name == val
+      )
+      return this.showCases
     }
   }
 }
@@ -57,9 +68,20 @@ export default {
 
 <template>
   <v-container class="pa-4 text-center">
-    <div class="title">
+    <!-- <div class="title">
       <h1 class="yellow-underlined title">Cases</h1>
-    </div>
+    </div> -->
+    <v-tabs align-tabs="center" color="deep-purple-accent-4">
+      <v-tab value="general" @click="showCategory('general')">Generel</v-tab>
+      <v-tab value="Treatment" @click="showCategory('Treatment')"
+        >Treatment</v-tab
+      >
+      <v-tab value="Home Renovation" @click="showCategory('Home-Renovation')"
+        >Home Renovation</v-tab
+      >
+      <v-tab value="Family" @click="showCategory('Family')">Family</v-tab>
+    </v-tabs>
+    <br />
     <v-text-field
       v-model="search"
       label="Search"
@@ -92,8 +114,6 @@ export default {
                 >
               </v-progress-linear>
               <br />
-              <!-- <div class="break"></div> -->
-
               <v-card-title>{{ c.name }}</v-card-title>
 
               <v-card-subtitle>code: {{ c.code }}</v-card-subtitle>
@@ -111,12 +131,6 @@ export default {
                   <p>{{ formatDate(c.end_date) }}</p>
                 </div>
               </div>
-              <!-- <v-card-subtitle
-                >Start Date: {{ formatDate(c.start_date) }}</v-card-subtitle
-              >
-              <v-card-subtitle
-                >End Date: {{ formatDate(c.end_date) }}</v-card-subtitle
-              > -->
             </v-card>
           </v-hover>
         </v-col>
@@ -149,7 +163,7 @@ export default {
   border: 0.2em solid #4b5f23;
   background-color: #e6e5d0;
   object-fit: contain !important;
-  padding: 0 0 13% 0;
+  padding: 0 0 7% 0;
 }
 
 .pa-4 {

@@ -20,6 +20,9 @@ import AdminCharities from './admin/Charities.vue'
 import ResetPassword from './admin/ResetPassword.vue'
 import AdminDonations from './admin/Donations.vue'
 import AdminCases from './admin/Cases.vue'
+import AdminPickup from './admin/Pickup.vue'
+import AdminRequests from './admin/Requests.vue'
+import AdminEvent from './admin/Events.vue'
 
 const routes = [
   { path: '/', component: HomePage, name: 'HomePage' },
@@ -72,7 +75,14 @@ const routes = [
   },
 
   { path: '/admin/categories', component: Categories, name: 'Categories' },
-  { path: '/admin/cases', component: AdminCases, name: 'AdminCases' }
+  { path: '/admin/cases', component: AdminCases, name: 'AdminCases' },
+  { path: '/admin/pickup', component: AdminPickup, name: 'AdminPickup' },
+  {
+    path: '/admin/requests',
+    component: AdminRequests,
+    name: 'AdminRequests'
+  },
+  { path: '/admin/events', component: AdminEvent, name: 'AdminEvent' }
 ]
 
 const router = createRouter({
