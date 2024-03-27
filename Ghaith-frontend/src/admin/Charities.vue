@@ -29,6 +29,17 @@ export default {
     async getAllCharities() {
       this.charities = await showAllCharity()
     },
+    getStatusColor(status) {
+      if (status == 'Pending') {
+        return 'blue'
+      } else if (status == 'Approved') {
+        return 'green'
+      } else if (status == 'Rejected') {
+        return 'red'
+      } else {
+        return ''
+      }
+    },
     async handleSubmit(event, item) {
       event.preventDefault()
       const charity = await updateCharity(item._id, this.formValues)
@@ -87,13 +98,6 @@ export default {
         <template v-slot:item.actions="{ item }">
           <v-dialog v-model="updateDialog[item._id]" max-width="400" persistent>
             <template v-slot:activator="{ on, attrs }">
-              <!-- <v-btn
-                @click="openUpdateDialog(item)"
-                v-bind="attrs"
-                class="mr-4"
-                color="primary">
-                Update
-              </v-btn> -->
               <v-icon
                 left
                 @click="openUpdateDialog(item)"
@@ -148,7 +152,16 @@ export default {
           <v-img :src="item.logo" max-height="50" contain></v-img>
         </template>
 
-        <template v-slot:items="props"> </template>
+        <template v-slot:item.status="{ item }">
+          <v-chip
+            :color="getStatusColor(item.status)"
+            class="text-uppercase"
+            size="small"
+            label
+          >
+            {{ item.status }}</v-chip
+          >
+        </template>
       </v-data-table>
     </v-card>
   </v-container>
