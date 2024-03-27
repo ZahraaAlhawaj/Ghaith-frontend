@@ -20,7 +20,35 @@ export default {
         cr_number: null,
         googlemaplink: null
       },
-      nameRules: [(v) => !!v || 'Name is required']
+      nameRules: [(v) => !!v || 'Name is required'],
+      chariyNameRules: [(v) => !!v || 'Charity name is required'],
+      googlemaplinkRules: [(v) => !!v || 'Google map link is required'],
+      crRules: [(v) => !!v || 'Cr number is required'],
+      emailRules: [
+        (value) => {
+          if (value) return true
+
+          return 'E-mail is requred.'
+        },
+        (value) => {
+          if (/.+@.+\..+/.test(value)) return true
+
+          return 'E-mail must be valid.'
+        }
+      ],
+      passwordRules: [
+        (v) => !!v || 'Password is required',
+        (v) => (v && v.length >= 8) || 'Password must be at least 8 characters'
+      ],
+      confirmPasswordRules: [
+        (v) => !!v || 'Confirm Password is required',
+        (v, vm) => {
+          if (v !== this.formValues.password) {
+            return 'Passwords must match'
+          }
+          return true
+        }
+      ]
     }
   },
   methods: {
@@ -91,6 +119,7 @@ export default {
             <v-text-field
               v-model="formValues['email']"
               label="Email"
+              :rules="emailRules"
               type="email"
               name="email"
               @input="handleFormChange"
@@ -106,6 +135,7 @@ export default {
             <v-text-field
               v-model="formValues['password']"
               label="Password"
+              :rules="passwordRules"
               type="password"
               name="password"
               @input="handleFormChange"
@@ -114,6 +144,7 @@ export default {
             <v-text-field
               v-model="formValues['confirmPassword']"
               label="Confirm Password"
+              :rules="confirmPasswordRules"
               type="password"
               name="confirmPassword"
               @input="handleFormChange"
@@ -137,7 +168,7 @@ export default {
           <p class="account-description">
             Enter your name, email, and password to create your account
           </p>
-          <v-form fast-fail @submit.prevent @submit="handleSubmit">
+          <v-form fast-fail>
             <h4>Admin Details</h4>
             <v-text-field
               v-model="formValues['name']"
@@ -150,6 +181,7 @@ export default {
             <v-text-field
               v-model="formValues['email']"
               label="Email"
+              :rules="emailRules"
               type="email"
               name="email"
               @input="handleFormChange"
@@ -175,6 +207,7 @@ export default {
             <v-text-field
               v-model="charity['name']"
               label="Charity Name"
+              :rules="chariyNameRules"
               name="name"
               @input="handleCharityChange"
             ></v-text-field>
@@ -189,6 +222,7 @@ export default {
             <v-text-field
               v-model="charity['googlemaplink']"
               label="Google Map Link"
+              :rules="googlemaplinkRules"
               name="googlemaplink"
               @input="handleCharityChange"
             ></v-text-field>
@@ -196,6 +230,7 @@ export default {
             <v-text-field
               v-model="charity['cr_number']"
               label="Cr Number"
+              :rules="crRules"
               name="cr_number"
               @input="handleCharityChange"
             ></v-text-field>
@@ -240,5 +275,22 @@ export default {
   color: #e6e5ce;
   box-shadow: none;
   font-family: avenir, sans-serif;
+}
+
+.v-tabs {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.v-tab {
+  background-color: #4b5f23;
+  color: #e6e5ce;
+  margin: 0 10px;
+}
+
+.v-tab:hover {
+  background-color: var(--nav-color);
+  color: #e6e5ce;
 }
 </style>
