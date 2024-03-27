@@ -32,7 +32,7 @@ export default {
     },
     async handleSubmit(event, action, item = null) {
       event.preventDefault()
-      if (action === 'delete') {
+      if (action === 'create') {
         const category = await createCategory(this.formValues)
         if (category) {
           this.getAllCategories()
@@ -101,7 +101,7 @@ export default {
             type="submit"
             @click="
               (event) => {
-                if (handleSubmit(event, 'delete')) {
+                if (handleSubmit(event, 'create')) {
                   createDialog = false
                 }
               }

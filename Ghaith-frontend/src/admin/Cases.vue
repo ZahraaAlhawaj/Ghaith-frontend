@@ -287,7 +287,23 @@ export default {
               <template v-slot:actions>
                 <v-spacer></v-spacer>
 
-                <v-btn @click="updateDialog[item._id] = false"> Dismiss </v-btn>
+                <v-btn
+                  @click="
+                    (event) => {
+                      formValues = {
+                        name: '',
+                        image: '',
+                        description: '',
+                        total_amount: null,
+                        start_date: new Date(),
+                        end_date: new Date()
+                      }
+                      updateDialog[item._id] = false
+                    }
+                  "
+                >
+                  Dismiss
+                </v-btn>
 
                 <v-btn
                   type="submit"
