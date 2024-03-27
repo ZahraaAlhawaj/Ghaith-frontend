@@ -24,10 +24,7 @@ export default {
   <div class="container">
     <h1>All Charities</h1>
     <p>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nec lectus
-      auctor, auctor mi id, aliquet neque. Suspendisse potenti. Nullam bibendum
-      tristique justo, ac viverra ex eleifend ac. Vestibulum ante ipsum primis
-      in faucibus orci
+      Extending a helping hand to those in need, our charity provides vital support and resources to empower individuals and communities. Through our compassionate initiatives, we strive to create positive change, inspire hope, and make a lasting impact on the lives of those facing challenges. 
     </p>
   </div>
 
@@ -36,10 +33,7 @@ export default {
       <img src="/images/Charity.jpeg" alt="Cover Image" class="image-cover" />
       <div class="text-container">
         <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nec
-          lectus Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
-          nec lectus auctor, auctor mi id, aliquet neque. Suspendisse potenti.
-          Nullam bibendum tristique justo, ac viverra ex eleifend ac. Vestibulum
+          our charity is dedicated to providing essential services and support to underserved communities. With a focus on healthcare, education, and social empowerment, we aim to break barriers, uplift individuals, and create a more equitable society. Join us in building bridges of care.
         </p>
       </div>
     </div>

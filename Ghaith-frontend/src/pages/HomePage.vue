@@ -33,14 +33,14 @@ export default {
           color: '#b1bf5c',
           icon: 'mdi-book-variant',
           title: 'Our Mission',
-          text: 'Ghaith envisions a world where boundless kindness transforms lives, serving as a beacon of hope and driving positive change for all.',
+          text: 'Our mission at Ghaith is to Empower individuals and communities, fostering kindness and generosity, connecting donors with causes, supporting those in need, making a positive impact, inspiring compassion, fostering collaboration, and creating a world where all thrive.',
           textColor: '#4b5f23'
         },
         {
           color: '#b1bf5c',
           icon: 'mdi-airballoon',
-          title: 'Our Vision',
-          text: 'Ghaith envisions a world where boundless kindness transforms lives, serving as a beacon of hope and driving positive change for all.',
+          title: 'Our Values',
+          text: '(1)Kindness: We believe in the power of kindness to transform lives,(2)Empowerment: We strive to empower individuals, giving them the tools to thrive. (3)Generosity: We encourage acts of generosity, recognizing the impact they have on society.',
           textColor: '#4b5f23'
         }
       ].map((item) => {
