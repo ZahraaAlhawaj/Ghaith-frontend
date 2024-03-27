@@ -147,7 +147,4 @@ export default {
   margin-top: 5px;
   font-size: 14px;
 }
-/* .v-sheet{
-  display: none;
-} */
 </style>
