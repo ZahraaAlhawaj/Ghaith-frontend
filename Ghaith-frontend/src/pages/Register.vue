@@ -95,7 +95,8 @@ export default {
     <v-tabs
       v-model="formValues['role']"
       align-tabs="center"
-      color="deep-purple-accent-4"
+      color="#4b5f23"
+      class="custom-tabs"
     >
       <v-tab :value="1">User</v-tab>
       <v-tab :value="2">Charity</v-tab>
@@ -251,10 +252,10 @@ export default {
   color: #4b5f23;
 }
 
-.account-descrixption {
+.account-description {
   font-size: 16px;
   text-align: left;
-  color: #555;
+  color: #4b5f23;
   padding-top: 10px;
   font-size: 14px;
   margin-bottom: 20px;
@@ -271,7 +272,7 @@ export default {
 }
 
 .v-btn {
-  background-color: #4b5f23;
+  background-color: rgb(211, 211, 211);
   color: #e6e5ce;
   box-shadow: none;
   font-family: avenir, sans-serif;
@@ -281,16 +282,24 @@ export default {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
+  margin-bottom: 5%;
 }
 
 .v-tab {
-  background-color: #4b5f23;
-  color: #e6e5ce;
-  margin: 0 10px;
+  background-color: #f6f6f6;
+  color: #4b5f23;
+  margin: 0 5px;
+  font-size: 12px;
 }
 
 .v-tab:hover {
-  background-color: var(--nav-color);
   color: #e6e5ce;
+}
+
+.mt-2 {
+  background-color: #4b5f23;
+  color: #e6e5ce;
+  box-shadow: none;
+  font-family: avenir, sans-serif;
 }
 </style>

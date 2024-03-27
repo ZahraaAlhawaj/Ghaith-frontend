@@ -56,12 +56,13 @@ export default {
     theme="dark"
     @click="showCharity(charity._id)">
   </v-card> -->
+  
   <div class="title">
     <h1 class="yellow-underlined title">Charities</h1>
   </div>
 
-  <v-container class="pa-4 text-center">
-    <v-row align="center" class="fill-height" justify="center">
+  <v-container class="pa-4">
+    <v-row class="fill-height" justify="center">
       <template class="card1" v-for="(charity, i) in charities" :key="i">
         <v-col cols="12" md="4">
           <v-hover v-slot="{ isHovering, props }">
@@ -100,7 +101,7 @@ export default {
   object-fit: contain !important;
 }
 
-.pa-4 {
+/* .pa-4 {
   display: flex;
   text-align: center;
   flex-direction: column;
@@ -109,7 +110,7 @@ export default {
   color: #4b5f23;
   text-transform: capitalize;
   margin-bottom: 5%;
-}
+} */
 
 .image-cover {
   width: 100%;
