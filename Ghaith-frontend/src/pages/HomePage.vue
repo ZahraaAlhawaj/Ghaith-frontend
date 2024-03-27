@@ -115,7 +115,6 @@ export default {
       ></v-carousel-item>
     </v-carousel>
   </div>
-
   <!-- Urgent Cases -->
 
   <v-container class="pa-4 text-center">
@@ -169,7 +168,6 @@ export default {
         </v-col>
       </template>
     </v-row>
-  </v-container>
 
   <!-- mission and vission -->
   <!-- <div style="background-color: white" class="misson"></div> -->
@@ -265,7 +263,7 @@ export default {
 
 <style scoped>
 .carousel-wrapper {
-  margin-top: -2.5%; /* Adjust the negative margin to remove the space above */
+  margin-top: -1.5%; /* Adjust the negative margin to remove the space above */
 }
 
 .v-progress-circular {
