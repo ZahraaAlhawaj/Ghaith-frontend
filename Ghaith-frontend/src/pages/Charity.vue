@@ -45,11 +45,6 @@ export default {
         amount: amount,
         user: this.user ? this.user.id : null
       })
-      if (response) {
-        console.log('done')
-      } else {
-        console.log('something wrong')
-      }
     },
     formatDate(dateString) {
       const date = new Date(dateString)
@@ -184,40 +179,6 @@ export default {
         </template>
       </v-row>
     </v-container>
-
-    <!-- <div class="charity-cases">
-      <div
-        class="case-card"
-        v-for="(c, index) in charityCases"
-        :key="index"
-        @click="showCase(c._id)"
-      >
-        <img class="case-image" :src="c.image" alt="" />
-
-        <h2 class="case-title">{{ c.name }}</h2>
-
-        <div class="case-info">
-          <p>Desired amount: {{ c.total_amount }} BD</p>
-          <p>Start Date: {{ formatDate(c.start_date) }}</p>
-          <p>End Date: {{ formatDate(c.end_date) }}</p>
-        </div>
-
-        <div class="case-progress">
-          <div
-            class="case-progress-bar"
-            :style="{
-              width:
-                ((c.collected_amount / c.total_amount) * 100).toFixed(2) + '%'
-            }"
-          ></div>
-          <strong class="case-progress-label">
-            {{ ((c.collected_amount / c.total_amount) * 100).toFixed(2) }}%
-          </strong>
-        </div>
-
-        <p class="case-details">Details</p>
-      </div>
-    </div> -->
   </div>
 </template>
 
@@ -261,12 +222,11 @@ export default {
 .divider {
   width: 100%;
   height: 1px;
-  /* background-color: #ccc; */
 }
 
 .text-section {
   text-align: center;
-  background-color: #4b5f23; /* Add your desired background color */
+  background-color: #4b5f23;
 
   border-radius: 4px;
   width: 100%;
@@ -299,7 +259,7 @@ export default {
 
 .amount-section {
   text-align: center;
-  background-color: #4b5f23; /* Add your desired background color */
+  background-color: #4b5f23;
 
   width: 100%;
   color: #e6e5d0;
@@ -359,7 +319,6 @@ export default {
   text-align: center;
   flex-direction: column;
   justify-content: center;
-  /* align-items: center; */
   color: #4b5f23;
   text-transform: capitalize;
   margin-bottom: 1%;
