@@ -77,13 +77,6 @@ export default {
       if (res.status !== 200) {
       } else {
         this.$router.push(`/login`)
-        // formValues = {
-        //   name: null,
-        //   email: null,
-        //   password: null,
-        //   phone_number: null,
-        //   birth_date: null
-        // }
       }
     }
   }
