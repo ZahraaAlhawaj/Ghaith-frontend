@@ -149,6 +149,7 @@ nav .nav-bar {
   display: flex;
   /* align-items: center; */
   justify-content: space-between;
+  align-items: center;
 }
 
 nav .nav-bar .sidebarOpen {
