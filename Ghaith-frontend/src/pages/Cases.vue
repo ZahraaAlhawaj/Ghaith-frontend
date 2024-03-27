@@ -1,17 +1,14 @@
 <script>
 import { getCases } from '../services/case'
-import { ref } from 'vue'
 export default {
   name: 'Cases',
   data: function () {
     return {
-      slider3: 100,
       search: '',
       cases: [],
       collectedAmount: 0,
       percentage: [],
-      showCases: [],
-      catVal: null
+      showCases: []
     }
   },
   mounted() {
@@ -54,7 +51,6 @@ export default {
       return `${day}/${month}/${year}`
     },
     showCategory(val) {
-      //this.catVal = val
       if (val == 'general') {
         this.showCases = this.cases
       } else {
@@ -62,8 +58,6 @@ export default {
           (c) => c.category && c.category.name == val
         )
       }
-
-      // return this.showCases
     }
   }
 }
@@ -153,8 +147,6 @@ export default {
 .v-card {
   width: 18em;
   height: 28em;
-  /* border-radius: 50%; */
-  /* object-fit: cover; */
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -171,7 +163,6 @@ export default {
   text-align: center;
   flex-direction: column;
   justify-content: center;
-  /* align-items: center; */
   color: #4b5f23;
   text-transform: capitalize;
   margin-bottom: 5%;
@@ -211,9 +202,6 @@ export default {
   margin-bottom: 2%;
 }
 
-/* .v-img__img .v-img__img--cover {
-  object-fit: cover !important;
-} */
 .v-img__img--cover {
   object-fit: cover !important;
 }
