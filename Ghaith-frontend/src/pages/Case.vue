@@ -59,6 +59,8 @@ export default {
         amount: this.inputValue,
         user: this.user ? this.user.id : null
       })
+      this.showCase(this.casesId)
+
       if (response) {
         console.log('done')
       } else {
