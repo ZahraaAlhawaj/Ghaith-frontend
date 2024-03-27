@@ -131,7 +131,7 @@ export default {
 
   <v-container class="pa-4 text-center">
     <div class="title">
-      <h1 class="yellow-underlined title">Featured Cases</h1>
+      <h1 class="yellow-underlined title">Urgent Cases</h1>
     </div>
 
     <v-row align="center" class="fill-height" justify="center">
@@ -164,8 +164,12 @@ export default {
                 >
               </v-progress-linear>
               <br />
-              <v-card-title class="text-color">{{ urgentCase.name }}</v-card-title>
-              <v-card-subtitle class="text-color2">code: {{ urgentCase.code }}</v-card-subtitle>
+              <v-card-title class="text-color">{{
+                urgentCase.name
+              }}</v-card-title>
+              <v-card-subtitle class="text-color2"
+                >code: {{ urgentCase.code }}</v-card-subtitle
+              >
               <v-card-subtitle class="text-color2"
                 >Desired amount:
                 {{ urgentCase.total_amount }} BD</v-card-subtitle
@@ -176,8 +180,12 @@ export default {
                   <p class="text-color">End Date</p>
                 </div>
                 <div class="date-value">
-                  <p class="text-color">{{ formatDate(urgentCase.start_date) }}</p>
-                  <p class="text-color">{{ formatDate(urgentCase.end_date) }}</p>
+                  <p class="text-color">
+                    {{ formatDate(urgentCase.start_date) }}
+                  </p>
+                  <p class="text-color">
+                    {{ formatDate(urgentCase.end_date) }}
+                  </p>
                 </div>
               </div>
             </v-card>
@@ -270,7 +278,7 @@ export default {
         :width="16"
         color="#AFBF58"
       >
-      <p class="value">{{ totalAmountDonations.toFixed(2) }}BD</p>
+        <p class="value">{{ totalAmountDonations.toFixed(2) }}BD</p>
       </v-progress-circular>
       <span class="progress-text progress-color4"
         >Total Amount of Donations</span
@@ -472,11 +480,11 @@ export default {
   margin-bottom: 2%;
 }
 
-.text-color{
+.text-color {
   color: #4b5f23;
 }
 
-.text-color2{
+.text-color2 {
   color: #566833;
 }
 </style>
