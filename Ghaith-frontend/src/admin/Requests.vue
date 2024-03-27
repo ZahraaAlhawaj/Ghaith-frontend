@@ -33,7 +33,8 @@ export default {
         total_amount: '',
         start_date: '',
         end_date: '',
-        category: ''
+        category: '',
+        charityId: null
       },
       updateDialog: {}
     }

@@ -14,6 +14,7 @@ const store = createStore({
     logout(state) {
       state.user = null
       localStorage.removeItem('user')
+      localStorage.removeItem('token')
     }
   },
   actions: {

@@ -87,14 +87,21 @@ export default {
         <template v-slot:item.actions="{ item }">
           <v-dialog v-model="updateDialog[item._id]" max-width="400" persistent>
             <template v-slot:activator="{ on, attrs }">
-              <v-btn
+              <!-- <v-btn
+                @click="openUpdateDialog(item)"
+                v-bind="attrs"
+                class="mr-4"
+                color="primary">
+                Update
+              </v-btn> -->
+              <v-icon
+                left
                 @click="openUpdateDialog(item)"
                 v-bind="attrs"
                 class="mr-4"
                 color="primary"
+                >mdi-pencil</v-icon
               >
-                Update
-              </v-btn>
             </template>
             <v-card prepend-icon="">
               <v-sheet class="list-form">

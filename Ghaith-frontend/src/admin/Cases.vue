@@ -21,6 +21,7 @@ export default {
       categories: [],
       headers: [
         { text: 'Name', value: 'name' },
+        { text: 'Category', value: 'category.name' },
         { text: 'description', value: 'description' },
         { text: 'Total Amount', value: 'total_amount' },
         { text: 'Collected Amount', value: 'collected_amount' },
@@ -76,7 +77,8 @@ export default {
             description: '',
             total_amount: null,
             start_date: new Date(),
-            end_date: new Date()
+            end_date: new Date(),
+            category: null
           }
           return true
         }
@@ -90,7 +92,8 @@ export default {
             description: '',
             total_amount: null,
             start_date: new Date(),
-            end_date: new Date()
+            end_date: new Date(),
+            category: null
           }
           return true
         }
@@ -98,13 +101,12 @@ export default {
       return false
     },
     async deleteOneCase(selectedCase) {
-      console.log('delete function')
       const deletedCase = await deleteCase(selectedCase._id)
       this.getAllCases()
     },
     openUpdateDialog(item) {
       const startDate = format(new Date(item.start_date), 'yyyy-MM-dd')
-      const endDate = format(new Date(item.start_date), 'yyyy-MM-dd')
+      const endDate = format(new Date(item.end_date), 'yyyy-MM-dd')
 
       this.formValues = {
         name: item.name,
@@ -139,6 +141,7 @@ export default {
           <h3>New Case</h3>
           <v-form fast-fail @submit.prevent @submit="handleSubmit">
             <v-select
+              v-model="formValues['category']"
               :items="categories"
               item-title="name"
               item-value="_id"
@@ -230,14 +233,6 @@ export default {
                 color="primary"
                 >mdi-pencil</v-icon
               >
-              <!-- <v-btn
-                @click="openUpdateDialog(item)"
-                v-bind="attrs"
-                class="mr-4"
-                color="primary"
-              >
-                Update
-              </v-btn> -->
             </template>
 
             <v-card prepend-icon="mdi-map-marker">
@@ -305,19 +300,17 @@ export default {
             </v-card>
           </v-dialog>
 
-          <!-- <v-btn @click="deleteOneCase(item)" color="primary" text>
-            Delete
-          </v-btn> -->
           <v-icon left @click="deleteOneCase(item)" color="red" text
             >mdi-delete</v-icon
           >
         </template>
         <template v-slot:headers="props">
           <tr>
-            <th>Name</th>
-            <th>Description</th>
-            <th>Total Amount</th>
-            <th>Collected Amount</th>
+            <th width="10%">Name</th>
+            <th width="10%">Category</th>
+            <th width="33%">Description</th>
+            <th width="9%">Total Amount</th>
+            <th width="10%">Collected Amount</th>
             <th>Start Date</th>
             <th>End Date</th>
             <th>Action</th>
