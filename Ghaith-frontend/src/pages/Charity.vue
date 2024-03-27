@@ -92,7 +92,7 @@ export default {
         <div class="divider"></div>
         <div class="text-section">
           <h1>{{ charity.name }}</h1>
-          <p v-if="charity.user">{{ charity.user.email }}</p>
+          <!-- <p v-if="charity.user">{{ charity.user.email }}</p> -->
         </div>
       </v-card>
 
@@ -113,7 +113,20 @@ export default {
         </div>
 
         <div class="button-section">
-          <button class="donate-button" @click="donate">Donate</button>
+          <v-snackbar
+            :timeout="2000"
+            color="#b1bf5c"
+            :top="true"
+            elevation="24"
+            class="custom-snackbar"
+          >
+            <template v-slot:activator="{ props }">
+              <button v-bind="props" class="donate-button" @click="donate">
+                Donate
+              </button>
+            </template>
+            Donate <strong>Successfully</strong>.
+          </v-snackbar>
         </div>
       </div>
     </div>

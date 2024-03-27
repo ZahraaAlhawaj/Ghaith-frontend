@@ -38,12 +38,6 @@ export default {
         user: this.user ? this.user.id : null
       })
       this.showCase(this.casesId)
-
-      if (response) {
-        console.log('done')
-      } else {
-        console.log('something wrong')
-      }
     },
     async getStatistics(casesId) {
       const response = await getStatistics(casesId)
@@ -91,6 +85,11 @@ export default {
           console.log('Faild')
         })
       this.shareLink = shareUrl
+    },
+    showAlert(message, type) {
+      this.alert.message = message
+      this.alert.type = type
+      this.alert.show = true
     }
   }
 }
@@ -169,9 +168,26 @@ export default {
               </v-col>
 
               <v-col cols="3">
-                <v-btn variant="outlined" size="x-large" @click="donate"
-                  >Donate</v-btn
+                <v-snackbar
+                  :timeout="2000"
+                  color="#b1bf5c"
+                  elevation="24"
+                  class="custom-snackbar"
                 >
+                  <template v-slot:activator="{ props }">
+                    <v-btn
+                      variant="outlined"
+                      size="x-large"
+                      v-bind="props"
+                      @click="donate"
+                      >Donate</v-btn
+                    >
+                  </template>
+                  Donate <strong>Successfully</strong>.
+                </v-snackbar>
+
+                <!-- <v-btn variant="outlined" size="x-large" @click="donate"
+                  >Donate</v-btn> -->
               </v-col>
             </v-row>
           </v-container>
@@ -424,5 +440,12 @@ export default {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+}
+
+.custom-snackbar {
+  position: fixed !important;
+  top: 20px !important;
+  right: 20px !important;
+  transform: translate(0, 0) !important;
 }
 </style>
