@@ -88,7 +88,9 @@ export default {
             <v-text-field
               v-model="formValues['time']"
               label="Time"
+              type="time"
             ></v-text-field>
+
             <v-text-field
               v-model="formValues['image']"
               label="Image"
