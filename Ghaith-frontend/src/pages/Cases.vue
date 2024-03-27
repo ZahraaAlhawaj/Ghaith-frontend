@@ -71,7 +71,7 @@ export default {
 
 <template>
   <v-container class="pa-4 text-center">
-    <v-tabs align-tabs="center" color="deep-purple-accent-4">
+    <v-tabs align-tabs="center" color="#4b5f23">
       <v-tab value="general" @click="showCategory('general')">Generel</v-tab>
       <v-tab value="Treatment" @click="showCategory('Treatment')"
         >Treatment</v-tab

@@ -88,11 +88,11 @@ export default {
 </script>
 <template>
   <div v-if="coords">
-    <v-container>
-      <v-stepper alt-labels :items="['Step 1', 'Step 2']">
+    <v-container class="pickup-container">
+      <v-stepper alt-labels :items="['Step 1', 'Step 2']" class="step-class">
         <!-- to show nearby charity -->
         <template v-slot:item.1>
-          <v-container class="pa-4 text-center">
+          <v-container class="pa-4 text-center pick-cont">
             <v-row align="center" class="fill-height" justify="center">
               <template v-for="(charity, i) in charities" :key="i">
                 <v-col cols="12" md="4">
@@ -224,5 +224,15 @@ export default {
   color: #e6e5ce;
   box-shadow: none;
   font-family: avenir, sans-serif;
+}
+
+.pickup-container {
+  border: 0.12em solid #4b5f23;
+  padding: 0 !important;
+  margin-bottom: 5%;
+}
+
+.step-class {
+  background-color: #e6e5d0 !important;
 }
 </style>
