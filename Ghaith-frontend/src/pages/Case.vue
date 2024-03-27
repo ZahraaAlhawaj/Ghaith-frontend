@@ -19,29 +19,7 @@ export default {
     amount: 0.1,
     inputValue: 0.1,
     stat: null,
-    cardStat: [],
-    cardItems: [
-      {
-        logo: 'https://www.freepik.com/icon/pie-chart_893220#fromView=search&page=1&position=1&uuid=eba18b99-91e2-44db-9fa2-2c2cfd97689f',
-        number: 123,
-        title: 'Title 1'
-      },
-      {
-        logo: 'https://www.freepik.com/icon/pie-chart_11176356#fromView=search&page=2&position=47&uuid=eba18b99-91e2-44db-9fa2-2c2cfd97689f',
-        number: 456,
-        title: 'Number of Donation'
-      },
-      {
-        logo: 'https://www.freepik.com/icon/bar-chart_1716515#fromView=search&page=3&position=4&uuid=eba18b99-91e2-44db-9fa2-2c2cfd97689f',
-        number: 789,
-        title: 'Title 3'
-      },
-      {
-        logo: 'https://www.freepik.com/icon/bar-chart_1716515#fromView=search&page=3&position=4&uuid=eba18b99-91e2-44db-9fa2-2c2cfd97689f',
-        number: 75,
-        title: 'Title 4'
-      }
-    ]
+    cardStat: []
   }),
   mounted() {
     this.casesId = this.$route.params.id
@@ -92,8 +70,6 @@ export default {
           title: 'people'
         }
       ]
-      console.log(this.stat)
-      console.log('hi', this.cardStat)
     },
     formatDate(dateString) {
       const date = new Date(dateString)
@@ -106,7 +82,6 @@ export default {
       const id = this.casesId
       const url = import.meta.env.VITE_GHAITH_API
       const shareUrl = `${url}/cases/${id}`
-      console.log('share', this.shareLink)
       navigator.clipboard
         .writeText(shareUrl)
         .then(() => {
@@ -172,11 +147,7 @@ export default {
           </div>
 
           <div class="image-container">
-            <v-img
-              src="https://ehsanimagesp.s3.me-south-1.amazonaws.com/P152.jpg"
-              alt="Image"
-              class="image"
-            ></v-img>
+            <v-img :src="this.cases.image" alt="Image" class="image"></v-img>
           </div>
         </v-card>
       </v-col>
@@ -241,12 +212,12 @@ export default {
               <h6>Sponser Charity</h6>
             </div>
             <div class="charity-details">
-              <img
+              <v-img
                 v-if="cases.charity"
                 :src="cases.charity.logo"
                 alt="Charity Logo"
                 class="logo"
-              />
+              ></v-img>
               <h4 v-if="cases.charity">{{ cases.charity.name }}</h4>
             </div>
           </div>
