@@ -26,3 +26,21 @@ export const joinEvent = async (eventId) => {
     console.log(error)
   }
 }
+
+export const getEventByCharity = async () => {
+  try {
+    const res = await Client.get(`/events/charity`)
+    return res.data
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+export const createEvent = async (data) => {
+  try {
+    const res = await Client.post(`/events`, data)
+    return res.data
+  } catch (error) {
+    console.log(error)
+  }
+}
