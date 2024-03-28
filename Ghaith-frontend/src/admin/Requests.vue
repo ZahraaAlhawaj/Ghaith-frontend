@@ -112,7 +112,7 @@ export default {
             <th>Salary</th>
             <th>Expected Amount</th>
             <th>Status</th>
-            <th v-if="user === 'Admin'">Action</th>
+            <th v-if="user.role === 'Admin'">Action</th>
           </tr>
         </template>
 

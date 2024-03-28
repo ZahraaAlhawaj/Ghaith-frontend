@@ -106,7 +106,7 @@ export default {
             <th>Email</th>
             <th>Type</th>
             <th>Status</th>
-            <th v-if="user === 'Admin'">Action</th>
+            <th v-if="user.role === 'Admin'">Action</th>
           </tr>
         </template>
 
