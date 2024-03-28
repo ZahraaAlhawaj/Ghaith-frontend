@@ -49,6 +49,7 @@ export default {
   methods: {
     async getAllCases() {
       if (this.user.role == 'Admin') {
+        console.log('user', this.user)
         const response = await showCharityCases(this.user.charityId)
         this.cases = response
       } else {

@@ -57,6 +57,9 @@ export default {
     >
       {{ alert.message }}
     </v-alert>
+    <div class="title">
+      <h1 class="yellow-underlined title">Events</h1>
+    </div>
     <v-row>
       <v-col cols="4" v-for="event in events" :key="event._id">
         <v-card class="card-outline mb-4">
@@ -145,5 +148,22 @@ export default {
   margin-top: 0%;
   color: #4b5f23;
   background-color: #b1bf5c;
+}
+
+.title {
+  display: flex;
+  justify-content: center;
+}
+
+.yellow-underlined {
+  border-bottom: solid 10px #b1bf5c;
+  color: #4b5f23;
+  line-height: 0.35em;
+  margin-top: 0.65em;
+  display: inline-block;
+  padding-left: 0.15em;
+  padding-right: 0.15em;
+  align-self: center;
+  margin-bottom: 2%;
 }
 </style>
