@@ -112,7 +112,10 @@ export default {
 
         <template v-slot:item.actions="{ item }">
           <v-dialog v-model="updateDialog[item._id]" max-width="400" persistent>
-            <template v-slot:activator="{ on, attrs }" v-if="user === 'Admin'">
+            <template
+              v-slot:activator="{ on, attrs }"
+              v-if="user.role === 'Admin'"
+            >
               <v-btn
                 @click="openUpdateDialog(item)"
                 v-bind="attrs"
