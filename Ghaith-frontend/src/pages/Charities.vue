@@ -1,5 +1,5 @@
 <script>
-import { showAllCharity } from '../services/charity'
+import { showApprovedCharity } from '../services/charity'
 export default {
   name: 'Charities',
   data: () => ({
@@ -10,7 +10,7 @@ export default {
   },
   methods: {
     async showAllCharity() {
-      const response = await showAllCharity()
+      const response = await showApprovedCharity()
       this.charities = response
     },
     showCharity(id) {
