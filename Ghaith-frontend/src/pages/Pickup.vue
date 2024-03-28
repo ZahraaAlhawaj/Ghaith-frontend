@@ -85,12 +85,17 @@ export default {
 }
 </script>
 <template>
+  <div class="title">
+    <h1 class="yellow-underlined title">Pick up</h1>
+  </div>
   <div v-if="coords">
     <v-container class="pickup-container">
       <v-stepper alt-labels :items="['Step 1', 'Step 2']" class="step-class">
         <!-- to show nearby charity -->
         <template v-slot:item.1>
           <v-container class="pa-4 text-center pick-cont">
+            <h2 class="select-header">Select Charity</h2>
+
             <v-row align="center" class="fill-height" justify="center">
               <template v-for="(charity, i) in charities" :key="i">
                 <v-col cols="12" md="4">
@@ -115,6 +120,8 @@ export default {
 
         <!-- pickup form  -->
         <template v-slot:item.2>
+          <h2 class="select-header-two text-center">Complete Form</h2>
+
           <div class="form-container">
             <v-sheet class="mx-auto" width="300">
               <h1 class="account-title">Create Pickup</h1>
@@ -213,7 +220,7 @@ export default {
   padding: 2em;
   border-radius: 10px;
   background-color: #ffffff;
-  border: 0px solid #ffffff;
+  border: 0.12em solid #4b5f23;
   margin-top: 3%;
 }
 
@@ -232,5 +239,32 @@ export default {
 
 .step-class {
   background-color: #e6e5d0 !important;
+}
+
+.title {
+  display: flex;
+  justify-content: center;
+}
+
+.yellow-underlined {
+  border-bottom: solid 10px #b1bf5c;
+  color: #4b5f23;
+  line-height: 0.35em;
+  margin-top: 0.65em;
+  display: inline-block;
+  padding-left: 0.15em;
+  padding-right: 0.15em;
+  align-self: center;
+  margin-bottom: 2%;
+}
+
+.select-header {
+  margin-top: -2%;
+  margin-bottom: 2%;
+  color: #4b5f23;
+}
+
+.select-header-two {
+  color: #4b5f23;
 }
 </style>

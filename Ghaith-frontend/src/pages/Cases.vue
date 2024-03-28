@@ -23,7 +23,7 @@ export default {
     }
   },
   watch: {
-    filteredCases: {
+    showCases: {
       deep: true,
       handler(newVal) {
         newVal.forEach((c, index) => {
@@ -59,6 +59,15 @@ export default {
           (c) => c.category && c.category.name == val
         )
       }
+    },
+    showAmount(newVal) {
+      newVal.forEach((c, index) => {
+        if (c.total_amount == 0) {
+          this.percentage[index] = 0
+        } else {
+          this.percentage[index] = (c.collected_amount / c.total_amount) * 100
+        }
+      })
     }
   }
 }
@@ -66,6 +75,9 @@ export default {
 
 <template>
   <v-container class="pa-4 text-center">
+    <div class="title">
+      <h1 class="yellow-underlined title">Cases</h1>
+    </div>
     <v-tabs align-tabs="center" color="#4b5f23">
       <v-tab value="general" @click="showCategory('general')">Generel</v-tab>
       <v-tab value="Treatment" @click="showCategory('Treatment')"
@@ -185,8 +197,6 @@ export default {
 }
 
 .title {
-  margin-top: 2%;
-  padding-top: 1%;
   display: flex;
   justify-content: center;
 }

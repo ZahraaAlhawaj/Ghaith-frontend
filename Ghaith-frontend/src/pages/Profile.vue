@@ -88,7 +88,7 @@ export default {
               >
                 <v-card-text class="d-flex justify-space-between">
                   <div>
-                    <p>Amount: {{ req.expected_amount }}</p>
+                    <p>Amount: {{ req.expected_amount }} BD</p>
                     <p v-if="req.charity">
                       Sponsored Charity: {{ req.charity.name }}
                     </p>
