@@ -19,6 +19,7 @@ export default {
       this.showCases = this.cases.filter((c) =>
         c.name.toLowerCase().includes(this.search.toLowerCase())
       )
+      return this.cases
     }
   },
   watch: {

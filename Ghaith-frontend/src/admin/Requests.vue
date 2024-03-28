@@ -112,7 +112,7 @@ export default {
             <th>Salary</th>
             <th>Expected Amount</th>
             <th>Status</th>
-            <th>Action</th>
+            <th v-if="user === 'Admin'">Action</th>
           </tr>
         </template>
 
@@ -120,7 +120,7 @@ export default {
           <v-dialog v-model="updateDialog[item._id]" max-width="400" persistent>
             <template v-slot:activator="{ on, attrs }">
               <v-btn
-                v-if="item.status === 'Not Selected'"
+                v-if="user.role === 'Admin' && item.status === 'Not Selected'"
                 @click="openUpdateDialog(item)"
                 v-bind="attrs"
                 class="mr-4"

@@ -131,7 +131,11 @@ export default {
     <h1 class="list-title">Cases</h1>
     <v-dialog v-model="createDialog" max-width="400" persistent>
       <template v-slot:activator="{ props: createActivatorProps }">
-        <v-btn class="list-create-btn" v-bind="createActivatorProps">
+        <v-btn
+          class="list-create-btn"
+          v-bind="createActivatorProps"
+          v-if="user === 'Admin'"
+        >
           New Case
         </v-btn>
       </template>
@@ -222,7 +226,7 @@ export default {
         <template v-slot:item.end_date="{ item }">
           {{ formatDate(item.end_date) }}
         </template>
-        <template v-slot:item.actions="{ item }">
+        <template v-slot:item.actions="{ item }" v-if="user === 'Admin'">
           <v-dialog v-model="updateDialog[item._id]" max-width="400" persistent>
             <template v-slot:activator="{ on, attrs }">
               <v-icon
@@ -329,7 +333,7 @@ export default {
             <th width="10%">Collected Amount</th>
             <th>Start Date</th>
             <th>End Date</th>
-            <th>Action</th>
+            <th v-if="user === 'Admin'">Action</th>
           </tr>
         </template>
         <template v-slot:items="props"> </template>
