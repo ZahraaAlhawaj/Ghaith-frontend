@@ -162,7 +162,7 @@ export default {
           <p class="account-description">
             Enter your name, email, and password to create your account
           </p>
-          <v-form fast-fail>
+          <v-form fast-fail @submit.prevent @submit="handleSubmit">
             <h4>Admin Details</h4>
             <v-text-field
               v-model="formValues['name']"
