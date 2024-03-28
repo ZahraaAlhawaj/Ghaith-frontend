@@ -135,7 +135,7 @@ export default {
         <v-btn
           class="list-create-btn"
           v-bind="createActivatorProps"
-          v-if="user.role === 'Admin'"
+          v-if="user.role === ' Admin'"
         >
           New Case
         </v-btn>
