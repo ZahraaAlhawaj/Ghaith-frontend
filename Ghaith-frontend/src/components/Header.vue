@@ -66,6 +66,12 @@ export default {
         <v-list-item
           class="admin-link"
           link
+          title="Events"
+          to="/admin/events"
+        ></v-list-item>
+        <v-list-item
+          class="admin-link"
+          link
           title="Requests"
           to="/admin/requests"
         ></v-list-item>
