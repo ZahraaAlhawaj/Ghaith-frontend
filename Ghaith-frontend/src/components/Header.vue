@@ -150,21 +150,15 @@ body.dark nav {
 
 nav .nav-bar {
   position: relative;
-  /* height: 100%;
-    max-width: 1000px; */
   width: 100%;
   background-color: var(--nav-color);
-  /* margin: 0 auto; */
   padding: 0 30px;
   display: flex;
-  /* align-items: center; */
   justify-content: space-between;
   width: 100%;
   background-color: var(--nav-color);
-  /* margin: 0 auto; */
   padding: 0 30px;
   display: flex;
-  /* align-items: center; */
   justify-content: space-between;
   align-items: center;
 }
@@ -457,12 +451,12 @@ body.dark .search-field i {
 }
 
 .logo img {
-  width: 22%; /* Adjust the width to your desired size */
-  height: auto; /* Automatically adjust the height based on the aspect ratio */
+  width: 22%; 
+  height: auto;
 }
 
 .navLogo {
-  margin-right: 10%; /* Add some spacing between the logo and other elements in the header */
+  margin-right: 10%;
 }
 
 .admin-links {

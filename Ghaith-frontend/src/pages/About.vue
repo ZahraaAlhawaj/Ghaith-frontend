@@ -63,17 +63,12 @@ export default {
 </template>
 
 <style scoped>
-/* General styles */
 
 .container {
   max-width: 960px;
   margin: 0 auto;
   padding: 40px;
 }
-
-/* Styles for the title section */
-
-/* Styles for the image section */
 
 .image-section {
   display: flex;
@@ -90,8 +85,6 @@ export default {
   object-fit: cover;
 }
 
-/* Styles for the paragraph section */
-
 .paragraph-section {
   margin-bottom: 40px;
 }
@@ -100,8 +93,6 @@ export default {
   line-height: 1.6;
   color: #4b5f23;
 }
-
-/* Other styles */
 
 .section-divider {
   height: 1px;

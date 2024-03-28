@@ -87,7 +87,6 @@ export default {
         <div class="divider"></div>
         <div class="text-section">
           <h1>{{ charity.name }}</h1>
-          <!-- <p v-if="charity.user">{{ charity.user.email }}</p> -->
         </div>
       </v-card>
 
