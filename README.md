@@ -10,11 +10,11 @@ For those looking to make a difference beyond monetary donations, "Ghaith" provi
 
 Behind the scenes, the admin dashboard empowers administrators to manage requests, cases, and charities efficiently, ensuring that "Ghaith" operates smoothly and effectively to serve its noble purpose.
 
-## Live Link
+## 🔗 Live Link
 
 Click the following link to be redirected to the live version of the code. [Ghaith Platform]()
 
-## Technologies Used
+## 💻 Technologies Used
 
 Frontend: Vue.js with Vuex for state management.
 
@@ -22,7 +22,9 @@ Backend: Express.js with a RESTful API for data management.
 
 Database: MongoDB for storing charities and donation information.
 
-## Getting Started
+![Vue.js](https://img.shields.io/badge/vuejs-%2335495e.svg?style=for-the-badge&logo=vuedotjs&logoColor=%234FC08D) ![Vuetify](https://img.shields.io/badge/Vuetify-1867C0?style=for-the-badge&logo=vuetify&logoColor=AEDDFF) ![Express.js](https://img.shields.io/badge/express.js-%23404d59.svg?style=for-the-badge&logo=express&logoColor=%2361DAFB) ![NodeJS](https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white) ![MongoDB](https://img.shields.io/badge/MongoDB-%234ea94b.svg?style=for-the-badge&logo=mongodb&logoColor=white)
+
+## 🏃 Getting Started
 
 ### Frontend Setup
 
@@ -62,7 +64,7 @@ npm install
 npm start
 ```
 
-## Features
+## 🥇 Features
 
 - List of Charities: Explore and learn about various charitable organizations and their missions.
 - Cases: View specific cases related to charities and donate to support these causes.
@@ -74,18 +76,19 @@ npm start
 
 The admin dashboard provides administrators with the tools to manage requests, cases, and charities efficiently, ensuring the platform operates smoothly and effectively.
 
-## Contact
+## 👍 Contact
 
 Tasneem Ali - [LinkedIn](https://www.linkedin.com/in/tasneem-jameel-ali/) | tasneem.jameel9@gmail.com
 
 Zahraa Ali - [LinkedIn]() | zahraaalihasan279@gmail.com
 
-Zahraa Alhawaj - [LinkedIn]() |
+Zahraa Alhawaj - [LinkedIn](www.linkedin.com/in/zahraa-alhawaj) |
 zahraa.mu2019@gmail.com
 
 Esra Ashoor - [LinkedIn]() |
 esra.ashoor.e@gmail.com
 
-## Acknowledgments
+## ✨Acknowledgments
 
 - [vuetifyjs](https://vuetifyjs.com/en/)
+- [vue-social-sharing](https://www.npmjs.com/package/vue-social-sharing)
