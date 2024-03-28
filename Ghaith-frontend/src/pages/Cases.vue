@@ -23,7 +23,7 @@ export default {
     }
   },
   watch: {
-    showCases: {
+    filteredCases: {
       deep: true,
       handler(newVal) {
         newVal.forEach((c, index) => {
