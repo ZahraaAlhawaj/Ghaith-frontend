@@ -106,13 +106,13 @@ export default {
             <th>Email</th>
             <th>Type</th>
             <th>Status</th>
-            <th>Action</th>
+            <th v-if="user === 'Admin'">Action</th>
           </tr>
         </template>
 
         <template v-slot:item.actions="{ item }">
           <v-dialog v-model="updateDialog[item._id]" max-width="400" persistent>
-            <template v-slot:activator="{ on, attrs }">
+            <template v-slot:activator="{ on, attrs }" v-if="user === 'Admin'">
               <v-btn
                 @click="openUpdateDialog(item)"
                 v-bind="attrs"

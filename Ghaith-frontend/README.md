@@ -89,3 +89,4 @@ esra.ashoor.e@gmail.com
 ## Acknowledgments
 
 - [vuetifyjs](https://vuetifyjs.com/en/)
+- [npmjs](https://www.npmjs.com/package/vue-social-sharing)

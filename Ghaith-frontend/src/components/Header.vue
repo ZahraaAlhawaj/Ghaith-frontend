@@ -38,18 +38,21 @@ export default {
           link
           title="Users"
           to="/admin/users"
+          v-if="user.role === 'Super Admin'"
         ></v-list-item>
         <v-list-item
           class="admin-link"
           link
           title="Categories"
           to="/admin/categories"
+          v-if="user.role === 'Super Admin'"
         ></v-list-item>
         <v-list-item
           class="admin-link"
           link
           title="Charities"
           to="/admin/charities"
+          v-if="user.role === 'Super Admin'"
         ></v-list-item>
         <v-list-item
           class="admin-link"
