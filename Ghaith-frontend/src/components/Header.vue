@@ -71,6 +71,7 @@ export default {
           link
           title="Events"
           to="/admin/events"
+          v-if="user.role === 'Admin'"
         ></v-list-item>
         <v-list-item
           class="admin-link"
